@@ -5,7 +5,9 @@ export function StorySection() {
   return (
     <Section className="bg-white">
       <SectionTitle>
-        Construída por um time com muita experiência em mercado e em tecnologia.
+        Construída por um time com muita 
+        <br />
+        experiência em mercado e em tecnologia.
       </SectionTitle>
       
       <div className="max-w-3xl mx-auto text-lg text-duop-gray-dark space-y-6">
