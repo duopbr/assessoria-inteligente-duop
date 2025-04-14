@@ -12,22 +12,22 @@ export function StorySection() {
       
       <div className="max-w-3xl mx-auto text-lg text-duop-gray-dark space-y-6">
         <p>
-          Com ex-gestores, ex-estrategista de grande assessoria e desenvolvedores especialistas em IA, 
-          montamos um time técnico e experiente, mestres, doutores e PhDs.
+          Com <strong>ex-gestores, ex-estrategista de grande assessoria</strong> e desenvolvedores especialistas em IA, 
+          montamos um time técnico e experiente, <strong>mestres, doutores e PhDs</strong>.
         </p>
         
         <p>
-          Estamos criando a Duop juntos com os assessores - validando tudo com quem vive a realidade. 
-          Combinando as dores dos assessores com conhecimento prático e tecnologia de ponta.
+          Estamos criando a Duop <strong>juntos com os assessores</strong> - validando tudo com quem vive a realidade. 
+          Combinando as dores dos assessores com <strong>conhecimento prático e tecnologia de ponta</strong>.
         </p>
         
         <p>
           A plataforma nasceu desse incômodo de quem sente na pele a sobrecarga.
-          E foi pensada para ajudar esse assessor, não substituir.
+          E foi pensada para <strong>ajudar esse assessor, não substituir</strong>.
         </p>
         
         <p className="font-medium">
-          Tudo acontece no WhatsApp. Simples, direto, sem planilhas, sistemas travados ou CRMs do século passado.
+          Tudo acontece no WhatsApp. <strong>Simples, direto, sem planilhas</strong>, sistemas travados ou CRMs do século passado.
         </p>
       </div>
     </Section>
