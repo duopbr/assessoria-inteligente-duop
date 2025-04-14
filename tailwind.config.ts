@@ -62,29 +62,28 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
         },
-        // Existing color configurations...
         duop: {
           purple: {
-            lightest: '#E5DEFF', // Added lightest purple
-            light: '#D6BCFA',
-            DEFAULT: '#7E69AB', // Keep existing default
-            dark: '#5A4B7D',
-            darkest: '#2D2646' // Added darkest purple
+            lightest: '#E5E9FF',
+            light: '#A5C1F4',
+            DEFAULT: '#14B1E7',
+            dark: '#0E86B9',
+            darkest: '#0A5D7D'
           },
           blue: {
-            lightest: '#F0F4FC', // Added lightest blue
+            lightest: '#F0F4FC',
             light: '#A0B4D4',
-            DEFAULT: '#1A1F2C', // Keep existing default
+            DEFAULT: '#1A1F2C',
             dark: '#12151F'
           },
           gray: {
-            lightest: '#F9FAFB', // Added lightest gray
+            lightest: '#F9FAFB',
             light: '#F3F3F3',
             DEFAULT: '#8E9196',
             dark: '#4A4D52'
           },
           accent: {
-            DEFAULT: '#3B82F6', // Added an accent color
+            DEFAULT: '#3B82F6',
             light: '#60A5FA'
           }
         }
