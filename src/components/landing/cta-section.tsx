@@ -19,7 +19,9 @@ export function CTASection() {
         </p>
         
         <a 
-          href="#" 
+          href="https://outlook.office.com/bookwithme/user/6c084914dd174c1882e026a95a54bf79@duop.com.br/meetingtype/YMMt-mG0-EG_5Q4HvKL_Pg2?anonymous&ep=owaSlotsCopyCard" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="cta-button mx-auto max-w-xs transform transition-transform hover:scale-105"
         >
           <Calendar size={20} />
