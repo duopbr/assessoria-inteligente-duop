@@ -49,6 +49,22 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --duop-purple-lightest: 248 85% 94%;
+    --duop-purple-light: 270 65% 85%;
+    --duop-purple: 248 25% 50%;
+    --duop-purple-dark: 248 25% 35%;
+    --duop-purple-darkest: 248 35% 20%;
+
+    --duop-blue-lightest: 220 50% 96%;
+    --duop-blue-light: 220 30% 65%;
+    --duop-blue: 220 30% 15%;
+    --duop-blue-dark: 220 40% 10%;
+
+    --duop-gray-lightest: 210 20% 98%;
+    --duop-gray-light: 210 10% 90%;
+    --duop-gray: 210 5% 55%;
+    --duop-gray-dark: 210 10% 30%;
   }
 
   .dark {
@@ -122,7 +138,7 @@
   }
   
   .cta-button-secondary {
-    @apply bg-white hover:bg-gray-100 text-duop-purple border border-duop-purple font-medium py-3 px-6 rounded-lg shadow-sm transition-all duration-300 flex items-center justify-center gap-2;
+    @apply bg-white hover:bg-duop-gray-lightest text-duop-purple border border-duop-purple font-medium py-3 px-6 rounded-lg shadow-sm transition-all duration-300 flex items-center justify-center gap-2;
   }
 
   .feature-card {
