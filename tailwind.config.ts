@@ -61,6 +61,22 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				duop: {
+					purple: {
+						light: '#9b87f5',
+						DEFAULT: '#7E69AB',
+						dark: '#5A4B7D'
+					},
+					blue: {
+						DEFAULT: '#1A1F2C',
+						dark: '#12151F'
+					},
+					gray: {
+						light: '#F3F3F3',
+						DEFAULT: '#8E9196',
+						dark: '#4A4D52'
+					}
 				}
 			},
 			borderRadius: {
