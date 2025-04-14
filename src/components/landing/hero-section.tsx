@@ -13,9 +13,13 @@ export function HeroSection() {
           </h1>
           
           <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
-            Menos tempo apagando incêndio. 
+            Menos tempo apagando incêndio.
             <br />
             Mais presença com o cliente.
+            <br />
+            Um conversador feito para assessores que querem ganhar produtividade.
+            <br />
+            Por apenas 47,00 reais ao mês.
           </p>
           
           <a 

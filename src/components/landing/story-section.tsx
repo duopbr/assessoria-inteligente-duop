@@ -5,23 +5,27 @@ export function StorySection() {
   return (
     <Section className="bg-white">
       <SectionTitle>
-        Construída por quem já liderou equipes de assessoria e validada por quem vive a linha de frente.
+        Construída por um time com muita experiência em mercado e em tecnologia.
       </SectionTitle>
       
       <div className="max-w-3xl mx-auto text-lg text-duop-gray-dark space-y-6">
         <p>
-          Depois de anos atuando como gestor de fundo e líder de equipes de assessores, 
-          identificamos o que o tempo e a rotina tiram daqueles que querem realizar um trabalho 
-          verdadeiramente consultivo.
+          Com ex-gestores, ex-estrategista de grande assessoria e desenvolvedores especialistas em IA, 
+          montamos um time técnico e experiente, mestres, doutores e PhDs.
         </p>
         
         <p>
-          A Duop nasceu desse incômodo. Com um time que une expertise de mercado e 
-          tecnologia, criamos uma plataforma feita para ajudar — e nunca substituir — o assessor.
+          Estamos criando a Duop juntos com os assessores - validando tudo com quem vive a realidade. 
+          Combinando as dores dos assessores com conhecimento prático e tecnologia de ponta.
+        </p>
+        
+        <p>
+          A plataforma nasceu desse incômodo de quem sente na pele a sobrecarga.
+          E foi pensada para ajudar esse assessor, não substituir.
         </p>
         
         <p className="font-medium">
-          Tudo acontece dentro do WhatsApp. Esqueça planilhas, sistemas engessados ou CRMs ultrapassados.
+          Tudo acontece no WhatsApp. Simples, direto, sem planilhas, sistemas travados ou CRMs do século passado.
         </p>
       </div>
     </Section>
