@@ -22,7 +22,7 @@ export function HeroSection() {
             rel="noopener noreferrer"
             className="cta-button mx-auto max-w-xs transform transition-transform hover:scale-105"
           >
-            🔍 Quero entender como funciona
+            📅 Quero agendar agora
             <ArrowRight size={18} />
           </a>
         </div>
