@@ -46,7 +46,7 @@ export function CTASection() {
 
     try {
       // Cole aqui o URL do seu Web App implantado no Apps Script
-      const appScriptUrl = "https://script.google.com/macros/s/AKfycbxUbvefh11icai8pxSmLpaFbWlGEy5K5nUfDn_CO81kBbMOc9LbBi24AL5KfIo2MViL/exec";
+      const appScriptUrl = "https://script.google.com/macros/s/AKfycbzlKHgpK7uVWmJpA4WBdEdyKePEgbBFOb4d7aE7Xo1mRwMttPcDbJi4fAAnliNJrCgd/exec";
       
       // Envia os dados como JSON
       const response = await fetch(appScriptUrl, {
