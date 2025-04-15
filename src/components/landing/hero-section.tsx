@@ -1,15 +1,16 @@
 
-import { ArrowDown, Phone, Send, CheckCircle } from "lucide-react";
+import { Phone, Send, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 export function HeroSection() {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,14 +28,13 @@ export function HeroSection() {
     // Simulate form submission
     setTimeout(() => {
       console.log("Phone number submitted:", phoneNumber);
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setPhoneNumber("");
       
-      // Reset the success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+      // Generate a random queue number between 50 and 150
+      const queueNumber = Math.floor(Math.random() * 101) + 50;
+      
+      // Redirect to thank you page with queue number
+      navigate(`/obrigado?numero=${queueNumber}`);
+      
     }, 1000);
   };
 
@@ -58,59 +58,43 @@ export function HeroSection() {
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
           <h3 className="text-xl font-semibold mb-4">Experimente gratuitamente!</h3>
           <p className="mb-4 text-duop-gray-dark">
-            Deixe seu telefone para ter acesso ao período de teste gratuito. 
-            Nossa equipe entrará em contato para configurar seu trial sem compromisso.
+            Deixe seu telefone para ter acesso ao período de teste gratuito.
           </p>
           
-          {isSubmitted ? (
-            <div className="bg-green-50 text-green-700 p-4 rounded-md flex items-center justify-center gap-2">
-              <CheckCircle size={20} />
-              <span>Recebemos seu contato! Logo retornaremos.</span>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="text-left">
-                <Label htmlFor="hero-phone" className="text-duop-gray-dark mb-1 block">Seu telefone com DDD</Label>
-                <div className="flex">
-                  <div className="relative flex-grow">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <Phone size={18} className="text-duop-gray" />
-                    </div>
-                    <Input
-                      id="hero-phone"
-                      type="tel"
-                      placeholder="(00) 00000-0000"
-                      className="pl-10"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      required
-                    />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="text-left">
+              <Label htmlFor="hero-phone" className="text-duop-gray-dark mb-1 block">Seu telefone com DDD</Label>
+              <div className="flex">
+                <div className="relative flex-grow">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Phone size={18} className="text-duop-gray" />
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Enviando..." : <Send size={18} />}
-                  </Button>
+                  <Input
+                    id="hero-phone"
+                    type="tel"
+                    placeholder="(00) 00000-0000"
+                    className="pl-10"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
+                  />
                 </div>
-                {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+                <Button 
+                  type="submit" 
+                  className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Enviando..." : <Send size={18} />}
+                </Button>
               </div>
-              
-              <p className="text-sm text-duop-gray-dark">
-                Ao informar seus dados, você concorda em receber um contato da nossa equipe.
-              </p>
-            </form>
-          )}
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            </div>
+            
+            <p className="text-sm text-duop-gray-dark">
+              Ao informar seus dados, você concorda em receber um contato da nossa equipe.
+            </p>
+          </form>
         </div>
-        
-        <a 
-          href="#contato" 
-          className="cta-button mx-auto max-w-xs transform transition-transform hover:scale-105 flex"
-        >
-          🚀 Saiba mais
-          <ArrowDown size={18} />
-        </a>
       </div>
       
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent -z-10"></div>
