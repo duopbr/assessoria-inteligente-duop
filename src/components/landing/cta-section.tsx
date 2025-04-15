@@ -45,11 +45,11 @@ export function CTASection() {
     setIsSubmitting(true);
 
     try {
-      // Cole aqui o URL do seu Web App implantado no Apps Script
-      const appScriptUrl = "https://script.google.com/macros/s/AKfycbzlKHgpK7uVWmJpA4WBdEdyKePEgbBFOb4d7aE7Xo1mRwMttPcDbJi4fAAnliNJrCgd/exec";
+      // URL da nossa API na Vercel
+      const apiUrl = "/api/add-lead";
       
-      // Envia os dados como JSON
-      const response = await fetch(appScriptUrl, {
+      // Envia os dados como JSON para a API da Vercel
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

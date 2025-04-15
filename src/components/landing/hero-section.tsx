@@ -1,4 +1,3 @@
-
 import { Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
@@ -54,21 +53,25 @@ export function HeroSection() {
     setIsSubmitting(true);
     
     try {
-      // Replace with your Google Apps Script deployment URL
-      const appScriptUrl = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID_HERE/exec";
+      // URL da nossa API na Vercel
+      const apiUrl = "/api/add-lead";
       
-      const formData = new FormData();
-      formData.append('phoneNumber', phoneNumber);
-      formData.append('source', 'hero-section');
-      formData.append('timestamp', new Date().toISOString());
-      
-      // Using fetch with no-cors mode since Apps Script doesn't support CORS by default
-      await fetch(appScriptUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
+      // Envia os dados como JSON para a API da Vercel
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phoneNumber: phoneNumber,
+          source: "hero-section", // Identifica a origem como hero-section
+          timestamp: new Date().toISOString(),
+        }),
       });
-      
+
+      // Opcional: Verificar a resposta do script (requer que o script retorne CORS headers corretos)
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+
       console.log("Phone number submitted:", phoneNumber);
       
       // Generate a random queue number between 50 and 120
