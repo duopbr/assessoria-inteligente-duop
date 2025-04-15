@@ -1,30 +1,11 @@
 
-import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
   const queueNumber = searchParams.get("numero") || "---";
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(10);
-  
-  useEffect(() => {
-    document.title = "Obrigado - Duop";
-    
-    // Redirect to home after 10 seconds
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          navigate("/");
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, [navigate]);
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-duop-purple/5 flex items-center justify-center p-4">
@@ -47,8 +28,13 @@ const ThankYou = () => {
           Assim que novas vagas forem abertas, entraremos em contato por WhatsApp.
         </p>
         
-        <div className="text-sm text-duop-gray">
-          Você será redirecionado para a página inicial em {countdown} segundos.
+        <div className="flex justify-center">
+          <Button 
+            onClick={() => navigate('/')}
+            className="bg-duop-purple hover:bg-duop-purple/90 text-white"
+          >
+            Voltar para a página inicial
+          </Button>
         </div>
       </div>
     </div>
