@@ -1,5 +1,4 @@
-
-import { Phone, Send, CheckCircle } from "lucide-react";
+import { Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -58,7 +57,7 @@ export function HeroSection() {
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
           <h3 className="text-xl font-semibold mb-4">Experimente gratuitamente!</h3>
           <p className="mb-4 text-duop-gray-dark">
-            Deixe seu telefone para ter acesso ao período de teste gratuito.
+            <strong>Coloque seu telefone</strong> abaixo e recebe o trial por 7 dias.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-4">
