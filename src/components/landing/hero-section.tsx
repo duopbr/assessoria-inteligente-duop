@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "../ui/sonner";
 
 export function HeroSection() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -37,7 +38,7 @@ export function HeroSection() {
     if (error) setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     
@@ -52,8 +53,22 @@ export function HeroSection() {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Replace with your Google Apps Script deployment URL
+      const appScriptUrl = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID_HERE/exec";
+      
+      const formData = new FormData();
+      formData.append('phoneNumber', phoneNumber);
+      formData.append('source', 'hero-section');
+      formData.append('timestamp', new Date().toISOString());
+      
+      // Using fetch with no-cors mode since Apps Script doesn't support CORS by default
+      await fetch(appScriptUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+      
       console.log("Phone number submitted:", phoneNumber);
       
       // Generate a random queue number between 50 and 120
@@ -62,7 +77,11 @@ export function HeroSection() {
       // Redirect to thank you page with queue number
       navigate(`/obrigado?numero=${queueNumber}`);
       
-    }, 1000);
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
