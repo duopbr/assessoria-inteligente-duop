@@ -12,7 +12,6 @@ export function Footer() {
               alt="Duop Logo"
               className="h-12 mr-3"
             />
-            <div className="font-bold text-3xl text-white">Duop</div>
           </div>
           
           <div className="mb-6 text-center">

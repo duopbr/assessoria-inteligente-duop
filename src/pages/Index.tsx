@@ -1,4 +1,3 @@
-
 import { HeroSection } from "@/components/landing/hero-section";
 import { StorySection } from "@/components/landing/story-section";
 import { ProblemsSection } from "@/components/landing/problems-section";
@@ -47,7 +46,6 @@ const Index = () => {
               alt="Duop Logo"
               className="h-10 mr-2"
             />
-            <div className="font-bold text-xl sm:text-2xl gradient-text">Duop</div>
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-8">
