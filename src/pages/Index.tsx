@@ -1,3 +1,4 @@
+
 import { HeroSection } from "@/components/landing/hero-section";
 import { StorySection } from "@/components/landing/story-section";
 import { ProblemsSection } from "@/components/landing/problems-section";
@@ -54,7 +55,7 @@ const Index = () => {
             </ul>
           </nav>
           <a href="#contato" className="cta-button-secondary">
-            Agende uma demo
+            Testar agora
           </a>
         </div>
       </header>

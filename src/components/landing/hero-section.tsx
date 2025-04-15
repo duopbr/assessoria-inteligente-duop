@@ -1,5 +1,5 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -19,13 +19,11 @@ export function HeroSection() {
           </p>
           
           <a 
-            href="https://outlook.office.com/bookwithme/user/6c084914dd174c1882e026a95a54bf79@duop.com.br/meetingtype/YMMt-mG0-EG_5Q4HvKL_Pg2?anonymous&ep=owaSlotsCopyCard" 
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contato" 
             className="cta-button mx-auto max-w-xs transform transition-transform hover:scale-105"
           >
-            📅 Quero agendar agora
-            <ArrowRight size={18} />
+            🚀 Quero testar agora
+            <ArrowDown size={18} />
           </a>
         </div>
       </div>
