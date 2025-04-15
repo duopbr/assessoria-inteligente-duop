@@ -12,14 +12,41 @@ export function CTASection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
+  const formatPhoneNumber = (value: string) => {
+    // Remove all non-numeric characters
+    const numbers = value.replace(/\D/g, "");
+    
+    // Format the phone number as (00) 00000-0000
+    if (numbers.length <= 2) {
+      return numbers.length ? `(${numbers}` : "";
+    } else if (numbers.length <= 7) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+    } else if (numbers.length <= 11) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+    }
+    
+    // Limit to 11 digits total
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatPhoneNumber(e.target.value);
+    setPhoneNumber(formattedValue);
+    
+    // Clear error when user starts typing again
+    if (error) setError("");
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     
-    // Basic validation for Brazilian phone number format
-    const phoneRegex = /^\(?([0-9]{2})\)?[-. ]?([0-9]{4,5})[-. ]?([0-9]{4})$/;
-    if (!phoneRegex.test(phoneNumber)) {
-      setError("Por favor, digite um número de telefone válido com DDD.");
+    // Remove all non-numeric characters for validation
+    const digitsOnly = phoneNumber.replace(/\D/g, "");
+    
+    // Check if phone has exactly 11 digits (including area code)
+    if (digitsOnly.length !== 11) {
+      setError("Por favor, digite um número de telefone válido com 11 dígitos incluindo DDD.");
       return;
     }
     
@@ -71,14 +98,15 @@ export function CTASection() {
                     placeholder="(00) 00000-0000"
                     className="pl-10"
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    onChange={handlePhoneChange}
+                    maxLength={16}
                     required
                   />
                 </div>
                 <Button 
                   type="submit" 
                   className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11}
                 >
                   {isSubmitting ? "Enviando..." : <Send size={18} />}
                 </Button>
