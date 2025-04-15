@@ -41,7 +41,14 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <header className="py-6 px-4 sm:px-6 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="font-bold text-xl sm:text-2xl gradient-text">Duop</div>
+          <div className="flex items-center">
+            <img
+              src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
+              alt="Duop Logo"
+              className="h-10 mr-2"
+            />
+            <div className="font-bold text-xl sm:text-2xl gradient-text">Duop</div>
+          </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-8">
               <li><a href="#" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Início</a></li>
