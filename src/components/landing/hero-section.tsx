@@ -1,3 +1,4 @@
+
 import { Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
@@ -100,7 +101,7 @@ export function HeroSection() {
           <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
             <strong>Menos tempo apagando incêndio</strong>. Mais presença com o cliente. 
             Um conversador feito para assessores que querem <strong>ganhar produtividade</strong>. 
-            Por apenas <strong>47,00 reais ao mês</strong>.
+            Por apenas <strong>69,90 reais ao mês</strong>.
           </p>
         </div>
         
