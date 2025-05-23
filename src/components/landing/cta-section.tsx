@@ -55,7 +55,7 @@ export function CTASection() {
     
     try {
       // Replace with your Google Apps Script deployment URL
-      const appScriptUrl = "https://script.google.com/macros/s/AKfycbwU9hqqeDnmcnQ_aYoTtztSfV7u5gd0Uy3TUhxRHZ2JM55H-yk-4lK1COJIpBZ2abJn/exec";
+      const appScriptUrl = "https://script.google.com/macros/s/AKfycbzV-w2-D2WBXRrcr9qGwhffzLJoa_icRdVUs6QGtRYAzT0NjUNFCRCdm6wT1KcoAG4h/exec";
       
       const formData = new FormData();
       formData.append('phoneNumber', phoneNumber);
