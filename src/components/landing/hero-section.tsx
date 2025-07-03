@@ -100,14 +100,14 @@ export function HeroSection() {
           <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
             <strong>Menos tempo apagando incêndio</strong>. Mais presença com o cliente. 
             Um conversador feito para assessores que querem <strong>ganhar produtividade</strong>. 
-            Por apenas <strong>79,90 reais ao mês</strong>.
+            Por apenas <strong>69,90 reais ao mês</strong>.
           </p>
         </div>
         
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
-          <h3 className="text-xl font-semibold mb-4">Experimente gratuitamente!</h3>
+          <h3 className="text-xl font-semibold mb-4">Comece agora!</h3>
           <p className="mb-4 text-duop-gray-dark">
-            <strong>Coloque seu telefone</strong> abaixo e recebe o trial por 7 dias.
+            <strong>Coloque seu telefone</strong> abaixo e nossa equipe entrará em contato.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-4">
