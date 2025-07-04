@@ -143,29 +143,20 @@ export function HeroSection() {
             
             <div className="text-left">
               <Label htmlFor="hero-phone" className="text-duop-gray-dark mb-1 block">Seu telefone com DDD</Label>
-              <div className="flex">
-                <div className="relative flex-grow">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Phone size={18} className="text-duop-gray" />
-                  </div>
-                  <Input
-                    id="hero-phone"
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                    className="pl-10"
-                    value={phoneNumber}
-                    onChange={handlePhoneChange}
-                    maxLength={16}
-                    required
-                  />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Phone size={18} className="text-duop-gray" />
                 </div>
-                <Button 
-                  type="submit" 
-                  className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
-                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
-                >
-                  {isSubmitting ? "Enviando..." : <Send size={18} />}
-                </Button>
+                <Input
+                  id="hero-phone"
+                  type="tel"
+                  placeholder="(00) 00000-0000"
+                  className="pl-10"
+                  value={phoneNumber}
+                  onChange={handlePhoneChange}
+                  maxLength={16}
+                  required
+                />
               </div>
               {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
@@ -173,19 +164,21 @@ export function HeroSection() {
             <p className="text-sm text-duop-gray-dark">
               Ao informar seus dados, você concorda em receber um contato da nossa equipe.
             </p>
+
+            {/* CTA Button - agora é o botão de envio do formulário */}
+            <Button 
+              type="submit"
+              size="lg"
+              className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
+            >
+              {isSubmitting ? "Enviando..." : "🚀 Transforme sua assessoria hoje mesmo!"}
+            </Button>
           </form>
         </div>
 
-        {/* CTA Button */}
         <div className="text-center">
-          <Button 
-            size="lg"
-            className="bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            🚀 Transforme sua assessoria hoje mesmo!
-          </Button>
-          <p className="text-sm text-duop-gray-dark mt-3">
+          <p className="text-sm text-duop-gray-dark">
             Junte-se a centenas de assessores que já aumentaram sua produtividade
           </p>
         </div>
