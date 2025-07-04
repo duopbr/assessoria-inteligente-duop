@@ -1,3 +1,4 @@
+
 import { Phone, Send, User } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
@@ -69,7 +70,7 @@ export function HeroSection() {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
       
-      // Insert into Supabase assessores table
+      // Insert into Supabase assessores table with Nome column
       const { error: supabaseError } = await supabase
         .from('Assessores')
         .insert([
@@ -84,6 +85,31 @@ export function HeroSection() {
         toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
         setIsSubmitting(false);
         return;
+      }
+
+      // Also send to Google Sheets
+      try {
+        const response = await fetch('/api/add-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phoneNumber: phoneWithCountryCode,
+            name: name,
+            source: 'Hero Section'
+          }),
+        });
+
+        if (!response.ok) {
+          console.error("Google Sheets API error:", await response.text());
+          // Don't block the flow if Google Sheets fails
+        } else {
+          console.log("Data sent to Google Sheets successfully");
+        }
+      } catch (googleSheetsError) {
+        console.error("Error sending to Google Sheets:", googleSheetsError);
+        // Don't block the flow if Google Sheets fails
       }
 
       console.log("Data submitted successfully:", { name, phoneNumber: phoneWithCountryCode });

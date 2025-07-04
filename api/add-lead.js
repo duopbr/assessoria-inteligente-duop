@@ -1,3 +1,4 @@
+
 // Importa a biblioteca do Google APIs
 import { google } from 'googleapis';
 
@@ -10,7 +11,7 @@ export default async function handler(req, res) {
   }
 
   // 2. Obter dados do corpo da requisição
-  const { phoneNumber, source } = req.body;
+  const { phoneNumber, name, source } = req.body;
 
   // Validação básica dos dados recebidos
   if (!phoneNumber || typeof phoneNumber !== 'string') {
@@ -19,6 +20,7 @@ export default async function handler(req, res) {
 
   const timestamp = new Date().toISOString();
   const leadSource = typeof source === 'string' ? source : 'Desconhecida';
+  const leadName = typeof name === 'string' ? name : '';
 
   // 3. Obter credenciais e IDs das Variáveis de Ambiente
   const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
@@ -44,10 +46,11 @@ export default async function handler(req, res) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // 5. Preparar a linha para adicionar
+    // 5. Preparar a linha para adicionar (agora incluindo o nome)
     const newRow = [
       timestamp,
       phoneNumber,
+      leadName,
       leadSource
     ];
 

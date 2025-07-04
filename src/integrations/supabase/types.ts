@@ -14,16 +14,19 @@ export type Database = {
           Celular: string | null
           created_at: string
           id: number
+          nome: string | null
         }
         Insert: {
           Celular?: string | null
           created_at?: string
           id?: number
+          nome?: string | null
         }
         Update: {
           Celular?: string | null
           created_at?: string
           id?: number
+          nome?: string | null
         }
         Relationships: []
       }
