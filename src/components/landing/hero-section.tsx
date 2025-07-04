@@ -140,7 +140,8 @@ export function HeroSection() {
           <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
             <strong>Menos tempo apagando incêndio</strong>. Mais presença com o cliente. 
             Um conversador feito para assessores que querem <strong>ganhar produtividade</strong>. 
-            Por apenas <strong>79,90 reais ao mês</strong>.
+            <span className="line-through text-gray-500">Por apenas 79,90 reais ao mês</span> 
+            <span className="text-green-600 font-bold"> - agora por apenas R$ 31,96 (60% OFF por tempo limitado!)</span>
           </p>
         </div>
         
