@@ -72,7 +72,7 @@ export function CTASection() {
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'form_submit',
-          email: '', // Não temos email neste formulário
+          nome: name.trim(),
           phone: phoneWithCountryCode
         });
       }
