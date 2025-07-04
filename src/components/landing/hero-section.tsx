@@ -175,6 +175,20 @@ export function HeroSection() {
             </p>
           </form>
         </div>
+
+        {/* CTA Button */}
+        <div className="text-center">
+          <Button 
+            size="lg"
+            className="bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            🚀 Transforme sua assessoria hoje mesmo!
+          </Button>
+          <p className="text-sm text-duop-gray-dark mt-3">
+            Junte-se a centenas de assessores que já aumentaram sua produtividade
+          </p>
+        </div>
       </div>
       
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent -z-10"></div>
