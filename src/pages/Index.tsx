@@ -7,7 +7,6 @@ import { ValidationSection } from "@/components/landing/validation-section";
 import { CTASection } from "@/components/landing/cta-section";
 import { FAQSection } from "@/components/landing/faq-section";
 import { Footer } from "@/components/landing/footer";
-import { DiscountOffer } from "@/components/landing/discount-offer";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -40,8 +39,6 @@ const Index = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <DiscountOffer />
-      
       <header className="py-6 px-4 sm:px-6 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
