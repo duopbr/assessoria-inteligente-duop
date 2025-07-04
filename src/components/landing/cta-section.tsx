@@ -8,6 +8,13 @@ import { Label } from "../ui/label";
 import { toast } from "../ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
+// Declare dataLayer for TypeScript
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 export function CTASection() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
@@ -61,6 +68,16 @@ export function CTASection() {
     try {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
+      
+      // Send data to dataLayer for GTM tracking
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'form_submit_cta',
+          form_name: 'cta_section_form',
+          user_name: name.trim(),
+          user_phone: phoneWithCountryCode
+        });
+      }
       
       // Insert into Supabase assessores table with correct lowercase names
       const { error: supabaseError } = await supabase
