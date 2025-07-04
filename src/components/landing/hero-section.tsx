@@ -67,13 +67,8 @@ export function HeroSection() {
     setIsSubmitting(true);
     
     try {
-      // Check if the phone number already has +55 prefix, if not add it
-      let phoneWithCountryCode = digitsOnly;
-      if (!phoneWithCountryCode.startsWith("55")) {
-        phoneWithCountryCode = `+55${digitsOnly}`;
-      } else {
-        phoneWithCountryCode = `+${digitsOnly}`;
-      }
+      // Add +55 prefix to the phone number before saving
+      const phoneWithCountryCode = `+55${digitsOnly}`;
       
       // Insert into Supabase assessores table
       const { error: supabaseError } = await supabase
@@ -155,11 +150,14 @@ export function HeroSection() {
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Phone size={18} className="text-duop-gray" />
                 </div>
+                <div className="absolute inset-y-0 left-8 flex items-center pl-3 pointer-events-none">
+                  <span className="text-duop-gray-dark font-medium">+55</span>
+                </div>
                 <Input
                   id="hero-phone"
                   type="tel"
                   placeholder="(00) 00000-0000"
-                  className="pl-10"
+                  className="pl-16"
                   value={phoneNumber}
                   onChange={handlePhoneChange}
                   maxLength={16}
