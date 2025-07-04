@@ -67,8 +67,13 @@ export function HeroSection() {
     setIsSubmitting(true);
     
     try {
-      // Add +55 prefix to the phone number before saving
-      const phoneWithCountryCode = `+55${digitsOnly}`;
+      // Check if the phone number already has +55 prefix, if not add it
+      let phoneWithCountryCode = digitsOnly;
+      if (!phoneWithCountryCode.startsWith("55")) {
+        phoneWithCountryCode = `+55${digitsOnly}`;
+      } else {
+        phoneWithCountryCode = `+${digitsOnly}`;
+      }
       
       // Insert into Supabase assessores table
       const { error: supabaseError } = await supabase
