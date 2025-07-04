@@ -59,12 +59,15 @@ export function CTASection() {
     setIsSubmitting(true);
 
     try {
+      // Add +55 prefix to the phone number before saving
+      const phoneWithCountryCode = `+55${digitsOnly}`;
+      
       // Insert into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('Assessores')
         .insert([
           {
-            Celular: phoneNumber,
+            Celular: phoneWithCountryCode,
             Nome: name
           }
         ]);
@@ -76,7 +79,7 @@ export function CTASection() {
         return;
       }
       
-      console.log("Data submitted successfully:", { name, phoneNumber });
+      console.log("Data submitted successfully:", { name, phoneNumber: phoneWithCountryCode });
       setIsSubmitting(false);
       setIsSubmitted(true);
       setPhoneNumber("");

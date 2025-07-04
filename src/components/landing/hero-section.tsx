@@ -67,12 +67,15 @@ export function HeroSection() {
     setIsSubmitting(true);
     
     try {
+      // Add +55 prefix to the phone number before saving
+      const phoneWithCountryCode = `+55${digitsOnly}`;
+      
       // Insert into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('Assessores')
         .insert([
           {
-            Celular: phoneNumber,
+            Celular: phoneWithCountryCode,
             Nome: name
           }
         ]);
@@ -84,7 +87,7 @@ export function HeroSection() {
         return;
       }
 
-      console.log("Data submitted successfully:", { name, phoneNumber });
+      console.log("Data submitted successfully:", { name, phoneNumber: phoneWithCountryCode });
       
       // Generate a random queue number between 50 and 120
       const queueNumber = Math.floor(Math.random() * 71) + 50;
