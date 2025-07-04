@@ -1,13 +1,16 @@
+
 import { useState } from "react";
 import { Section, SectionTitle } from "../ui/section";
-import { Phone, Send, CheckCircle } from "lucide-react";
+import { Phone, Send, CheckCircle, User } from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { toast } from "../ui/sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export function CTASection() {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -31,9 +34,20 @@ export function CTASection() {
     if (error) setError("");
   };
 
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (error) setError("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    // Validate name
+    if (!name.trim()) {
+      setError("Por favor, digite seu nome.");
+      return;
+    }
 
     // Remove caracteres não-numéricos para a validação
     const digitsOnly = phoneNumber.replace(/\D/g, "");
@@ -45,25 +59,28 @@ export function CTASection() {
     setIsSubmitting(true);
 
     try {
-      // Replace with your Google Apps Script deployment URL
-      const appScriptUrl = "https://script.google.com/macros/s/AKfycbzV-w2-D2WBXRrcr9qGwhffzLJoa_icRdVUs6QGtRYAzT0NjUNFCRCdm6wT1KcoAG4h/exec";
+      // Insert into Supabase assessores table
+      const { error: supabaseError } = await supabase
+        .from('Assessores')
+        .insert([
+          {
+            Celular: phoneNumber,
+            Nome: name
+          }
+        ]);
+
+      if (supabaseError) {
+        console.error("Supabase error:", supabaseError);
+        toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+        setIsSubmitting(false);
+        return;
+      }
       
-      const formData = new FormData();
-      formData.append('phoneNumber', phoneNumber);
-      formData.append('source', 'cta-section');
-      formData.append('timestamp', new Date().toISOString());
-      
-      // Using fetch with no-cors mode since Apps Script doesn't support CORS by default
-      const response = await fetch(appScriptUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-      });
-      
-      console.log("Phone number submitted:", phoneNumber);
+      console.log("Data submitted successfully:", { name, phoneNumber });
       setIsSubmitting(false);
       setIsSubmitted(true);
       setPhoneNumber("");
+      setName("");
       
       setTimeout(() => {
         setIsSubmitted(false);
@@ -80,7 +97,7 @@ export function CTASection() {
       <SectionTitle emoji="💡">Quer testar nossa solução?</SectionTitle>
       <div className="max-w-md mx-auto text-center">
         <p className="text-xl mb-6">
-          Deixe seu telefone e entraremos em contato para disponibilizar um período de teste gratuito da plataforma.
+          Deixe seus dados e entraremos em contato para disponibilizar um período de teste gratuito da plataforma.
         </p>
         {isSubmitted ? (
           <div className="bg-green-50 text-green-700 p-4 rounded-md flex items-center justify-center gap-2 mb-4">
@@ -89,6 +106,26 @@ export function CTASection() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="text-left">
+              <Label htmlFor="cta-name" className="text-duop-gray-dark mb-1 block">
+                Seu nome
+              </Label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <User size={18} className="text-duop-gray" />
+                </div>
+                <Input
+                  id="cta-name"
+                  type="text"
+                  placeholder="Digite seu nome"
+                  className="pl-10"
+                  value={name}
+                  onChange={handleNameChange}
+                  required
+                />
+              </div>
+            </div>
+            
             <div className="text-left">
               <Label htmlFor="phone" className="text-duop-gray-dark mb-1 block">
                 Seu telefone com DDD
@@ -110,7 +147,7 @@ export function CTASection() {
                   />
                 </div>
                 <Button type="submit" className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
-                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11}
+                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
                 >
                   {isSubmitting ? "Enviando..." : <Send size={18} />}
                 </Button>

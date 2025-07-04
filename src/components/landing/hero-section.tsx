@@ -1,13 +1,16 @@
-import { Phone, Send } from "lucide-react";
+
+import { Phone, Send, User } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "../ui/sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export function HeroSection() {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -37,9 +40,20 @@ export function HeroSection() {
     if (error) setError("");
   };
 
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (error) setError("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    
+    // Validate name
+    if (!name.trim()) {
+      setError("Por favor, digite seu nome.");
+      return;
+    }
     
     // Remove all non-numeric characters for validation
     const digitsOnly = phoneNumber.replace(/\D/g, "");
@@ -53,26 +67,24 @@ export function HeroSection() {
     setIsSubmitting(true);
     
     try {
-      // URL da nossa API na Vercel
-      const apiUrl = "/api/add-lead";
-      
-      // Envia os dados como JSON para a API da Vercel
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          phoneNumber: phoneNumber,
-          source: "hero-section", // Identifica a origem como hero-section
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      // Insert into Supabase assessores table
+      const { error: supabaseError } = await supabase
+        .from('Assessores')
+        .insert([
+          {
+            Celular: phoneNumber,
+            Nome: name
+          }
+        ]);
 
-      // Opcional: Verificar a resposta do script (requer que o script retorne CORS headers corretos)
-      // if (!response.ok) {
-      //   throw new Error(`HTTP error! status: ${response.status}`);
-      // }
+      if (supabaseError) {
+        console.error("Supabase error:", supabaseError);
+        toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+        setIsSubmitting(false);
+        return;
+      }
 
-      console.log("Phone number submitted:", phoneNumber);
+      console.log("Data submitted successfully:", { name, phoneNumber });
       
       // Generate a random queue number between 50 and 120
       const queueNumber = Math.floor(Math.random() * 71) + 50;
@@ -107,10 +119,28 @@ export function HeroSection() {
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
           <h3 className="text-xl font-semibold mb-4">Comece agora!</h3>
           <p className="mb-4 text-duop-gray-dark">
-            <strong>Coloque seu telefone</strong> abaixo e nossa equipe entrará em contato.
+            <strong>Coloque seus dados</strong> abaixo e nossa equipe entrará em contato.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="text-left">
+              <Label htmlFor="hero-name" className="text-duop-gray-dark mb-1 block">Seu nome</Label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <User size={18} className="text-duop-gray" />
+                </div>
+                <Input
+                  id="hero-name"
+                  type="text"
+                  placeholder="Digite seu nome"
+                  className="pl-10"
+                  value={name}
+                  onChange={handleNameChange}
+                  required
+                />
+              </div>
+            </div>
+            
             <div className="text-left">
               <Label htmlFor="hero-phone" className="text-duop-gray-dark mb-1 block">Seu telefone com DDD</Label>
               <div className="flex">
@@ -132,7 +162,7 @@ export function HeroSection() {
                 <Button 
                   type="submit" 
                   className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
-                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11}
+                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
                 >
                   {isSubmitting ? "Enviando..." : <Send size={18} />}
                 </Button>
