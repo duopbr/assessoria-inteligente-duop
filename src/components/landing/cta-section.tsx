@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Section, SectionTitle } from "../ui/section";
 import { Phone, Send, CheckCircle, User } from "lucide-react";
@@ -72,10 +71,9 @@ export function CTASection() {
       // Send data to dataLayer for GTM tracking
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'form_submit_cta',
-          form_name: 'cta_section_form',
-          user_name: name.trim(),
-          user_phone: phoneWithCountryCode
+          event: 'form_submit',
+          email: '', // Não temos email neste formulário
+          phone: phoneWithCountryCode
         });
       }
       

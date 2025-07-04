@@ -1,4 +1,3 @@
-
 import { Phone, Send, User } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../ui/input";
@@ -80,10 +79,9 @@ export function HeroSection() {
       // Send data to dataLayer for GTM tracking
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'form_submit_hero',
-          form_name: 'hero_section_form',
-          user_name: name.trim(),
-          user_phone: phoneWithCountryCode
+          event: 'form_submit',
+          email: '', // Não temos email neste formulário
+          phone: phoneWithCountryCode
         });
       }
       
