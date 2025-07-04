@@ -9,24 +9,24 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      Assessores: {
+      assessores: {
         Row: {
-          Celular: string | null
-          created_at: string
+          celular: string
+          created_at: string | null
           id: number
-          nome: string | null
+          nome: string
         }
         Insert: {
-          Celular?: string | null
-          created_at?: string
+          celular: string
+          created_at?: string | null
           id?: number
-          nome?: string | null
+          nome: string
         }
         Update: {
-          Celular?: string | null
-          created_at?: string
+          celular?: string
+          created_at?: string | null
           id?: number
-          nome?: string | null
+          nome?: string
         }
         Relationships: []
       }

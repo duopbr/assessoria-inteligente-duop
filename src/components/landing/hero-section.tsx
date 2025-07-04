@@ -70,7 +70,7 @@ export function HeroSection() {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
       
-      // Insert into Supabase assessores table with nome column (lowercase)
+      // Insert into Supabase assessores table with correct column names
       const { error: supabaseError } = await supabase
         .from('Assessores')
         .insert([
