@@ -137,11 +137,22 @@ export function HeroSection() {
             Direto no WhatsApp.
           </h1>
           
-          <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
+          <p className="text-xl md:text-2xl mb-4 text-duop-gray-dark">
             <strong>Menos tempo apagando incêndio</strong>. Mais presença com o cliente. 
-            Um conversador feito para assessores que querem <strong>ganhar produtividade</strong>. 
-            Por apenas <strong>79,90 reais ao mês</strong>.
+            Um conversador feito para assessores que querem <strong>ganhar produtividade</strong>.
           </p>
+          
+          {/* Oferta de desconto */}
+          <div className="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-lg mb-6 shadow-lg">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="bg-white/20 px-2 py-1 rounded-full text-sm font-bold">60% OFF</span>
+              <span className="text-sm">OFERTA LIMITADA!</span>
+            </div>
+            <p className="text-lg">
+              De <span className="line-through opacity-80">R$ 79,90</span> por apenas 
+              <span className="font-bold text-2xl ml-2">R$ 31,96/mês</span>
+            </p>
+          </div>
         </div>
         
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
@@ -201,7 +212,7 @@ export function HeroSection() {
               className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
             >
-              {isSubmitting ? "Enviando..." : "🚀 Transforme sua assessoria hoje mesmo!"}
+              {isSubmitting ? "Enviando..." : "🚀 Aproveite essa oferta limitada!"}
             </Button>
           </form>
         </div>
