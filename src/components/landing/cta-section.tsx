@@ -134,25 +134,23 @@ export function CTASection() {
                 Seu telefone com DDD
               </Label>
               <div className="flex">
-                <div className="relative flex-grow">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <div className="flex items-center">
+                  <div className="bg-gray-50 border border-r-0 border-gray-300 px-3 py-2 rounded-l-md flex items-center gap-2">
                     <Phone size={18} className="text-duop-gray" />
-                  </div>
-                  <div className="absolute inset-y-0 left-8 flex items-center pl-3 pointer-events-none">
                     <span className="text-duop-gray-dark font-medium">+55</span>
                   </div>
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="(00) 00000-0000"
-                    className="pl-16"
+                    className="rounded-l-none rounded-r-none"
                     value={phoneNumber}
                     onChange={handlePhoneChange}
                     maxLength={16}
                     required
                   />
                 </div>
-                <Button type="submit" className="ml-2 bg-duop-purple hover:bg-duop-purple/90 text-white"
+                <Button type="submit" className="ml-0 bg-duop-purple hover:bg-duop-purple/90 text-white rounded-l-none"
                   disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
                 >
                   {isSubmitting ? "Enviando..." : <Send size={18} />}
