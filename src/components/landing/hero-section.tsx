@@ -69,15 +69,18 @@ export function HeroSection() {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
       
-      // Insert into Supabase assessores table with correct lowercase names
+      // Use upsert to handle duplicate phone numbers
       const { error: supabaseError } = await supabase
         .from('assessores')
-        .insert([
+        .upsert(
           {
             celular: phoneWithCountryCode,
             nome: name
+          },
+          {
+            onConflict: 'celular'
           }
-        ]);
+        );
 
       if (supabaseError) {
         console.error("Supabase error:", supabaseError);
