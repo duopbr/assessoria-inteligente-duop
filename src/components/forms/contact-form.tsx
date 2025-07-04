@@ -53,24 +53,41 @@ export function ContactForm() {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
       
-      // Use upsert to handle duplicate phone numbers
-      const { error: supabaseError } = await supabase
+      // Check if phone number already exists
+      const { data: existingRecord } = await supabase
         .from('assessores')
-        .upsert(
-          {
+        .select('id')
+        .eq('celular', phoneWithCountryCode)
+        .single();
+
+      if (existingRecord) {
+        // Update existing record
+        const { error: updateError } = await supabase
+          .from('assessores')
+          .update({ nome: name })
+          .eq('celular', phoneWithCountryCode);
+
+        if (updateError) {
+          console.error("Supabase update error:", updateError);
+          toast.error("Ocorreu um erro ao atualizar seus dados. Tente novamente mais tarde.");
+          setIsSubmitting(false);
+          return;
+        }
+      } else {
+        // Insert new record
+        const { error: insertError } = await supabase
+          .from('assessores')
+          .insert({
             celular: phoneWithCountryCode,
             nome: name
-          },
-          {
-            onConflict: 'celular'
-          }
-        );
+          });
 
-      if (supabaseError) {
-        console.error("Supabase error:", supabaseError);
-        toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
-        setIsSubmitting(false);
-        return;
+        if (insertError) {
+          console.error("Supabase insert error:", insertError);
+          toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+          setIsSubmitting(false);
+          return;
+        }
       }
 
       // Also send to Google Sheets
