@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/landing/hero-section";
 import { StorySection } from "@/components/landing/story-section";
 import { ProblemsSection } from "@/components/landing/problems-section";
 import { SolutionSection } from "@/components/landing/solution-section";
+import { HowItWorksSection } from "@/components/landing/how-it-works-section";
 import { ValidationSection } from "@/components/landing/validation-section";
 import { CTASection } from "@/components/landing/cta-section";
 import { FAQSection } from "@/components/landing/faq-section";
@@ -73,6 +74,10 @@ const Index = () => {
         
         <div className="appear-animation">
           <SolutionSection />
+        </div>
+        
+        <div className="appear-animation">
+          <HowItWorksSection />
         </div>
         
         <div className="appear-animation">
