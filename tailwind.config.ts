@@ -64,27 +64,23 @@ export default {
         },
         duop: {
           purple: {
-            lightest: '#E5E9FF',
-            light: '#A5C1F4',
-            DEFAULT: '#14B1E7',
-            dark: '#0E86B9',
-            darkest: '#0A5D7D'
+            lightest: 'hsl(var(--duop-purple-lightest))',
+            light: 'hsl(var(--duop-purple-light))',
+            DEFAULT: 'hsl(var(--duop-purple))',
+            dark: 'hsl(var(--duop-purple-dark))',
+            darkest: 'hsl(var(--duop-purple-darkest))'
           },
           blue: {
-            lightest: '#F0F4FC',
-            light: '#A0B4D4',
-            DEFAULT: '#1A1F2C',
-            dark: '#12151F'
+            lightest: 'hsl(var(--duop-blue-lightest))',
+            light: 'hsl(var(--duop-blue-light))',
+            DEFAULT: 'hsl(var(--duop-blue))',
+            dark: 'hsl(var(--duop-blue-dark))'
           },
           gray: {
-            lightest: '#F9FAFB',
-            light: '#F3F3F3',
-            DEFAULT: '#8E9196',
-            dark: '#4A4D52'
-          },
-          accent: {
-            DEFAULT: '#3B82F6',
-            light: '#60A5FA'
+            lightest: 'hsl(var(--duop-gray-lightest))',
+            light: 'hsl(var(--duop-gray-light))',
+            DEFAULT: 'hsl(var(--duop-gray))',
+            dark: 'hsl(var(--duop-gray-dark))'
           }
         }
       },

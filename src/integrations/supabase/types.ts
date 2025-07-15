@@ -17,21 +17,33 @@ export type Database = {
       assessores: {
         Row: {
           celular: string
+          Contatado: string | null
           created_at: string | null
           id: number
           nome: string
+          Respondeu: string | null
+          reunião_marcada: string | null
+          Venda: string | null
         }
         Insert: {
           celular: string
+          Contatado?: string | null
           created_at?: string | null
           id?: number
           nome: string
+          Respondeu?: string | null
+          reunião_marcada?: string | null
+          Venda?: string | null
         }
         Update: {
           celular?: string
+          Contatado?: string | null
           created_at?: string | null
           id?: number
           nome?: string
+          Respondeu?: string | null
+          reunião_marcada?: string | null
+          Venda?: string | null
         }
         Relationships: []
       }
