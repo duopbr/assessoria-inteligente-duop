@@ -55,10 +55,16 @@ export function HowItWorksSection() {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {availableFeatures.map((feature, index) => <div key={index} className="relative">
-              <FeatureCard icon={feature.icon} title={feature.title} description={feature.description} className="h-full" />
-              {feature.note}
-            </div>)}
+          {availableFeatures.map((feature, index) => (
+            <FeatureCard 
+              key={index}
+              icon={feature.icon} 
+              title={feature.title} 
+              description={feature.description} 
+              note={feature.note}
+              className="h-full" 
+            />
+          ))}
         </div>
       </div>
 
