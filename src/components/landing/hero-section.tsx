@@ -17,6 +17,7 @@ declare global {
 export function HeroSection() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -51,6 +52,11 @@ export function HeroSection() {
     if (error) setError("");
   };
 
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (error) setError("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -58,6 +64,18 @@ export function HeroSection() {
     // Validate name
     if (!name.trim()) {
       setError("Por favor, digite seu nome.");
+      return;
+    }
+
+    // Validate email
+    if (!email.trim()) {
+      setError("Por favor, digite seu e-mail.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Por favor, digite um e-mail válido.");
       return;
     }
     
@@ -81,6 +99,7 @@ export function HeroSection() {
         window.dataLayer.push({
           event: 'form_submit',
           nome: name.trim(),
+          email: email.trim(),
           phone: phoneWithCountryCode
         });
       }
@@ -91,7 +110,8 @@ export function HeroSection() {
         .insert([
           {
             celular: phoneWithCountryCode,
-            nome: name
+            nome: name,
+            email: email
           }
         ]);
 
@@ -112,6 +132,7 @@ export function HeroSection() {
           body: JSON.stringify({
             phoneNumber: phoneWithCountryCode,
             name: name,
+            email: email,
             source: 'Hero Section'
           }),
         });
@@ -127,7 +148,7 @@ export function HeroSection() {
         // Don't block the flow if Google Sheets fails
       }
 
-      console.log("Data submitted successfully:", { name, phoneNumber: phoneWithCountryCode });
+      console.log("Data submitted successfully:", { name, email, phoneNumber: phoneWithCountryCode });
       
       // Generate a random queue number between 50 and 120
       const queueNumber = Math.floor(Math.random() * 71) + 50;
@@ -185,6 +206,27 @@ export function HeroSection() {
             </div>
             
             <div className="text-left">
+              <Label htmlFor="hero-email" className="text-duop-gray-dark mb-1 block">Seu melhor e-mail</Label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg className="w-4 h-4 text-duop-gray" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                </div>
+                <Input
+                  id="hero-email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  className="pl-10"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+              </div>
+            </div>
+            
+            <div className="text-left">
               <Label htmlFor="hero-phone" className="text-duop-gray-dark mb-1 block">Seu telefone com DDD</Label>
               <div className="flex items-center">
                 <div className="bg-gray-50 border border-r-0 border-gray-300 px-3 py-2 rounded-l-md flex items-center gap-2">
@@ -214,7 +256,7 @@ export function HeroSection() {
               type="submit"
               size="lg"
               className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
+              disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim() || !email.trim()}
             >
               {isSubmitting ? "Enviando..." : "QUERO VER A DEMO"}
             </Button>
