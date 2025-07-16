@@ -147,22 +147,22 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto fade-in">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            <span className="gradient-text">A inteligência</span> que trabalha por você.
+            <span className="gradient-text">A Rotina do Assessor,</span> Reinventada.
             <br />
-            Direto no WhatsApp.
+            100% no WhatsApp.
           </h1>
           
           <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
-            <strong>Menos tempo apagando incêndio</strong>. Mais presença com o cliente. 
-            Um conversador feito para assessores que querem <strong>ganhar produtividade</strong>. 
-            Por apenas <strong>79,90 reais ao mês</strong>.
+            Descubra como <strong>revolucionar sua assessoria</strong> em apenas 15 minutos. 
+            Vamos te mostrar como <strong>automatizar tarefas</strong>, <strong>antecipar o mercado</strong> 
+            e <strong>impressionar clientes</strong> — tudo direto no WhatsApp.
           </p>
         </div>
         
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
-          <h3 className="text-xl font-semibold mb-4">Comece agora!</h3>
+          <h3 className="text-xl font-semibold mb-4">Agende sua Demonstração Personalizada de 15 Minutos</h3>
           <p className="mb-4 text-duop-gray-dark">
-            <strong>Coloque seus dados</strong> abaixo e nossa equipe entrará em contato.
+            Veja <strong>ao vivo</strong> como a Duop vai transformar sua rotina de assessor.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -216,14 +216,14 @@ export function HeroSection() {
               className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
             >
-              {isSubmitting ? "Enviando..." : "🚀 Transforme sua assessoria hoje mesmo!"}
+              {isSubmitting ? "Enviando..." : "QUERO VER A DEMO"}
             </Button>
           </form>
         </div>
 
         <div className="text-center">
           <p className="text-sm text-duop-gray-dark">
-            Junte-se a centenas de assessores que já aumentaram sua produtividade
+            ⚡ Demonstração ao vivo • 📱 Direto no WhatsApp • 🚀 Sem compromisso
           </p>
         </div>
       </div>

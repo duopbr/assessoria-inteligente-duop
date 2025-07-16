@@ -8,28 +8,28 @@ export function SolutionSection() {
   return (
     <Section>
       <SectionTitle>
-        A Duop é o seu braço direito digital — direto no WhatsApp.
+        Em 15 minutos, você vai descobrir como:
       </SectionTitle>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
         <div>
           <div className="grid grid-cols-1 gap-8">
             <FeatureCard 
-              icon={<BellRing />}
-              title="📢 Proatividade sem Esforço"
-              description="Selecione os ativos que deseja acompanhar e receba alertas sobre notícias, fatos relevantes e oscilações fora do padrão – tudo no momento certo."
+              icon={<BarChart3 />}
+              title="✅ Gerar um resumo de carteira em segundos"
+              description="Vamos te mostrar como criar análises completas da carteira do seu cliente automaticamente, com dados atualizados e insights práticos."
             />
             
             <FeatureCard 
               icon={<HelpCircle />}
-              title="❓ Respostas Inteligentes na Palma da Mão"
-              description="Quando os clientes enviarem dúvidas sobre ofertas, ações ou produtos, responda pelo WhatsApp com explicações claras e consultivas, prontas para repassar."
+              title="✅ Responder dúvidas de clientes sem sair do WhatsApp"
+              description="Demonstraremos como a IA responde perguntas complexas sobre investimentos diretamente no chat, com respostas personalizadas e precisas."
             />
             
             <FeatureCard 
-              icon={<BarChart3 />}
-              title="📊 Análises Sem Viés, Direto para a Conversa"
-              description="Receba resumos práticos de ofertas, movimentos macro e insights de ações com linguagem acessível, para você conversar com propriedade."
+              icon={<BellRing />}
+              title="✅ Antecipar-se ao mercado com alertas inteligentes"
+              description="Você verá como receber notificações proativas sobre seus ativos acompanhados antes mesmo dos clientes perguntarem."
             />
           </div>
         </div>
@@ -37,6 +37,13 @@ export function SolutionSection() {
         <div className="flex items-center justify-center">
           <WhatsAppMockup />
         </div>
+      </div>
+      
+      <div className="text-center mt-12">
+        <p className="text-lg text-duop-gray-dark max-w-2xl mx-auto">
+          <strong>Tudo isso ao vivo, na sua tela.</strong> Uma demonstração personalizada onde você vê exatamente 
+          como a Duop se adapta à sua rotina de assessor.
+        </p>
       </div>
     </Section>
   );

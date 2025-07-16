@@ -112,10 +112,10 @@ export function CTASection() {
 
   return (
     <Section id="contato" className="bg-gradient-to-br from-duop-purple/10 to-duop-purple/5">
-      <SectionTitle emoji="💡">Quer testar nossa solução?</SectionTitle>
+      <SectionTitle emoji="🚀">Pronto para ver a Duop em ação?</SectionTitle>
       <div className="max-w-md mx-auto text-center">
         <p className="text-xl mb-6">
-          Deixe seus dados e entraremos em contato para disponibilizar um período de teste gratuito da plataforma.
+          <strong>Agende sua demonstração personalizada de 15 minutos.</strong> Vamos te mostrar exatamente como a Duop vai revolucionar sua rotina de assessor.
         </p>
         {isSubmitted ? (
           <div className="bg-green-50 text-green-700 p-4 rounded-md flex items-center justify-center gap-2 mb-4">
@@ -168,13 +168,13 @@ export function CTASection() {
                 <Button type="submit" className="ml-0 bg-duop-purple hover:bg-duop-purple/90 text-white rounded-l-none"
                   disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
                 >
-                  {isSubmitting ? "Enviando..." : <Send size={18} />}
+                  {isSubmitting ? "Enviando..." : "AGENDAR DEMO"}
                 </Button>
               </div>
               {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
             <p className="text-sm text-duop-gray-dark">
-              Ao informar seus dados, você concorda em receber um contato da nossa equipe.
+              📞 Nossa equipe entrará em contato para agendar sua demonstração personalizada.
             </p>
           </form>
         )}
