@@ -174,7 +174,7 @@ export function CTASection() {
               {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
             <p className="text-sm text-duop-gray-dark">
-              📞 Nossa equipe entrará em contato para agendar sua demonstração personalizada.
+              ✅ Um especialista entrará em contato para confirmar o melhor horário para você.
             </p>
           </form>
         )}
