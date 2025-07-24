@@ -23,6 +23,8 @@ export type Database = {
           nome: string
           Respondeu: string | null
           reunião_marcada: string | null
+          utm_medium: string | null
+          utm_source: string | null
           Venda: string | null
         }
         Insert: {
@@ -33,6 +35,8 @@ export type Database = {
           nome: string
           Respondeu?: string | null
           reunião_marcada?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           Venda?: string | null
         }
         Update: {
@@ -43,6 +47,8 @@ export type Database = {
           nome?: string
           Respondeu?: string | null
           reunião_marcada?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           Venda?: string | null
         }
         Relationships: []

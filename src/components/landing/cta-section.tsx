@@ -92,13 +92,20 @@ export function CTASection() {
         });
       }
       
+      // Capture UTM parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmSource = urlParams.get('utm_source');
+      const utmMedium = urlParams.get('utm_medium');
+
       // Insert sanitized data into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('assessores')
         .insert([
           {
             celular: phoneWithCountryCode,
-            nome: sanitizedName
+            nome: sanitizedName,
+            utm_source: utmSource,
+            utm_medium: utmMedium
           }
         ]);
 
