@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { toast } from "../ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
+import DOMPurify from "dompurify";
+import { formRateLimiter, getRateLimitIdentifier, validateName, validatePhoneNumber } from "@/lib/security";
 
 // Declare dataLayer for TypeScript
 declare global {
@@ -41,7 +43,9 @@ export function CTASection() {
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+    // Sanitize input to prevent XSS attacks
+    const sanitizedValue = DOMPurify.sanitize(e.target.value);
+    setName(sanitizedValue);
     if (error) setError("");
   };
 
@@ -49,18 +53,29 @@ export function CTASection() {
     e.preventDefault();
     setError("");
 
-    // Validate name
-    if (!name.trim()) {
-      setError("Por favor, digite seu nome.");
+    // Check rate limiting
+    const rateLimitId = getRateLimitIdentifier();
+    if (!formRateLimiter.isAllowed(rateLimitId)) {
+      const timeUntilReset = Math.ceil(formRateLimiter.getTimeUntilReset(rateLimitId) / 1000 / 60);
+      setError(`Muitas tentativas. Tente novamente em ${timeUntilReset} minutos.`);
       return;
     }
 
-    // Remove caracteres não-numéricos para a validação
-    const digitsOnly = phoneNumber.replace(/\D/g, "");
-    if (digitsOnly.length !== 11) {
+    // Sanitize and validate name
+    const sanitizedName = DOMPurify.sanitize(name.trim());
+    const nameValidation = validateName(sanitizedName);
+    if (!nameValidation.isValid) {
+      setError(nameValidation.error || "Nome inválido");
+      return;
+    }
+    
+    // Validate phone number
+    if (!validatePhoneNumber(phoneNumber)) {
       setError("Por favor, digite um número de telefone válido com 11 dígitos incluindo DDD.");
       return;
     }
+
+    const digitsOnly = phoneNumber.replace(/\D/g, "");
 
     setIsSubmitting(true);
 
@@ -68,33 +83,33 @@ export function CTASection() {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
       
-      // Send data to dataLayer for GTM tracking
+      // Send sanitized data to dataLayer for GTM tracking
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'form_submit',
-          nome: name.trim(),
+          nome: sanitizedName,
           phone: phoneWithCountryCode
         });
       }
       
-      // Insert into Supabase assessores table with correct lowercase names
+      // Insert sanitized data into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('assessores')
         .insert([
           {
             celular: phoneWithCountryCode,
-            nome: name
+            nome: sanitizedName
           }
         ]);
 
       if (supabaseError) {
         console.error("Supabase error:", supabaseError);
-        toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+        toast.error("Erro ao processar solicitação. Tente novamente.");
         setIsSubmitting(false);
         return;
       }
       
-      console.log("Data submitted successfully:", { name, phoneNumber: phoneWithCountryCode });
+      console.log("Data submitted successfully:", { name: sanitizedName, phoneNumber: phoneWithCountryCode });
       setIsSubmitting(false);
       setIsSubmitted(true);
       setPhoneNumber("");
@@ -105,7 +120,7 @@ export function CTASection() {
       }, 5000);
     } catch (err) {
       console.error("Error submitting form:", err);
-      toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+      toast.error("Erro ao processar solicitação. Tente novamente.");
       setIsSubmitting(false);
     }
   };

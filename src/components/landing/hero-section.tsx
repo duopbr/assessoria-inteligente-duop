@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "../ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
+import DOMPurify from "dompurify";
+import { formRateLimiter, getRateLimitIdentifier, validateName, validatePhoneNumber } from "@/lib/security";
 
 // Declare dataLayer for TypeScript
 declare global {
@@ -47,7 +49,9 @@ export function HeroSection() {
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+    // Sanitize input to prevent XSS attacks
+    const sanitizedValue = DOMPurify.sanitize(e.target.value);
+    setName(sanitizedValue);
     if (error) setError("");
   };
 
@@ -56,20 +60,29 @@ export function HeroSection() {
     e.preventDefault();
     setError("");
     
-    // Validate name
-    if (!name.trim()) {
-      setError("Por favor, digite seu nome.");
+    // Check rate limiting
+    const rateLimitId = getRateLimitIdentifier();
+    if (!formRateLimiter.isAllowed(rateLimitId)) {
+      const timeUntilReset = Math.ceil(formRateLimiter.getTimeUntilReset(rateLimitId) / 1000 / 60);
+      setError(`Muitas tentativas. Tente novamente em ${timeUntilReset} minutos.`);
       return;
     }
     
-    // Remove all non-numeric characters for validation
-    const digitsOnly = phoneNumber.replace(/\D/g, "");
+    // Sanitize and validate name
+    const sanitizedName = DOMPurify.sanitize(name.trim());
+    const nameValidation = validateName(sanitizedName);
+    if (!nameValidation.isValid) {
+      setError(nameValidation.error || "Nome inválido");
+      return;
+    }
     
-    // Check if phone has exactly 11 digits (including area code)
-    if (digitsOnly.length !== 11) {
+    // Validate phone number
+    if (!validatePhoneNumber(phoneNumber)) {
       setError("Por favor, digite um número de telefone válido com 11 dígitos incluindo DDD.");
       return;
     }
+    
+    const digitsOnly = phoneNumber.replace(/\D/g, "");
     
     setIsSubmitting(true);
     
@@ -77,28 +90,28 @@ export function HeroSection() {
       // Add +55 prefix to the phone number before saving
       const phoneWithCountryCode = `+55${digitsOnly}`;
       
-      // Send data to dataLayer for GTM tracking
+      // Send sanitized data to dataLayer for GTM tracking
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'form_submit',
-          nome: name.trim(),
+          nome: sanitizedName,
           phone: phoneWithCountryCode
         });
       }
       
-      // Insert into Supabase assessores table with correct lowercase names
+      // Insert sanitized data into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('assessores')
         .insert([
           {
             celular: phoneWithCountryCode,
-            nome: name
+            nome: sanitizedName
           }
         ]);
 
       if (supabaseError) {
         console.error("Supabase error:", supabaseError);
-        toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+        toast.error("Erro ao processar solicitação. Tente novamente.");
         setIsSubmitting(false);
         return;
       }
@@ -112,23 +125,23 @@ export function HeroSection() {
           },
           body: JSON.stringify({
             phoneNumber: phoneWithCountryCode,
-            name: name,
+            name: sanitizedName,
             source: 'Hero Section'
           }),
         });
 
         if (!response.ok) {
-          console.error("Google Sheets API error:", await response.text());
-          // Don't block the flow if Google Sheets fails
+          console.error("External service error");
+          // Don't block the flow if external service fails
         } else {
-          console.log("Data sent to Google Sheets successfully");
+          console.log("Data sent to external service successfully");
         }
-      } catch (googleSheetsError) {
-        console.error("Error sending to Google Sheets:", googleSheetsError);
-        // Don't block the flow if Google Sheets fails
+      } catch (externalServiceError) {
+        console.error("Error sending to external service:", externalServiceError);
+        // Don't block the flow if external service fails
       }
 
-      console.log("Data submitted successfully:", { name, phoneNumber: phoneWithCountryCode });
+      console.log("Data submitted successfully:", { name: sanitizedName, phoneNumber: phoneWithCountryCode });
       
       // Generate a random queue number between 50 and 120
       const queueNumber = Math.floor(Math.random() * 71) + 50;
@@ -138,7 +151,7 @@ export function HeroSection() {
       
     } catch (err) {
       console.error("Error submitting form:", err);
-      toast.error("Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.");
+      toast.error("Erro ao processar solicitação. Tente novamente.");
       setIsSubmitting(false);
     }
   };
