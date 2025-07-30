@@ -80,8 +80,8 @@ export function CTASection() {
     setIsSubmitting(true);
 
     try {
-      // Add +55 prefix to the phone number before saving
-      const phoneWithCountryCode = `+55${digitsOnly}`;
+      // Format phone number as +55 (XX) XXXXX-XXXX
+      const phoneWithCountryCode = `+55 (${digitsOnly.slice(0, 2)}) ${digitsOnly.slice(2, 7)}-${digitsOnly.slice(7)}`;
       
       // Send sanitized data to dataLayer for GTM tracking
       if (window.dataLayer) {
