@@ -131,8 +131,8 @@ export function CTASection() {
   return (
     <Section id="contato" className="bg-gradient-to-br from-duop-purple/10 to-duop-purple/5">
       <SectionTitle emoji="🚀">Pronto para ver a Duop em ação?</SectionTitle>
-      <div className="max-w-md mx-auto text-center">
-        <p className="text-xl mb-6">
+      <div className="max-w-md mx-auto text-center px-4">
+        <p className="text-lg sm:text-xl mb-6">
           <strong>Agende sua demonstração personalizada de 15 minutos.</strong> Vamos te mostrar exatamente como a Duop vai revolucionar sua rotina de assessor.
         </p>
         {isSubmitted ? (
@@ -141,7 +141,7 @@ export function CTASection() {
             <span>Recebemos seu contato! Logo retornaremos.</span>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div className="text-left">
               <Label htmlFor="cta-name" className="text-duop-gray-dark mb-1 block">
                 Seu nome
@@ -168,9 +168,9 @@ export function CTASection() {
               </Label>
               <div className="flex">
                 <div className="flex items-center">
-                  <div className="bg-gray-50 border border-r-0 border-gray-300 px-3 py-2 rounded-l-md flex items-center gap-2">
-                    <Phone size={18} className="text-duop-gray" />
-                    <span className="text-duop-gray-dark font-medium">+55</span>
+                  <div className="bg-gray-50 border border-r-0 border-gray-300 px-2 sm:px-3 py-2 rounded-l-md flex items-center gap-1 sm:gap-2">
+                    <Phone size={16} className="text-duop-gray sm:w-[18px] sm:h-[18px]" />
+                    <span className="text-duop-gray-dark font-medium text-sm sm:text-base">+55</span>
                   </div>
                   <Input
                     id="phone"
@@ -183,10 +183,10 @@ export function CTASection() {
                     required
                   />
                 </div>
-                <Button type="submit" className="ml-0 bg-duop-purple hover:bg-duop-purple/90 text-white rounded-l-none"
+                <Button type="submit" className="ml-0 bg-duop-purple hover:bg-duop-purple/90 text-white rounded-l-none text-sm sm:text-base px-3 sm:px-4"
                   disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
                 >
-                  {isSubmitting ? "Enviando..." : "AGENDAR DEMO"}
+                  {isSubmitting ? "Enviando..." : "AGENDAR"}
                 </Button>
               </div>
               {error && <p className="text-red-500 text-sm mt-1">{error}</p>}

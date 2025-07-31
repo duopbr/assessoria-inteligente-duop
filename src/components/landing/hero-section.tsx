@@ -151,13 +151,13 @@ export function HeroSection() {
           </p>
         </div>
         
-        <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mb-10 fade-in">
-          <h3 className="text-xl font-semibold mb-4">Agende sua Demonstração Personalizada de 15 Minutos</h3>
+        <div className="max-w-md mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-md mb-10 fade-in">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-4">Agende sua Demonstração Personalizada de 15 Minutos</h3>
           <p className="mb-4 text-duop-gray-dark">
             Veja <strong>ao vivo</strong> como a Duop vai transformar sua rotina de assessor.
           </p>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div className="text-left">
               <Label htmlFor="hero-name" className="text-duop-gray-dark mb-1 block">Seu nome</Label>
               <div className="relative">
@@ -180,9 +180,9 @@ export function HeroSection() {
             <div className="text-left">
               <Label htmlFor="hero-phone" className="text-duop-gray-dark mb-1 block">Seu telefone com DDD</Label>
               <div className="flex items-center">
-                <div className="bg-gray-50 border border-r-0 border-gray-300 px-3 py-2 rounded-l-md flex items-center gap-2">
-                  <Phone size={18} className="text-duop-gray" />
-                  <span className="text-duop-gray-dark font-medium">+55</span>
+                <div className="bg-gray-50 border border-r-0 border-gray-300 px-2 sm:px-3 py-2 rounded-l-md flex items-center gap-1 sm:gap-2">
+                  <Phone size={16} className="text-duop-gray sm:w-[18px] sm:h-[18px]" />
+                  <span className="text-duop-gray-dark font-medium text-sm sm:text-base">+55</span>
                 </div>
                 <Input
                   id="hero-phone"
@@ -206,7 +206,7 @@ export function HeroSection() {
             <Button 
               type="submit"
               size="lg"
-              className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-6 sm:px-12 py-4 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
             >
               {isSubmitting ? "Enviando..." : "QUERO VER A DEMO"}

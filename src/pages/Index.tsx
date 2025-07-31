@@ -8,6 +8,7 @@ import { ValidationSection } from "@/components/landing/validation-section";
 import { CTASection } from "@/components/landing/cta-section";
 import { FAQSection } from "@/components/landing/faq-section";
 import { Footer } from "@/components/landing/footer";
+import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -39,7 +40,9 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <AccessibilityImprovements />
+      <div className="min-h-screen flex flex-col">
       <header className="py-6 px-4 sm:px-6 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
@@ -47,6 +50,7 @@ const Index = () => {
               src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
               alt="Duop Logo"
               className="h-10 mr-2"
+              loading="eager"
             />
           </div>
           <nav className="hidden md:block">
@@ -61,7 +65,7 @@ const Index = () => {
         </div>
       </header>
       
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         <HeroSection />
         
         <div className="appear-animation">
@@ -93,8 +97,9 @@ const Index = () => {
         </div>
       </main>
       
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

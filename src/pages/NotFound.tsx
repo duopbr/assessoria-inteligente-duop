@@ -12,6 +12,7 @@ const NotFound = () => {
             src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
             alt="Duop Logo"
             className="h-16 mx-auto mb-6"
+            loading="eager"
           />
         </div>
         
