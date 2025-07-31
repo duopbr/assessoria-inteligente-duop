@@ -39,7 +39,7 @@ export function HowItWorksSection() {
       {/* Funcionalidades Disponíveis */}
       <div className="mb-20">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-duop-blue mb-4">
+          <h3 className="text-2xl font-bold text-duop-blue mb-4">
             Funcionalidades Disponíveis
           </h3>
         </div>

@@ -110,13 +110,10 @@ export function CTASection() {
         ]);
 
       if (supabaseError) {
-        console.error("Supabase error:", supabaseError);
         toast.error("Erro ao processar solicitação. Tente novamente.");
         setIsSubmitting(false);
         return;
       }
-      
-      console.log("Data submitted successfully:", { name: sanitizedName, phoneNumber: phoneWithCountryCode });
       setIsSubmitting(false);
       setIsSubmitted(true);
       setPhoneNumber("");
@@ -126,7 +123,6 @@ export function CTASection() {
         setIsSubmitted(false);
       }, 5000);
     } catch (err) {
-      console.error("Error submitting form:", err);
       toast.error("Erro ao processar solicitação. Tente novamente.");
       setIsSubmitting(false);
     }

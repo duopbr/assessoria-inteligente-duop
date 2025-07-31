@@ -117,14 +117,10 @@ export function HeroSection() {
         ]);
 
       if (supabaseError) {
-        console.error("Supabase error:", supabaseError);
         toast.error("Erro ao processar solicitação. Tente novamente.");
         setIsSubmitting(false);
         return;
       }
-
-
-      console.log("Data submitted successfully:", { name: sanitizedName, phoneNumber: phoneWithCountryCode });
       
       // Generate a random queue number between 50 and 120
       const queueNumber = Math.floor(Math.random() * 71) + 50;
@@ -133,7 +129,6 @@ export function HeroSection() {
       navigate(`/obrigado?numero=${queueNumber}`);
       
     } catch (err) {
-      console.error("Error submitting form:", err);
       toast.error("Erro ao processar solicitação. Tente novamente.");
       setIsSubmitting(false);
     }
