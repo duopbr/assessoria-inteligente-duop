@@ -123,30 +123,6 @@ export function HeroSection() {
         return;
       }
 
-      // Also send to Google Sheets
-      try {
-        const response = await fetch('/api/add-lead', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            phoneNumber: phoneWithCountryCode,
-            name: sanitizedName,
-            source: 'Hero Section'
-          }),
-        });
-
-        if (!response.ok) {
-          console.error("External service error");
-          // Don't block the flow if external service fails
-        } else {
-          console.log("Data sent to external service successfully");
-        }
-      } catch (externalServiceError) {
-        console.error("Error sending to external service:", externalServiceError);
-        // Don't block the flow if external service fails
-      }
 
       console.log("Data submitted successfully:", { name: sanitizedName, phoneNumber: phoneWithCountryCode });
       
