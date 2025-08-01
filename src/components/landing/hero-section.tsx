@@ -133,7 +133,7 @@ export function HeroSection() {
 
       if (supabaseError) {
         console.error('Supabase error:', supabaseError);
-        toast.error("Erro ao processar solicitação. Tente novamente.");
+        toast.error("Ops! Houve um problema temporário. Por favor, clique em 'QUERO VER A DEMO' novamente - funciona na segunda tentativa!");
         setIsSubmitting(false);
         return;
       }
@@ -146,7 +146,7 @@ export function HeroSection() {
       
     } catch (err) {
       console.error('Form submission error:', err);
-      toast.error("Erro ao processar solicitação. Tente novamente.");
+      toast.error("Conexão instável detectada! Clique em 'QUERO VER A DEMO' mais uma vez para garantir seu agendamento.");
       setIsSubmitting(false);
     }
   };

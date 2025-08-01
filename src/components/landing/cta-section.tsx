@@ -132,7 +132,7 @@ export function CTASection() {
 
       if (supabaseError) {
         console.error('Supabase error:', supabaseError);
-        toast.error("Erro ao processar solicitação. Tente novamente.");
+        toast.error("Ops! Problema temporário detectado. Clique em 'AGENDAR' novamente - sempre funciona na segunda vez!");
         setIsSubmitting(false);
         return;
       }
@@ -146,7 +146,7 @@ export function CTASection() {
       }, 5000);
     } catch (err) {
       console.error('Form submission error:', err);
-      toast.error("Erro ao processar solicitação. Tente novamente.");
+      toast.error("Conexão temporariamente instável! Por favor, clique em 'AGENDAR' novamente para confirmar sua demonstração.");
       setIsSubmitting(false);
     }
   };
