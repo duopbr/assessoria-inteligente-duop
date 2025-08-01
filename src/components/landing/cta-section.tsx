@@ -189,31 +189,35 @@ export function CTASection() {
               <Label htmlFor="phone" className="text-duop-gray-dark mb-1 block">
                 Seu telefone com DDD
               </Label>
-              <div className="flex">
-                <div className="flex items-center">
-                  <div className="bg-gray-50 border border-r-0 border-gray-300 px-2 sm:px-3 py-2 rounded-l-md flex items-center gap-1 sm:gap-2">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center">
+                  <div className="bg-gray-50 border border-r-0 border-gray-300 px-2 sm:px-3 py-2 rounded-l-md flex items-center gap-1 sm:gap-2 h-full">
                     <Phone size={16} className="text-duop-gray sm:w-[18px] sm:h-[18px]" />
                     <span className="text-duop-gray-dark font-medium text-sm sm:text-base">+55</span>
                   </div>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                    className="rounded-l-none rounded-r-none"
-                    value={phoneNumber}
-                    onChange={handlePhoneChange}
-                    maxLength={16}
-                    required
-                  />
                 </div>
-                <Button type="submit" className="ml-0 bg-duop-purple hover:bg-duop-purple/90 text-white rounded-l-none text-sm sm:text-base px-3 sm:px-4"
-                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
-                >
-                  {isSubmitting ? "Enviando..." : "AGENDAR"}
-                </Button>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="(00) 00000-0000"
+                  className="pl-20"
+                  value={phoneNumber}
+                  onChange={handlePhoneChange}
+                  maxLength={16}
+                  required
+                />
               </div>
               {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
+            
+            <Button 
+              type="submit" 
+              className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white text-sm sm:text-base px-3 sm:px-4"
+              disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
+            >
+              {isSubmitting ? "Enviando..." : "AGENDAR"}
+            </Button>
+            
             <p className="text-sm text-duop-gray-dark">
               ✅ Um especialista entrará em contato para confirmar o melhor horário para você.
             </p>
