@@ -97,6 +97,27 @@ export function CTASection() {
       const utmSource = urlParams.get('utm_source');
       const utmMedium = urlParams.get('utm_medium');
 
+      // Check if entry already exists to prevent duplicates
+      const { data: existingEntry } = await supabase
+        .from('assessores')
+        .select('id')
+        .eq('celular', phoneWithCountryCode)
+        .eq('nome', sanitizedName)
+        .maybeSingle();
+
+      if (existingEntry) {
+        // Entry already exists, show success
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setPhoneNumber("");
+        setName("");
+        
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+        return;
+      }
+
       // Insert sanitized data into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('assessores')
@@ -110,6 +131,7 @@ export function CTASection() {
         ]);
 
       if (supabaseError) {
+        console.error('Supabase error:', supabaseError);
         toast.error("Erro ao processar solicitação. Tente novamente.");
         setIsSubmitting(false);
         return;
@@ -123,6 +145,7 @@ export function CTASection() {
         setIsSubmitted(false);
       }, 5000);
     } catch (err) {
+      console.error('Form submission error:', err);
       toast.error("Erro ao processar solicitação. Tente novamente.");
       setIsSubmitting(false);
     }

@@ -104,6 +104,21 @@ export function HeroSection() {
       const utmSource = urlParams.get('utm_source');
       const utmMedium = urlParams.get('utm_medium');
 
+      // Check if entry already exists to prevent duplicates
+      const { data: existingEntry } = await supabase
+        .from('assessores')
+        .select('id')
+        .eq('celular', phoneWithCountryCode)
+        .eq('nome', sanitizedName)
+        .maybeSingle();
+
+      if (existingEntry) {
+        // Entry already exists, just redirect
+        const queueNumber = Math.floor(Math.random() * 71) + 50;
+        navigate(`/obrigado?numero=${queueNumber}`);
+        return;
+      }
+
       // Insert sanitized data into Supabase assessores table
       const { error: supabaseError } = await supabase
         .from('assessores')
@@ -117,6 +132,7 @@ export function HeroSection() {
         ]);
 
       if (supabaseError) {
+        console.error('Supabase error:', supabaseError);
         toast.error("Erro ao processar solicitação. Tente novamente.");
         setIsSubmitting(false);
         return;
@@ -129,6 +145,7 @@ export function HeroSection() {
       navigate(`/obrigado?numero=${queueNumber}`);
       
     } catch (err) {
+      console.error('Form submission error:', err);
       toast.error("Erro ao processar solicitação. Tente novamente.");
       setIsSubmitting(false);
     }
