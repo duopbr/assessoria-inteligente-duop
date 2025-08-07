@@ -53,10 +53,13 @@ export function CTASection() {
     e.preventDefault();
     setError("");
 
+    console.log('🔍 CTA FORM: Tentativa de submissão iniciada', { name, phoneNumber });
+
     // Check rate limiting
     const rateLimitId = getRateLimitIdentifier();
     if (!formRateLimiter.isAllowed(rateLimitId)) {
       const timeUntilReset = Math.ceil(formRateLimiter.getTimeUntilReset(rateLimitId) / 1000 / 60);
+      console.log('❌ CTA FORM: Bloqueado por rate limiting');
       setError(`Muitas tentativas. Tente novamente em ${timeUntilReset} minutos.`);
       return;
     }
@@ -71,6 +74,7 @@ export function CTASection() {
     
     // Validate phone number
     if (!validatePhoneNumber(phoneNumber)) {
+      console.log('❌ CTA FORM: Telefone inválido', { phoneNumber });
       setError("Por favor, digite um número de telefone válido com 11 dígitos incluindo DDD.");
       return;
     }
@@ -131,11 +135,13 @@ export function CTASection() {
         ]);
 
       if (supabaseError) {
-        console.error('Supabase error:', supabaseError);
+        console.error('❌ CTA FORM: Erro do Supabase:', supabaseError);
         toast.error("Ops! Problema temporário detectado. Clique em 'AGENDAR' novamente - sempre funciona na segunda vez!");
         setIsSubmitting(false);
         return;
       }
+      console.log('✅ CTA FORM: Lead salvo com sucesso', { sanitizedName, phoneWithCountryCode });
+      
       setIsSubmitting(false);
       setIsSubmitted(true);
       setPhoneNumber("");
@@ -145,7 +151,7 @@ export function CTASection() {
         setIsSubmitted(false);
       }, 5000);
     } catch (err) {
-      console.error('Form submission error:', err);
+      console.error('❌ CTA FORM: Erro na submissão:', err);
       toast.error("Conexão temporariamente instável! Por favor, clique em 'AGENDAR' novamente para confirmar sua demonstração.");
       setIsSubmitting(false);
     }

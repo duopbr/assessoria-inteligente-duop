@@ -60,10 +60,13 @@ export function HeroSection() {
     e.preventDefault();
     setError("");
     
+    console.log('🔍 HERO FORM: Tentativa de submissão iniciada', { name, phoneNumber });
+    
     // Check rate limiting
     const rateLimitId = getRateLimitIdentifier();
     if (!formRateLimiter.isAllowed(rateLimitId)) {
       const timeUntilReset = Math.ceil(formRateLimiter.getTimeUntilReset(rateLimitId) / 1000 / 60);
+      console.log('❌ HERO FORM: Bloqueado por rate limiting');
       setError(`Muitas tentativas. Tente novamente em ${timeUntilReset} minutos.`);
       return;
     }
@@ -78,6 +81,7 @@ export function HeroSection() {
     
     // Validate phone number
     if (!validatePhoneNumber(phoneNumber)) {
+      console.log('❌ HERO FORM: Telefone inválido', { phoneNumber });
       setError("Por favor, digite um número de telefone válido com 11 dígitos incluindo DDD.");
       return;
     }
@@ -114,6 +118,7 @@ export function HeroSection() {
 
       if (existingEntry) {
         // Entry already exists, just redirect
+        console.log('ℹ️ HERO FORM: Lead duplicado encontrado, redirecionando', { existingEntry });
         const queueNumber = Math.floor(Math.random() * 71) + 50;
         navigate(`/obrigado?numero=${queueNumber}`);
         return;
@@ -132,7 +137,7 @@ export function HeroSection() {
         ]);
 
       if (supabaseError) {
-        console.error('Supabase error:', supabaseError);
+        console.error('❌ HERO FORM: Erro do Supabase:', supabaseError);
         toast.error("Ops! Houve um problema temporário. Por favor, clique em 'QUERO VER A DEMO' novamente - funciona na segunda tentativa!");
         setIsSubmitting(false);
         return;
@@ -141,11 +146,13 @@ export function HeroSection() {
       // Generate a random queue number between 50 and 120
       const queueNumber = Math.floor(Math.random() * 71) + 50;
       
+      console.log('✅ HERO FORM: Lead salvo com sucesso, redirecionando', { sanitizedName, phoneWithCountryCode });
+      
       // Redirect to thank you page with queue number
       navigate(`/obrigado?numero=${queueNumber}`);
       
     } catch (err) {
-      console.error('Form submission error:', err);
+      console.error('❌ HERO FORM: Erro na submissão:', err);
       toast.error("Conexão instável detectada! Clique em 'QUERO VER A DEMO' mais uma vez para garantir seu agendamento.");
       setIsSubmitting(false);
     }
