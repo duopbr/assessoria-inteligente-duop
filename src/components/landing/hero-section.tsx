@@ -161,10 +161,10 @@ export function HeroSection() {
   return (
     <section className="bg-gradient-to-br from-white to-duop-purple/5 py-16 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Coluna do Conteúdo */}
-          <div className="fade-in">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+          {/* Coluna do Conteúdo - ocupa 3 das 5 colunas */}
+          <div className="lg:col-span-3 fade-in">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight max-w-none">
               <span className="gradient-text">A Rotina do Assessor,</span> Reinventada.
               <br />
               100% no WhatsApp.
@@ -244,8 +244,8 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Coluna do Vídeo */}
-          <div className="fade-in flex justify-center">
+          {/* Coluna do Vídeo - ocupa 2 das 5 colunas */}
+          <div className="lg:col-span-2 fade-in flex justify-center">
             <div className="relative w-80 max-w-full" style={{ aspectRatio: '9/16' }}>
               <div className="w-full h-full rounded-lg overflow-hidden shadow-lg">
                 <iframe
