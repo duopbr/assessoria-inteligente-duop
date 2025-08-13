@@ -161,7 +161,7 @@ export function HeroSection() {
   return (
     <section className="bg-gradient-to-br from-white to-duop-purple/5 py-16 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto fade-in">
+        <div className="text-center max-w-3xl mx-auto fade-in mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
             <span className="gradient-text">A Rotina do Assessor,</span> Reinventada.
             <br />
@@ -173,6 +173,22 @@ export function HeroSection() {
             Vamos te mostrar como <strong>automatizar tarefas</strong>, <strong>antecipar o mercado</strong> 
             e <strong>impressionar clientes</strong> — tudo direto no WhatsApp.
           </p>
+
+          {/* YouTube Video */}
+          <div className="mb-10 max-w-2xl mx-auto">
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/JrfYvv90IVE"
+                title="Duop - Demonstração da Plataforma"
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p className="text-sm text-duop-gray-dark mt-3">
+              🎥 Veja como a Duop funciona na prática
+            </p>
+          </div>
         </div>
         
         <div className="max-w-md mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-md mb-10 fade-in">
