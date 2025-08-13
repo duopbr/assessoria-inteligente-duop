@@ -23,6 +23,7 @@ export type Database = {
           nome: string
           Respondeu: string | null
           reunião_marcada: string | null
+          Temperatura: string | null
           utm_medium: string | null
           utm_source: string | null
           Venda: string | null
@@ -35,6 +36,7 @@ export type Database = {
           nome: string
           Respondeu?: string | null
           reunião_marcada?: string | null
+          Temperatura?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           Venda?: string | null
@@ -47,21 +49,76 @@ export type Database = {
           nome?: string
           Respondeu?: string | null
           reunião_marcada?: string | null
+          Temperatura?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           Venda?: string | null
         }
         Relationships: []
       }
+      audit_logs: {
+        Row: {
+          action: string
+          details: Json | null
+          id: string
+          ip_address: unknown | null
+          table_name: string
+          timestamp: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          details?: Json | null
+          id?: string
+          ip_address?: unknown | null
+          table_name: string
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          details?: Json | null
+          id?: string
+          ip_address?: unknown | null
+          table_name?: string
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      B2C: {
+        Row: {
+          celular: string | null
+          created_at: string
+          id: number
+          nome: string | null
+        }
+        Insert: {
+          celular?: string | null
+          created_at?: string
+          id?: number
+          nome?: string | null
+        }
+        Update: {
+          celular?: string | null
+          created_at?: string
+          id?: number
+          nome?: string | null
+        }
+        Relationships: []
+      }
       Calculadoras: {
         Row: {
           calculadora: string | null
-          Chatgpt: string | null
           Contato: string | null
           created_at: string
           email: string | null
           id: number
           "Interesse em dados": string | null
+          "Interesse em IA": string | null
           "Média de Mensagens por Conversas": string | null
           Name: string | null
           Nota: string | null
@@ -73,12 +130,12 @@ export type Database = {
         }
         Insert: {
           calculadora?: string | null
-          Chatgpt?: string | null
           Contato?: string | null
           created_at?: string
           email?: string | null
           id?: number
           "Interesse em dados"?: string | null
+          "Interesse em IA"?: string | null
           "Média de Mensagens por Conversas"?: string | null
           Name?: string | null
           Nota?: string | null
@@ -90,12 +147,12 @@ export type Database = {
         }
         Update: {
           calculadora?: string | null
-          Chatgpt?: string | null
           Contato?: string | null
           created_at?: string
           email?: string | null
           id?: number
           "Interesse em dados"?: string | null
+          "Interesse em IA"?: string | null
           "Média de Mensagens por Conversas"?: string | null
           Name?: string | null
           Nota?: string | null
@@ -142,10 +199,10 @@ export type Database = {
       }
       pix_phone_submissions: {
         Row: {
-          Chatgpt: string | null
           Email: string | null
           id: number
           "Interesse em dados": string | null
+          "Interesse em IA": string | null
           "Investir Mês": string | null
           "Ja foi contatado?": string | null
           Patrimonio: string | null
@@ -155,10 +212,10 @@ export type Database = {
           submitted_at: string | null
         }
         Insert: {
-          Chatgpt?: string | null
           Email?: string | null
           id?: number
           "Interesse em dados"?: string | null
+          "Interesse em IA"?: string | null
           "Investir Mês"?: string | null
           "Ja foi contatado?"?: string | null
           Patrimonio?: string | null
@@ -168,10 +225,10 @@ export type Database = {
           submitted_at?: string | null
         }
         Update: {
-          Chatgpt?: string | null
           Email?: string | null
           id?: number
           "Interesse em dados"?: string | null
+          "Interesse em IA"?: string | null
           "Investir Mês"?: string | null
           "Ja foi contatado?"?: string | null
           Patrimonio?: string | null
@@ -187,7 +244,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

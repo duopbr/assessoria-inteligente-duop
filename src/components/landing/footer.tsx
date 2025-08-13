@@ -19,6 +19,15 @@ export function Footer() {
             <p>A plataforma que potencializa o trabalho do assessor financeiro</p>
           </div>
           
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <a 
+              href="/auth" 
+              className="text-white/70 hover:text-white text-sm transition-colors"
+            >
+              Acesso Administrativo
+            </a>
+          </div>
+          
           <div className="mt-8 text-sm text-white/70">
             &copy; {currentYear} Duop. Todos os direitos reservados.
           </div>
