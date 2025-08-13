@@ -245,20 +245,25 @@ export function HeroSection() {
           </div>
 
           {/* Coluna do Vídeo */}
-          <div className="fade-in">
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-              <iframe
-                src="https://www.youtube.com/embed/JrfYvv90IVE"
-                title="Duop - Demonstração da Plataforma"
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+          <div className="fade-in flex justify-center">
+            <div className="relative w-80 max-w-full" style={{ aspectRatio: '9/16' }}>
+              <div className="w-full h-full rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.youtube.com/embed/JrfYvv90IVE"
+                  title="Duop - Demonstração da Plataforma"
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             </div>
-            <p className="text-center text-sm text-duop-gray-dark mt-3">
-              🎥 Veja como a Duop funciona na prática
-            </p>
           </div>
+        </div>
+        
+        <div className="text-center mt-6">
+          <p className="text-sm text-duop-gray-dark">
+            🎥 Veja como a Duop funciona na prática
+          </p>
         </div>
       </div>
       
