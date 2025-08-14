@@ -247,7 +247,7 @@ export function HeroSection() {
           {/* Coluna do Vídeo - ocupa 2 das 5 colunas */}
           <div className="lg:col-span-2 fade-in flex justify-center">
             <div className="relative w-80 max-w-full" style={{ aspectRatio: '9/16' }}>
-              <div className="w-full h-full rounded-lg overflow-hidden shadow-lg">
+              <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg">
                 <iframe
                   src="https://www.youtube.com/embed/JrfYvv90IVE"
                   title="Duop - Demonstração da Plataforma"
