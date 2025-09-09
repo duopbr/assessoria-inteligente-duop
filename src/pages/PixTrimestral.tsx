@@ -1,11 +1,11 @@
 import { PixPayment } from "@/components/pix/pix-payment";
 
 const PixTrimestral = () => {
-  const pixCode = "00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-426614174000520400005303986540291.005802BR5913Duop Servicos6009SAO PAULO61080540900062070503***6304ABCD";
+  const pixCode = "00020126360014br.gov.bcb.pix0114547777530001375204000053039865406227.995802BR5916GPR ANALISE LTDA6008BRASILIA62070503***63040073";
   
   return (
     <PixPayment 
-      amount="291,00"
+      amount="227,99"
       period="Trimestral"
       pixCode={pixCode}
       qrCodeUrl=""
