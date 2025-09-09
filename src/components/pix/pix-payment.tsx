@@ -47,14 +47,14 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
           <img 
             src="/lovable-uploads/0f21ed54-64e7-4392-aaac-eb9fc22bf605.png" 
             alt="Membro Duop" 
-            className="w-48 h-auto"
+            className="w-32 h-auto"
           />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div className="mb-8">
           {/* PIX Copia e Cola */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-duop-gray-dark">
+          <div className="space-y-4 max-w-2xl mx-auto">
+            <h3 className="text-lg font-semibold text-duop-gray-dark text-center">
               PIX Copia e Cola
             </h3>
             <div className="bg-gray-50 p-4 rounded-lg border">
@@ -80,30 +80,15 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
               )}
             </Button>
           </div>
-
-          {/* QR Code */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-duop-gray-dark">
-              QR Code
-            </h3>
-            <div className="bg-white p-4 rounded-lg border flex justify-center">
-              <div className="w-48 h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500 text-sm">QR Code PIX</span>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600">
-              Escaneie com seu app bancário
-            </p>
-          </div>
         </div>
 
         {/* Instruções */}
-        <div className="bg-duop-blue/10 p-6 rounded-lg">
-          <h3 className="text-lg font-semibold text-duop-gray-dark mb-3">
-            Após o pagamento
+        <div className="bg-white border-2 border-duop-purple/20 p-6 rounded-lg">
+          <h3 className="text-xl font-semibold text-duop-gray-dark mb-3 text-center">
+            Instruções de Pagamento
           </h3>
-          <p className="text-duop-gray-dark">
-            Feche esta página e envie o comprovante dentro do fluxo do WhatsApp para confirmar sua assinatura.
+          <p className="text-duop-gray-dark text-center text-lg">
+            Faça o pagamento e envie o comprovante dentro do fluxo do WhatsApp para confirmar sua assinatura.
           </p>
         </div>
       </div>
