@@ -38,18 +38,9 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
         <h2 className="text-2xl font-bold mb-2 text-duop-gray-dark">
           Pagamento PIX - Plano {period}
         </h2>
-        <p className="text-xl font-semibold text-duop-purple mb-6">
+        <p className="text-xl font-semibold text-duop-purple mb-8">
           R$ {amount}
         </p>
-
-        {/* Selo de Membro */}
-        <div className="mb-8 flex justify-center">
-          <img 
-            src="/lovable-uploads/0f21ed54-64e7-4392-aaac-eb9fc22bf605.png" 
-            alt="Membro Duop" 
-            className="w-32 h-auto"
-          />
-        </div>
 
         <div className="mb-8">
           {/* PIX Copia e Cola */}
@@ -84,11 +75,8 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
 
         {/* Instruções */}
         <div className="bg-white border-2 border-duop-purple/20 p-6 rounded-lg">
-          <h3 className="text-xl font-semibold text-duop-gray-dark mb-3 text-center">
-            Instruções de Pagamento
-          </h3>
           <p className="text-duop-gray-dark text-center text-lg">
-            Faça o pagamento e envie o comprovante dentro do fluxo do WhatsApp para confirmar sua assinatura.
+            Faça o pagamento e envie o comprovante na tela do WhatsApp
           </p>
         </div>
       </div>
