@@ -29,9 +29,12 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full text-center">
         {/* Logo */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">
-            <span className="gradient-text">DUOP</span>
-          </h1>
+          <img
+            src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
+            alt="Duop Logo"
+            className="h-12 mx-auto"
+            loading="eager"
+          />
         </div>
 
         {/* Título */}
