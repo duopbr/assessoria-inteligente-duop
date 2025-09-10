@@ -9,6 +9,7 @@ import { CTASection } from "@/components/landing/cta-section";
 import { FAQSection } from "@/components/landing/faq-section";
 import { Footer } from "@/components/landing/footer";
 import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
+import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -98,6 +99,7 @@ const Index = () => {
       </main>
       
         <Footer />
+        <WhatsAppFloatButton />
       </div>
     </>
   );
