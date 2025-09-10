@@ -27,17 +27,23 @@ export function HeroSection() {
     // Remove all non-numeric characters
     const numbers = value.replace(/\D/g, "");
     
-    // Format the phone number as (00) 00000-0000
     if (numbers.length <= 2) {
       return numbers.length ? `(${numbers}` : "";
-    } else if (numbers.length <= 7) {
+    } else if (numbers.length <= 6) {
       return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
-    } else if (numbers.length <= 11) {
+    } else if (numbers.length === 10) {
+      // Format for 10 digits: (XX) XXXX-XXXX
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 6)}-${numbers.slice(6)}`;
+    } else if (numbers.length === 11) {
+      // Format for 11 digits: (XX) XXXXX-XXXX
       return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+    } else if (numbers.length > 11) {
+      // Limit to 11 digits and format accordingly
+      const limitedNumbers = numbers.slice(0, 11);
+      return `(${limitedNumbers.slice(0, 2)}) ${limitedNumbers.slice(2, 7)}-${limitedNumbers.slice(7)}`;
     }
     
-    // Limit to 11 digits total
-    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
