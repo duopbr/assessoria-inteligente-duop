@@ -87,8 +87,18 @@ export function getRateLimitIdentifier(): string {
  */
 export function validatePhoneNumber(phone: string): boolean {
   const digitsOnly = phone.replace(/\D/g, "");
-  // Validate: 11 digits total, first digit 1-9 (area code), second digit can be any number
-  return digitsOnly.length === 11 && /^[1-9]\d{10}$/.test(digitsOnly);
+  
+  // Accept 11 digits (national format: area code + number)
+  if (digitsOnly.length === 11 && /^[1-9]\d{10}$/.test(digitsOnly)) {
+    return true;
+  }
+  
+  // Accept 13 digits (international format: 55 + area code + number)
+  if (digitsOnly.length === 13 && /^55[1-9]\d{10}$/.test(digitsOnly)) {
+    return true;
+  }
+  
+  return false;
 }
 
 /**
