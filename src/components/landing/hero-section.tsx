@@ -97,8 +97,15 @@ export function HeroSection() {
     setIsSubmitting(true);
     
     try {
-      // Format phone number as +55 (XX) XXXXX-XXXX
-      const phoneWithCountryCode = `+55 (${digitsOnly.slice(0, 2)}) ${digitsOnly.slice(2, 7)}-${digitsOnly.slice(7)}`;
+      // Format phone number based on digit count
+      let phoneWithCountryCode;
+      if (digitsOnly.length === 10) {
+        // Format 10 digits: +55 (XX) XXXX-XXXX
+        phoneWithCountryCode = `+55 (${digitsOnly.slice(0, 2)}) ${digitsOnly.slice(2, 6)}-${digitsOnly.slice(6)}`;
+      } else {
+        // Format 11 digits: +55 (XX) XXXXX-XXXX
+        phoneWithCountryCode = `+55 (${digitsOnly.slice(0, 2)}) ${digitsOnly.slice(2, 7)}-${digitsOnly.slice(7)}`;
+      }
       
       // Send sanitized data to dataLayer for GTM tracking
       if (window.dataLayer) {
