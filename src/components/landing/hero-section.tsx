@@ -236,7 +236,7 @@ export function HeroSection() {
                   type="submit"
                   size="lg"
                   className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white px-6 sm:px-12 py-4 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                  disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
+                  disabled={isSubmitting || (phoneNumber.replace(/\D/g, "").length !== 10 && phoneNumber.replace(/\D/g, "").length !== 11) || !name.trim()}
                 >
                   {isSubmitting ? "Enviando..." : "QUERO VER A DEMO"}
                 </Button>

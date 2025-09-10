@@ -229,7 +229,7 @@ export function CTASection() {
             <Button 
               type="submit" 
               className="w-full bg-duop-purple hover:bg-duop-purple/90 text-white text-sm sm:text-base px-3 sm:px-4"
-              disabled={isSubmitting || phoneNumber.replace(/\D/g, "").length !== 11 || !name.trim()}
+              disabled={isSubmitting || (phoneNumber.replace(/\D/g, "").length !== 10 && phoneNumber.replace(/\D/g, "").length !== 11) || !name.trim()}
             >
               {isSubmitting ? "Enviando..." : "AGENDAR"}
             </Button>
