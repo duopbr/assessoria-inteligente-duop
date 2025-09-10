@@ -2,11 +2,8 @@ import { MessageCircle } from "lucide-react";
 import { Button } from "./button";
 
 export const WhatsAppFloatButton = () => {
-  const phoneNumber = "+5521973973673";
-  const message = "Quero marcar uma reunião";
-  
   const handleWhatsAppClick = () => {
-    const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = "https://wa.me/5521973973673?text=Quero%20marcar%20uma%20reunião";
     window.open(whatsappUrl, '_blank');
   };
 
