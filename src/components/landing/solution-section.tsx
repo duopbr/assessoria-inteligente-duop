@@ -28,7 +28,7 @@ export function SolutionSection() {
             
             <FeatureCard 
               icon={<BellRing />}
-              title="✅ Antecipar-se ao mercado com alertas inteligentes"
+              title="✅ Antecipar-se ao mercado com alertas inteligentes (Em breve)"
               description="Você verá como receber notificações proativas sobre seus ativos acompanhados antes mesmo dos clientes perguntarem."
             />
           </div>
