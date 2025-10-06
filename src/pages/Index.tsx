@@ -61,10 +61,8 @@ const Index = () => {
               <li><a href="#contato" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Contato</a></li>
             </ul>
             <a 
-              href="https://buy.stripe.com/14AfZh2RbbfLfFBfYB7AI0E"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-duop-purple text-white px-6 py-2 rounded-lg font-semibold hover:bg-duop-purple/90 transition-all shadow-md hover:shadow-lg"
+              href="#planos"
+              className="border border-duop-purple text-duop-purple px-6 py-2 rounded-lg font-medium hover:bg-duop-purple/5 transition-all"
             >
               Compre Já
             </a>

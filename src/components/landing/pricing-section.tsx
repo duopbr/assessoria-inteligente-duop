@@ -60,7 +60,7 @@ export function PricingSection() {
   ];
 
   return (
-    <Section className="bg-gradient-to-b from-white to-duop-purple/5">
+    <Section id="planos" className="bg-gradient-to-b from-white to-duop-purple/5">
       <div className="text-center mb-12">
         <SectionTitle>Sem tempo para demo? Comece já.</SectionTitle>
         <p className="text-xl text-duop-gray-dark max-w-3xl mx-auto mt-6">
