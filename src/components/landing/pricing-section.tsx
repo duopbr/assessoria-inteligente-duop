@@ -10,9 +10,10 @@ export function PricingSection() {
       periodLabel: "Mensal",
       installments: null,
       monthlyEquivalent: null,
-      badge: null,
+      badge: "⭐ Recomendado",
       link: "https://buy.stripe.com/14AfZh2RbbfLfFBfYB7AI0E",
-      highlighted: false,
+      highlighted: true,
+      noCommitment: true,
     },
     {
       name: "Trimestral",
@@ -24,6 +25,7 @@ export function PricingSection() {
       badge: "Até 3x sem juros",
       link: "https://buy.stripe.com/cNi7sLdvP83z9hdeUx7AI0y",
       highlighted: false,
+      noCommitment: false,
     },
     {
       name: "Semestral",
@@ -35,6 +37,7 @@ export function PricingSection() {
       badge: "Até 6x sem juros",
       link: "https://buy.stripe.com/5kQ28r0J3erX2SP4fT7AI0F",
       highlighted: false,
+      noCommitment: false,
     },
     {
       name: "Anual",
@@ -43,10 +46,10 @@ export function PricingSection() {
       periodLabel: "Anual",
       installments: "até 12x sem juros",
       monthlyEquivalent: "67,91",
-      badge: "🔥 Mais Econômico",
+      badge: "🔥 Economize 18%",
       link: "https://buy.stripe.com/00w9AT2Rb0B72SPeUx7AI0A",
-      highlighted: true,
-      savings: "Economize 18%",
+      highlighted: false,
+      noCommitment: false,
     },
   ];
 
@@ -115,11 +118,19 @@ export function PricingSection() {
               )}
             </div>
 
-            <div className="mb-4 py-3 px-4 bg-green-50 border-l-4 border-green-500 rounded">
-              <p className="text-sm font-semibold text-green-700">
-                Sem fidelidade - Cancele quando quiser
-              </p>
-            </div>
+            {plan.noCommitment ? (
+              <div className="mb-4 py-3 px-4 bg-green-50 border-l-4 border-green-500 rounded">
+                <p className="text-sm font-semibold text-green-700">
+                  Sem fidelidade - Cancele quando quiser
+                </p>
+              </div>
+            ) : (
+              <div className="mb-4 py-3 px-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                <p className="text-sm font-semibold text-blue-700">
+                  Período de compromisso: {plan.periodLabel.toLowerCase()}
+                </p>
+              </div>
+            )}
 
             <ul className="space-y-3 mb-6 flex-grow">
               {benefits.map((benefit) => (

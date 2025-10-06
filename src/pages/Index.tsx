@@ -55,13 +55,21 @@ const Index = () => {
               loading="eager"
             />
           </div>
-          <nav className="hidden md:block">
+          <nav className="hidden md:flex items-center space-x-6">
             <ul className="flex space-x-8">
               <li><a href="#" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Início</a></li>
               <li><a href="#contato" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Contato</a></li>
             </ul>
+            <a 
+              href="https://buy.stripe.com/14AfZh2RbbfLfFBfYB7AI0E"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-duop-purple text-white px-6 py-2 rounded-lg font-semibold hover:bg-duop-purple/90 transition-all shadow-md hover:shadow-lg"
+            >
+              Compre Já
+            </a>
           </nav>
-          <a href="#contato" className="cta-button-secondary">
+          <a href="#contato" className="cta-button-secondary md:hidden">
             Testar agora
           </a>
         </div>
