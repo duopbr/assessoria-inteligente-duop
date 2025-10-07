@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ThankYou from "./pages/ThankYou";
+import ThankYouPurchase from "./pages/ThankYouPurchase";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import PixMensal from "./pages/PixMensal";
@@ -27,6 +28,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/obrigado" element={<ThankYou />} />
+            <Route path="/obrigado-compra" element={<ThankYouPurchase />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/pix-mensal" element={<PixMensal />} />
