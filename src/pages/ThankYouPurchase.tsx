@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,13 +22,16 @@ import {
 
 const ThankYouPurchase = () => {
   const navigate = useNavigate();
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
+    setCopiedPrompt(text);
     toast({
-      title: "Copiado!",
+      title: "✅ Copiado!",
       description: "Prompt copiado para área de transferência",
     });
+    setTimeout(() => setCopiedPrompt(null), 2000);
   };
 
   const features = [
@@ -116,15 +120,15 @@ const ThankYouPurchase = () => {
       badgeColor: "bg-pink-100 text-pink-800",
       description: (
         <div className="space-y-2">
-          <p className="text-sm">Solicite ao suporte técnico</p>
+          <p className="text-sm">Solicite sua carteira personalizada ao suporte técnico</p>
           <a
             href="https://wa.me/5521973973673?text=Gostaria%20de%20receber%20a%20carteira%20recomendada"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs text-green-600 hover:text-green-700 font-medium"
+            className="inline-flex items-center gap-2 text-sm text-green-600 hover:text-green-700 font-medium"
           >
-            <MessageCircle className="w-3 h-3" />
-            Solicitar agora
+            <MessageCircle className="w-4 h-4" />
+            Solicitar via WhatsApp
           </a>
         </div>
       )
@@ -163,19 +167,26 @@ const ThankYouPurchase = () => {
     }
   ];
 
+  const topPrompts = [
+    "Me faça a análise de ação PETR4",
+    "Analise essa carteira (envie foto)",
+    "Me dê os dados financeiros de ITUB4",
+    "Me faça a análise de FII HGLG11"
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-duop-purple/5 py-12 px-4">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <div className="min-h-screen bg-gradient-to-br from-background to-duop-purple/5 py-8 px-4">
+      <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
-            <CheckCircle className="w-20 h-20 text-green-500" />
+            <CheckCircle className="w-16 h-16 text-green-500" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold">
+          <h1 className="text-3xl md:text-4xl font-bold">
             <span className="gradient-text">🎉 Pagamento Confirmado!</span>
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             Bem-vindo à Duop! Vamos começar agora mesmo.
           </p>
         </div>
@@ -214,44 +225,79 @@ const ThankYouPurchase = () => {
           </a>
         </div>
 
-        {/* Features Grid */}
-        <div className="space-y-6">
+        {/* Quick Start Section */}
+        <Card className="max-w-3xl mx-auto bg-gradient-to-br from-duop-purple/5 to-duop-purple/10 border-duop-purple/20">
+          <CardHeader>
+            <CardTitle className="text-center text-2xl">🚀 Comece em 3 Passos</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center space-y-2">
+                <div className="w-12 h-12 rounded-full bg-duop-purple/20 flex items-center justify-center mx-auto">
+                  <span className="text-2xl font-bold text-duop-purple">1</span>
+                </div>
+                <h3 className="font-semibold">Abra o WhatsApp</h3>
+                <p className="text-sm text-muted-foreground">Clique no botão verde acima</p>
+              </div>
+              <div className="text-center space-y-2">
+                <div className="w-12 h-12 rounded-full bg-duop-purple/20 flex items-center justify-center mx-auto">
+                  <span className="text-2xl font-bold text-duop-purple">2</span>
+                </div>
+                <h3 className="font-semibold">Envie um Prompt</h3>
+                <p className="text-sm text-muted-foreground">Use um dos prompts abaixo</p>
+              </div>
+              <div className="text-center space-y-2">
+                <div className="w-12 h-12 rounded-full bg-duop-purple/20 flex items-center justify-center mx-auto">
+                  <span className="text-2xl font-bold text-duop-purple">3</span>
+                </div>
+                <h3 className="font-semibold">Receba a Análise</h3>
+                <p className="text-sm text-muted-foreground">Em segundos via WhatsApp</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Top 4 Quick Prompts */}
+        <div className="space-y-4 max-w-3xl mx-auto">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-2">📚 Como usar sua assessoria IA</h2>
-            <p className="text-muted-foreground">Explore todas as funcionalidades disponíveis</p>
+            <h2 className="text-2xl font-bold mb-2">⚡ Comece com estes prompts</h2>
+            <p className="text-sm text-muted-foreground">Clique para copiar e colar no WhatsApp</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="text-duop-purple">
-                      {feature.icon}
-                    </div>
-                    <span className={`text-xs px-2 py-1 rounded-full font-medium ${feature.badgeColor}`}>
-                      {feature.badge}
-                    </span>
-                  </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {typeof feature.description === 'string' ? (
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  ) : (
-                    feature.description
-                  )}
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {topPrompts.map((prompt, index) => (
+              <Button
+                key={index}
+                variant="outline"
+                className="h-auto py-4 px-4 text-left justify-between hover:bg-duop-purple/5 hover:border-duop-purple/50 transition-all"
+                onClick={() => copyToClipboard(prompt)}
+              >
+                <span className="text-sm font-medium flex-1">{prompt}</span>
+                {copiedPrompt === prompt ? (
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 ml-2" />
+                ) : (
+                  <Copy className="w-4 h-4 text-muted-foreground flex-shrink-0 ml-2" />
+                )}
+              </Button>
             ))}
+          </div>
+          
+          <div className="text-center pt-2">
+            <Button
+              variant="link"
+              onClick={() => document.getElementById('all-prompts')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-duop-purple"
+            >
+              Ver todos os prompts →
+            </Button>
           </div>
         </div>
 
         {/* Video Tutorial */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-2">🎥 Veja como funciona na prática</h2>
-            <p className="text-muted-foreground">Tutorial completo de uso da plataforma</p>
+            <h2 className="text-2xl font-bold mb-2">🎥 Veja como funciona (2min)</h2>
+            <p className="text-sm text-muted-foreground">Tutorial rápido de uso da plataforma</p>
           </div>
           
           <div className="aspect-video w-full max-w-4xl mx-auto">
@@ -265,36 +311,71 @@ const ThankYouPurchase = () => {
           </div>
         </div>
 
-        {/* Quick Prompts */}
-        <div className="space-y-6 max-w-3xl mx-auto">
+        {/* Features Accordion */}
+        <div className="space-y-4 max-w-3xl mx-auto" id="all-prompts">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-2">⚡ Prompts Rápidos</h2>
-            <p className="text-muted-foreground">Copie e cole estes prompts no WhatsApp</p>
+            <h2 className="text-2xl font-bold mb-2">📚 Todas as Funcionalidades</h2>
+            <p className="text-sm text-muted-foreground">Explore tudo que você pode fazer</p>
+          </div>
+          
+          <Accordion type="single" collapsible className="w-full">
+            {features.map((feature, index) => (
+              <AccordionItem key={index} value={`feature-${index}`}>
+                <AccordionTrigger className="hover:no-underline">
+                  <div className="flex items-center gap-3 text-left">
+                    <div className="text-duop-purple flex-shrink-0">
+                      {feature.icon}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold">{feature.title}</div>
+                    </div>
+                    <span className={`text-xs px-2 py-1 rounded-full font-medium ${feature.badgeColor} flex-shrink-0`}>
+                      {feature.badge}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="pl-14 pt-2">
+                    {typeof feature.description === 'string' ? (
+                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    ) : (
+                      feature.description
+                    )}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
+        {/* All Prompts by Category */}
+        <div className="space-y-4 max-w-3xl mx-auto">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-2">💬 Todos os Prompts por Categoria</h2>
+            <p className="text-sm text-muted-foreground">Clique para copiar qualquer prompt</p>
           </div>
           
           <Accordion type="single" collapsible className="w-full">
             {promptCategories.map((category, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-lg font-semibold">
+              <AccordionItem key={index} value={`prompt-${index}`}>
+                <AccordionTrigger className="text-base font-semibold">
                   {category.category}
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-2">
                     {category.prompts.map((prompt, promptIndex) => (
-                      <div 
+                      <button
                         key={promptIndex}
-                        className="flex items-center justify-between p-3 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+                        onClick={() => copyToClipboard(prompt)}
+                        className="w-full flex items-center justify-between p-3 bg-muted rounded-lg hover:bg-muted/80 transition-colors text-left group"
                       >
                         <code className="text-sm flex-1">{prompt}</code>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => copyToClipboard(prompt)}
-                          className="ml-2"
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
+                        {copiedPrompt === prompt ? (
+                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 ml-2" />
+                        ) : (
+                          <Copy className="w-4 h-4 text-muted-foreground group-hover:text-duop-purple flex-shrink-0 ml-2" />
+                        )}
+                      </button>
                     ))}
                   </div>
                 </AccordionContent>
@@ -306,10 +387,10 @@ const ThankYouPurchase = () => {
         {/* Info Box */}
         <Card className="max-w-3xl mx-auto bg-duop-purple/5 border-duop-purple/20">
           <CardHeader>
-            <CardTitle className="text-center">✅ Tudo incluído na sua assinatura</CardTitle>
+            <CardTitle className="text-center text-xl">✅ Tudo incluído na sua assinatura</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="flex items-start gap-2">
                 <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <p className="text-sm">Acesso imediato a todas funcionalidades</p>
@@ -331,7 +412,7 @@ const ThankYouPurchase = () => {
         </Card>
 
         {/* Back Button */}
-        <div className="text-center">
+        <div className="text-center pb-4">
           <Button
             variant="ghost"
             onClick={() => navigate('/')}
