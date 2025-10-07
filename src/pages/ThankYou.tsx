@@ -1,6 +1,7 @@
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
@@ -23,17 +24,31 @@ const ThankYou = () => {
           </p>
         </div>
         
-        <p className="text-lg mb-6">
-          Infelizmente, todos os nossos slots para trials estão esgotados no momento. 
-          Assim que novas vagas forem abertas, entraremos em contato por WhatsApp.
+        <p className="text-lg mb-8 text-duop-gray-dark">
+          Recebemos seu interesse! Quer começar hoje mesmo? Entre em contato com nosso suporte para agendar sua reunião de demonstração.
         </p>
         
-        <div className="flex justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            asChild
+            className="bg-[#25D366] hover:bg-[#20BA5A] text-white"
+          >
+            <a 
+              href={`https://wa.me/5521973973673?text=Ol%C3%A1%2C%20estou%20na%20fila%20de%20espera%20(n%C2%BA%20${queueNumber})%20e%20gostaria%20de%20agendar%20minha%20reuni%C3%A3o%20de%20demonstra%C3%A7%C3%A3o`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Falar com Suporte
+            </a>
+          </Button>
+          
           <Button 
             onClick={() => navigate('/')}
-            className="bg-duop-purple hover:bg-duop-purple/90 text-white"
+            variant="outline"
+            className="border-duop-purple text-duop-purple hover:bg-duop-purple/10"
           >
-            Voltar para a página inicial
+            Voltar para o site
           </Button>
         </div>
       </div>
