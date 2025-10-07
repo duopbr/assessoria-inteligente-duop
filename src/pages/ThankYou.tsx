@@ -21,7 +21,7 @@ const ThankYou = () => {
           </p>
           
           <p className="text-base text-duop-gray-dark">
-            Nessa conversa rápida, vamos te mostrar ao vivo como você pode automatizar tarefas, antecipar o mercado e impressionar seus clientes.
+            Nessa conversa rápida, vamos te mostrar ao vivo como você pode automatizar tarefas e impressionar seus clientes.
           </p>
           
           <p className="text-base text-duop-gray-dark">
