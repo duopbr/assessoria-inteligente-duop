@@ -25,7 +25,7 @@ const ThankYou = () => {
         </div>
         
         <p className="text-lg mb-8 text-duop-gray-dark">
-          Recebemos seu interesse! Quer começar hoje mesmo? Entre em contato com nosso suporte para agendar sua reunião de demonstração.
+          Recebemos seu interesse! Quer começar hoje mesmo? Entre em contato com nosso suporte para agendar sua reunião de demonstração, ou espere o suporte entrar em contato com você.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
