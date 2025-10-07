@@ -34,7 +34,7 @@ const ThankYou = () => {
           className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-lg py-6 px-8 h-auto w-full sm:w-auto"
         >
           <a 
-            href="https://wa.me/5521973973673"
+            href="https://wa.me/5521973973673?text=Quero%20agendar%20a%20reunião"
             target="_blank"
             rel="noopener noreferrer"
           >
