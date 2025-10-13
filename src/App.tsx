@@ -15,6 +15,9 @@ import PixMensal from "./pages/PixMensal";
 import PixTrimestral from "./pages/PixTrimestral";
 import PixSemestral from "./pages/PixSemestral";
 import PixAnual from "./pages/PixAnual";
+import PixTesesMensal from "./pages/PixTesesMensal";
+import PixTesesTrimestral from "./pages/PixTesesTrimestral";
+import PixTesesSemestral from "./pages/PixTesesSemestral";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,9 @@ const App = () => (
             <Route path="/pix-trimestral" element={<PixTrimestral />} />
             <Route path="/pix-semestral" element={<PixSemestral />} />
             <Route path="/pix-anual" element={<PixAnual />} />
+            <Route path="/teses-pix-mensal" element={<PixTesesMensal />} />
+            <Route path="/teses-pix-trimestral" element={<PixTesesTrimestral />} />
+            <Route path="/teses-pix-semestral" element={<PixTesesSemestral />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
