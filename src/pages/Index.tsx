@@ -4,7 +4,6 @@ import { StorySection } from "@/components/landing/story-section";
 import { ProblemsSection } from "@/components/landing/problems-section";
 import { SolutionSection } from "@/components/landing/solution-section";
 import { HowItWorksSection } from "@/components/landing/how-it-works-section";
-import { PricingSection } from "@/components/landing/pricing-section";
 import { ValidationSection } from "@/components/landing/validation-section";
 import { CTASection } from "@/components/landing/cta-section";
 import { FAQSection } from "@/components/landing/faq-section";
@@ -60,12 +59,6 @@ const Index = () => {
               <li><a href="#" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Início</a></li>
               <li><a href="#contato" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Contato</a></li>
             </ul>
-            <a 
-              href="#planos"
-              className="border border-duop-purple text-duop-purple px-6 py-2 rounded-lg font-medium hover:bg-duop-purple/5 transition-all"
-            >
-              Compre Já
-            </a>
           </nav>
           <a href="#contato" className="cta-button-secondary md:hidden">
             Testar agora
@@ -90,10 +83,6 @@ const Index = () => {
         
         <div className="appear-animation">
           <HowItWorksSection />
-        </div>
-        
-        <div className="appear-animation">
-          <PricingSection />
         </div>
         
         <div className="appear-animation">
