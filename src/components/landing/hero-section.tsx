@@ -185,7 +185,7 @@ export function HeroSection() {
             
             <p className="text-xl md:text-2xl mb-10 text-duop-gray-dark">
               Descubra como <strong>revolucionar sua assessoria</strong> em apenas 15 minutos. 
-              Vamos te mostrar como <strong>automatizar tarefas</strong>, <strong>antecipar o mercado</strong> 
+              Vamos te mostrar como <strong>automatizar tarefas</strong>, <strong>antecipar o mercado</strong>{" "}
               e <strong>impressionar clientes</strong> — tudo direto no WhatsApp.
             </p>
 
