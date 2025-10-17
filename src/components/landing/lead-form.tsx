@@ -18,7 +18,7 @@ interface LeadFormProps {
 export function LeadForm({
   ctaText = "Quero ver como funciona",
   showBadge = false,
-  badgeText = "+3.000 assessores já conhecem a Duop",
+  badgeText = "✅ Usado por +3.000 assessores | XP, BTG e Warren",
   showMiniTestimonial = false,
   urgencyBadge,
   formId,
@@ -158,9 +158,9 @@ export function LeadForm({
       {showMiniTestimonial && (
         <div className="mb-6 p-4 bg-white/5 rounded-lg border border-white/10">
           <p className="text-white/90 italic text-sm">
-            "Economizei 6 horas por semana nas tarefas operacionais"
+            "Economizei 6h/semana. Agora tenho tempo para prospectar."
           </p>
-          <p className="text-white/70 text-xs mt-2">— João Silva, XP Investimentos</p>
+          <p className="text-white/70 text-xs mt-2">— João Silva, Assessor XP</p>
         </div>
       )}
 
@@ -204,7 +204,7 @@ export function LeadForm({
         </button>
 
         <p className="text-sm text-center text-duop-gray-dark mt-4">
-          ✅ Demo gratuita • 📱 15 minutos • 🚀 Sem compromisso
+          ✅ Demo ao vivo e gratuita • ⏱️ 15 minutos • 🚫 Sem compromisso
         </p>
       </form>
     </div>

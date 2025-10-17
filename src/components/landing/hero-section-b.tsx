@@ -10,18 +10,18 @@ export function HeroSectionB() {
   ];
 
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-br from-duop-purple to-duop-blue overflow-hidden">
+    <section className="relative py-16 md:py-24 bg-gradient-to-br from-duop-purple to-duop-purple-dark overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              🚀 Assessores estão economizando 5h/semana com IA no WhatsApp
+              🚀 +3.000 assessores economizando 5h/semana com IA no WhatsApp
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              A Duop automatiza tarefas operacionais enquanto você foca em <strong>crescer sua carteira</strong> e <strong>encantar clientes</strong>.
+              Automatize tarefas operacionais enquanto você foca em <strong>crescer sua carteira</strong> e <strong>encantar clientes</strong>.
             </p>
 
             <div className="mb-8">
@@ -54,7 +54,7 @@ export function HeroSectionB() {
           <div className="relative">
             <div className="aspect-video rounded-lg overflow-hidden shadow-2xl border-4 border-white/20">
               <iframe
-                src="https://www.youtube.com/embed/TqQ2oIxKZkE?si=UwJEqnvWfNk-aRWf"
+                src="https://www.youtube.com/embed/cxyJzfPjgUM"
                 title="Duop Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
