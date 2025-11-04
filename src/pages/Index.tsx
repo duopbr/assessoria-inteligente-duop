@@ -4,6 +4,7 @@ import { VideoSection } from "@/components/landing/video-section";
 import { FeaturesBenefit } from "@/components/landing/features-benefit";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { FAQCompact } from "@/components/landing/faq-compact";
+import { HowToUseSection } from "@/components/landing/how-to-use-section";
 import { CTAFinalUrgency } from "@/components/landing/cta-final-urgency";
 import { Footer } from "@/components/landing/footer";
 import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
@@ -86,6 +87,10 @@ const Index = () => {
 
         <div className="appear-animation">
           <FAQCompact />
+        </div>
+
+        <div className="appear-animation">
+          <HowToUseSection />
         </div>
 
         <div className="appear-animation">
