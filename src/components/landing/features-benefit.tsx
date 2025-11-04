@@ -31,8 +31,6 @@ export function FeaturesBenefit() {
     },
     {
       icon: <Bell size={40} />,
-      badge: "Em breve",
-      badgeColor: "bg-duop-blue/10 text-duop-blue border-duop-blue/30",
       title: "Morning Call Personalizado",
       benefit: "Antecipe o mercado",
       description: "Receba todo dia um resumo do que impacta seus clientes, antes mesmo deles perguntarem.",
@@ -58,9 +56,11 @@ export function FeaturesBenefit() {
               <div className="text-duop-purple">
                 {feature.icon}
               </div>
-              <span className={`text-xs font-bold px-3 py-1 rounded-full border ${feature.badgeColor}`}>
-                {feature.badge}
-              </span>
+              {feature.badge && (
+                <span className={`text-xs font-bold px-3 py-1 rounded-full border ${feature.badgeColor}`}>
+                  {feature.badge}
+                </span>
+              )}
             </div>
 
             <h3 className="text-2xl font-bold text-duop-blue mb-2">
