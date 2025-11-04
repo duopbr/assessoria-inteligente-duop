@@ -23,6 +23,30 @@ export function LeadForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
+  const formatPhone = (value: string) => {
+    // Remove tudo que não é número
+    const numbers = value.replace(/\D/g, '');
+    
+    // Limita a 11 dígitos
+    const limited = numbers.slice(0, 11);
+    
+    // Aplica a máscara
+    if (limited.length <= 2) {
+      return limited;
+    } else if (limited.length <= 7) {
+      return `(${limited.slice(0, 2)}) ${limited.slice(2)}`;
+    } else if (limited.length <= 11) {
+      return `(${limited.slice(0, 2)}) ${limited.slice(2, 7)}-${limited.slice(7)}`;
+    }
+    
+    return limited;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhone(e.target.value);
+    setPhone(formatted);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -45,7 +69,7 @@ export function LeadForm({
     }
 
     const sanitizedName = name.trim();
-    const sanitizedPhone = phone.trim();
+    const sanitizedPhone = phone.replace(/\D/g, ''); // Remove máscara para salvar apenas números
 
     setIsSubmitting(true);
 
@@ -121,10 +145,11 @@ export function LeadForm({
         />
         <Input
           type="tel"
-          placeholder="Seu WhatsApp com DDD (ex: 11987654321)"
+          placeholder="(11) 98765-4321"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={handlePhoneChange}
           className={isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}
+          maxLength={15}
           required
         />
       </div>
