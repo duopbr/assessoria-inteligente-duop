@@ -84,7 +84,7 @@ export function LeadForm({
       setPhone("");
 
       setTimeout(() => {
-        window.location.href = "/thank-you";
+        window.location.href = "/obrigado";
       }, 1500);
     } catch (error) {
       console.error("Error submitting form:", error);
