@@ -15,7 +15,7 @@ export function VideoSection() {
       <div className="max-w-4xl mx-auto mt-8">
         <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-duop-purple/20">
           <iframe
-            src="https://www.youtube.com/embed/cxyJzfPjgUM"
+            src="https://www.youtube.com/embed/JrfYvv90IVE?start=80"
             title="Duop - Demonstração"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
