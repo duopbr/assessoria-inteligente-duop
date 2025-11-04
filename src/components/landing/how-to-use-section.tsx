@@ -67,7 +67,7 @@ export function HowToUseSection() {
     {
       icon: <FolderOpen className="w-6 h-6" />,
       title: "Carteira Recomendada",
-      description: "Peça para o suporte",
+      description: "Me mande o relatório de carteira recomendada",
       color: "text-yellow-600"
     }
   ];
