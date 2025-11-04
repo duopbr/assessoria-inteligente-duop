@@ -1,107 +1,101 @@
-
-import { HeroSection } from "@/components/landing/hero-section";
-import { StorySection } from "@/components/landing/story-section";
-import { ProblemsSection } from "@/components/landing/problems-section";
-import { SolutionSection } from "@/components/landing/solution-section";
-import { HowItWorksSection } from "@/components/landing/how-it-works-section";
-import { ValidationSection } from "@/components/landing/validation-section";
-import { CTASection } from "@/components/landing/cta-section";
-import { FAQSection } from "@/components/landing/faq-section";
-import { Footer } from "@/components/landing/footer";
-import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
-import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
 import { useEffect } from "react";
+import { HeroOptimized } from "@/components/landing/hero-optimized";
+import { VideoSection } from "@/components/landing/video-section";
+import { FeaturesBenefit } from "@/components/landing/features-benefit";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
+import { FAQCompact } from "@/components/landing/faq-compact";
+import { CTAFinalUrgency } from "@/components/landing/cta-final-urgency";
+import { Footer } from "@/components/landing/footer";
+import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
+import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.appear-animation');
-      
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const isInView = (
-          rect.top <= (window.innerHeight * 0.85) && 
-          rect.bottom >= 0
-        );
-        
-        if (isInView) {
-          el.classList.add('in-view');
+      elements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.8;
+        if (isVisible) {
+          element.classList.add('in-view');
         }
       });
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on initial load
-    
-    document.title = "Duop - Assessoria Inteligente via WhatsApp";
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
+  useEffect(() => {
+    document.title = "Duop - Ganhe 5 Dias por Mês com IA para Assessores";
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Automatize relatórios, análises e atendimento. A Duop libera 5 dias de trabalho por mês para assessores de investimento focarem no que importa.');
+    }
+  }, []);
+
+  const scrollToForm = () => {
+    const form = document.querySelector('form');
+    form?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-white">
       <AccessibilityImprovements />
-      <div className="min-h-screen flex flex-col">
-      <header className="py-6 px-4 sm:px-6 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center">
+      
+      {/* Sticky Header */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-duop-purple/10 shadow-sm">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <img
               src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
               alt="Duop Logo"
-              className="h-10 mr-2"
+              className="h-8"
               loading="eager"
             />
           </div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <ul className="flex space-x-8">
-              <li><a href="#" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Início</a></li>
-              <li><a href="#contato" className="text-duop-gray-dark hover:text-duop-purple transition-colors">Contato</a></li>
-            </ul>
-          </nav>
-          <a href="#contato" className="cta-button-secondary md:hidden">
-            Testar agora
-          </a>
+          <Button 
+            onClick={scrollToForm}
+            className="bg-duop-purple text-white hover:bg-duop-purple/90"
+          >
+            📱 Testar Agora
+          </Button>
         </div>
       </header>
-      
-      <main id="main-content" className="flex-grow">
-        <HeroSection />
-        
+
+      <main className="flex-grow">
         <div className="appear-animation">
-          <StorySection />
+          <HeroOptimized />
         </div>
-        
+
         <div className="appear-animation">
-          <ProblemsSection />
+          <VideoSection />
         </div>
-        
+
         <div className="appear-animation">
-          <SolutionSection />
+          <FeaturesBenefit />
         </div>
-        
+
         <div className="appear-animation">
-          <HowItWorksSection />
+          <TestimonialsSection />
         </div>
-        
+
         <div className="appear-animation">
-          <ValidationSection />
+          <FAQCompact />
         </div>
-        
+
         <div className="appear-animation">
-          <CTASection />
-        </div>
-        
-        <div className="appear-animation">
-          <FAQSection />
+          <CTAFinalUrgency />
         </div>
       </main>
-      
-        <Footer />
-        <WhatsAppFloatButton />
-      </div>
-    </>
+
+      <Footer />
+      <WhatsAppFloatButton />
+    </div>
   );
 };
 
