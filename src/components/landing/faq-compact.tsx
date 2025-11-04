@@ -50,7 +50,7 @@ export function FAQCompact() {
 
       <div className="text-center mt-12">
         <p className="text-lg text-duop-gray-dark">
-          Ainda tem dúvidas? <a href="https://wa.me/5511999999999" className="text-duop-purple font-bold hover:underline">Fale conosco no WhatsApp</a>
+          Ainda tem dúvidas? <a href="https://wa.me/5521973973673" className="text-duop-purple font-bold hover:underline">Fale conosco no WhatsApp</a>
         </p>
       </div>
     </Section>

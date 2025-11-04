@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { HeroOptimized } from "@/components/landing/hero-optimized";
 import { VideoSection } from "@/components/landing/video-section";
+import { SolutionSection } from "@/components/landing/solution-section";
 import { FeaturesBenefit } from "@/components/landing/features-benefit";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { FAQCompact } from "@/components/landing/faq-compact";
@@ -75,6 +76,10 @@ const Index = () => {
 
         <div className="appear-animation">
           <VideoSection />
+        </div>
+
+        <div className="appear-animation">
+          <SolutionSection />
         </div>
 
         <div className="appear-animation">
