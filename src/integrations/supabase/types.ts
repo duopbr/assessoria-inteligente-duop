@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -16,40 +16,40 @@ export type Database = {
     Tables: {
       assessores: {
         Row: {
+          Assessoria: string | null
           celular: string
           Contatado: string | null
           created_at: string | null
+          email: string | null
           id: number
           nome: string
-          Respondeu: string | null
           reunião_marcada: string | null
-          Temperatura: string | null
           utm_medium: string | null
           utm_source: string | null
           Venda: string | null
         }
         Insert: {
+          Assessoria?: string | null
           celular: string
           Contatado?: string | null
           created_at?: string | null
+          email?: string | null
           id?: number
           nome: string
-          Respondeu?: string | null
           reunião_marcada?: string | null
-          Temperatura?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           Venda?: string | null
         }
         Update: {
+          Assessoria?: string | null
           celular?: string
           Contatado?: string | null
           created_at?: string | null
+          email?: string | null
           id?: number
           nome?: string
-          Respondeu?: string | null
           reunião_marcada?: string | null
-          Temperatura?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           Venda?: string | null
@@ -61,7 +61,7 @@ export type Database = {
           action: string
           details: Json | null
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           table_name: string
           timestamp: string | null
           user_agent: string | null
@@ -71,7 +71,7 @@ export type Database = {
           action: string
           details?: Json | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           table_name: string
           timestamp?: string | null
           user_agent?: string | null
@@ -81,7 +81,7 @@ export type Database = {
           action?: string
           details?: Json | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           table_name?: string
           timestamp?: string | null
           user_agent?: string | null
@@ -91,22 +91,37 @@ export type Database = {
       }
       B2C: {
         Row: {
+          "Análise de Carteira": string | null
           celular: string | null
           created_at: string
+          Fonte: string | null
           id: number
           nome: string | null
+          Perfil: string | null
+          Reunião: string | null
+          Venda: string | null
         }
         Insert: {
+          "Análise de Carteira"?: string | null
           celular?: string | null
           created_at?: string
+          Fonte?: string | null
           id?: number
           nome?: string | null
+          Perfil?: string | null
+          Reunião?: string | null
+          Venda?: string | null
         }
         Update: {
+          "Análise de Carteira"?: string | null
           celular?: string | null
           created_at?: string
+          Fonte?: string | null
           id?: number
           nome?: string | null
+          Perfil?: string | null
+          Reunião?: string | null
+          Venda?: string | null
         }
         Relationships: []
       }
@@ -244,10 +259,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      is_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

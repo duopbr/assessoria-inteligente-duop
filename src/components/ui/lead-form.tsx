@@ -4,6 +4,7 @@ import { Input } from "./input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhoneNumber } from "@/lib/security";
+import { trackLeadSubmission } from "@/lib/tracking";
 
 interface LeadFormProps {
   variant?: "light" | "dark";
@@ -19,6 +20,7 @@ export function LeadForm({
   source = "hero"
 }: LeadFormProps) {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -69,7 +71,8 @@ export function LeadForm({
     }
 
     const sanitizedName = name.trim();
-    const sanitizedPhone = phone.replace(/\D/g, ''); // Remove máscara para salvar apenas números
+    const sanitizedEmail = email.trim() || null;
+    const sanitizedPhone = phone.replace(/\D/g, '');
 
     setIsSubmitting(true);
 
@@ -77,11 +80,12 @@ export function LeadForm({
       const urlParams = new URLSearchParams(window.location.search);
       const utmSource = urlParams.get("utm_source") || "direct";
       const utmMedium = urlParams.get("utm_medium") || "none";
-      const utmCampaign = urlParams.get("utm_campaign") || "none";
 
+      // Salva no Supabase
       const { error } = await supabase.from("assessores").insert([
         {
           nome: sanitizedName,
+          email: sanitizedEmail,
           celular: sanitizedPhone,
           utm_source: utmSource,
           utm_medium: utmMedium,
@@ -90,14 +94,13 @@ export function LeadForm({
 
       if (error) throw error;
 
-      // Google Analytics tracking
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: "form_submission",
-          form_name: "lead_form",
-          form_location: source,
-        });
-      }
+      // Enhanced Conversion tracking com Meta Pixel
+      await trackLeadSubmission({
+        fullName: sanitizedName,
+        email: sanitizedEmail || undefined,
+        phone: sanitizedPhone,
+        source: source,
+      });
 
       toast({
         title: "✅ Agendamento confirmado!",
@@ -105,6 +108,7 @@ export function LeadForm({
       });
 
       setName("");
+      setEmail("");
       setPhone("");
 
       setTimeout(() => {
@@ -142,6 +146,14 @@ export function LeadForm({
           onChange={(e) => setName(e.target.value)}
           className={isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}
           required
+        />
+        <Input
+          type="email"
+          placeholder="Email (opcional - para materiais exclusivos)"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}
+          required={false}
         />
         <Input
           type="tel"
