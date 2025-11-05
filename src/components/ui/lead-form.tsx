@@ -129,7 +129,7 @@ export function LeadForm({
   const isDark = variant === "dark";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
       {showUrgencyBadge && (
         <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-2 text-center animate-pulse">
           <span className="text-red-600 font-semibold text-sm">
@@ -138,13 +138,13 @@ export function LeadForm({
         </div>
       )}
 
-      <div className="space-y-3">
+      <div className="space-y-2.5 sm:space-y-3">
         <Input
           type="text"
           placeholder="Seu nome completo"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className={isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}
+          className={`h-11 sm:h-12 ${isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}`}
           required
         />
         <Input
@@ -152,7 +152,7 @@ export function LeadForm({
           placeholder="Email (opcional - para materiais exclusivos)"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}
+          className={`h-11 sm:h-12 ${isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}`}
           required={false}
         />
         <Input
@@ -160,19 +160,19 @@ export function LeadForm({
           placeholder="(11) 98765-4321"
           value={phone}
           onChange={handlePhoneChange}
-          className={isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}
+          className={`h-11 sm:h-12 ${isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}`}
           maxLength={15}
           required
         />
       </div>
 
-      <p className={`text-sm ${isDark ? "text-white/70" : "text-duop-gray-dark"}`}>
+      <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? "text-white/70" : "text-duop-gray-dark"}`}>
         📱 Enviaremos o link da demo direto no seu WhatsApp. Por isso precisamos do seu número com DDD.
       </p>
 
       <Button
         type="submit"
-        className={`w-full py-6 text-lg font-bold ${
+        className={`w-full py-4 sm:py-6 text-base sm:text-lg font-bold ${
           isDark 
             ? "bg-white text-duop-purple hover:bg-white/90" 
             : "bg-duop-purple text-white hover:bg-duop-purple/90"
@@ -182,11 +182,12 @@ export function LeadForm({
         {isSubmitting ? "Enviando..." : ctaText}
       </Button>
 
-      <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 text-sm ${isDark ? "text-white/80" : "text-duop-gray-dark"}`}>
-        <span>✅ 15 minutos de demo ao vivo</span>
-        <span className="hidden sm:inline">•</span>
-        <span>🚫 Zero compromisso</span>
-        <span className="hidden sm:inline">•</span>
+      <div className={`flex flex-col items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm ${isDark ? "text-white/80" : "text-duop-gray-dark"}`}>
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+          <span>✅ 15 minutos de demo ao vivo</span>
+          <span className="hidden sm:inline">•</span>
+          <span>🚫 Zero compromisso</span>
+        </div>
         <span>🎁 Acesso imediato</span>
       </div>
     </form>

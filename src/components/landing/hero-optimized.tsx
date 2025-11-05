@@ -4,8 +4,8 @@ import { CheckCircle2 } from "lucide-react";
 
 export function HeroOptimized() {
   return (
-    <Section className="bg-white pt-32 pb-24">
-      <div className="grid lg:grid-cols-2 gap-20 items-center">
+    <Section className="bg-white pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 lg:pb-24">
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Coluna Esquerda - Mensagem Principal */}
         <div className="order-2 lg:order-1 space-y-8">
           <div className="inline-block bg-duop-purple/10 border border-duop-purple/20 rounded-full px-4 py-2 mb-4">
@@ -49,12 +49,12 @@ export function HeroOptimized() {
 
         {/* Coluna Direita - Formulário */}
         <div className="order-1 lg:order-2">
-          <div className="bg-gradient-to-br from-duop-purple/5 to-duop-blue/5 rounded-2xl p-10 border-2 border-duop-purple/20 shadow-xl max-w-xl mx-auto">
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-duop-blue mb-2">
+          <div className="bg-gradient-to-br from-duop-purple/5 to-duop-blue/5 rounded-2xl p-6 sm:p-8 lg:p-10 border-2 border-duop-purple/20 shadow-xl max-w-md sm:max-w-lg lg:max-w-xl mx-auto">
+            <div className="text-center mb-4 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-duop-blue mb-2">
                 Agende Sua Demo de 15 Minutos
               </h3>
-              <p className="text-duop-gray-dark">
+              <p className="text-sm sm:text-base text-duop-gray-dark">
                 Veja na prática como a Duop vai transformar sua rotina
               </p>
             </div>
