@@ -68,6 +68,8 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
     const eventId = `${Date.now()}_${phoneDigitsOnly}`;
     
     // Hash dos dados sensíveis (apenas se existirem)
+    const firstNameHash = await hashData(firstName);
+    const lastNameHash = await hashData(lastName);
     const emailHash = data.email ? await hashData(data.email) : undefined;
     const phoneHash = await hashData(phoneDigitsOnly);
     const phoneE164 = formatPhoneE164(data.phone);
@@ -80,8 +82,8 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
         email_address: emailHash,
         phone_number: phoneHash,
         address: {
-          first_name: firstName,
-          last_name: lastName,
+          first_name: firstNameHash,
+          last_name: lastNameHash,
           country: 'BR',
         },
       },
