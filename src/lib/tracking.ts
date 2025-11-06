@@ -67,11 +67,12 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
     const { firstName, lastName } = splitName(data.fullName);
     const eventId = `${Date.now()}_${phoneDigitsOnly}`;
     
-    // Hash dos dados sensíveis (apenas se existirem)
+    // Hash APENAS de email e first_name (conforme requisitos Meta)
     const firstNameHash = await hashData(firstName);
-    const lastNameHash = await hashData(lastName);
     const emailHash = data.email ? await hashData(data.email) : undefined;
-    const phoneHash = await hashData(phoneDigitsOnly);
+    
+    // last_name e phone_number SEM hash, apenas normalizados
+    const lastNameNormalized = lastName.toLowerCase().trim();
     const phoneE164 = formatPhoneE164(data.phone);
     
     // Objeto de Enhanced Conversion
@@ -80,10 +81,10 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
       event_id: eventId,
       user_data: {
         email_address: emailHash,
-        phone_number: phoneHash,
+        phone_number: phoneE164,
         address: {
           first_name: firstNameHash,
-          last_name: lastNameHash,
+          last_name: lastNameNormalized,
           country: 'BR',
         },
       },
