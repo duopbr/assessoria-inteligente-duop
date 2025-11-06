@@ -113,7 +113,7 @@ export function LeadForm({
 
       setTimeout(() => {
         window.location.href = "/obrigado";
-      }, 1500);
+      }, 500);
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
