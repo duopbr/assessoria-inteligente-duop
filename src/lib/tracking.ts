@@ -25,18 +25,6 @@ interface EnhancedConversionData {
   form_location: string;
 }
 
-/**
- * Hash de dados usando SHA-256 para Enhanced Conversions
- * Meta Pixel requer dados sensíveis hasheados
- */
-const hashData = async (data: string): Promise<string> => {
-  const normalized = data.toLowerCase().trim();
-  const encoder = new TextEncoder();
-  const dataBuffer = encoder.encode(normalized);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-};
 
 /**
  * Separa nome completo em primeiro nome e sobrenome
@@ -67,23 +55,21 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
     const { firstName, lastName } = splitName(data.fullName);
     const eventId = `${Date.now()}_${phoneDigitsOnly}`;
     
-    // Hash APENAS de email e first_name (conforme requisitos Meta)
-    const firstNameHash = await hashData(firstName);
-    const emailHash = data.email ? await hashData(data.email) : undefined;
-    
-    // last_name e phone_number SEM hash, apenas normalizados
+    // Normalizar dados em texto plano - CAPI faz hash server-side
+    const firstNameNormalized = firstName.toLowerCase().trim();
     const lastNameNormalized = lastName.toLowerCase().trim();
+    const emailNormalized = data.email ? data.email.toLowerCase().trim() : undefined;
     const phoneE164 = formatPhoneE164(data.phone);
     
-    // Objeto de Enhanced Conversion
+    // Objeto de Enhanced Conversion - dados em texto plano para CAPI hashear
     const conversionData: EnhancedConversionData = {
       event: 'lead_form_submit',
       event_id: eventId,
       user_data: {
-        email_address: emailHash,
+        email_address: emailNormalized,
         phone_number: phoneE164,
         address: {
-          first_name: firstNameHash,
+          first_name: firstNameNormalized,
           last_name: lastNameNormalized,
           country: 'BR',
         },
