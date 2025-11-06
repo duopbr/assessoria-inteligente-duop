@@ -11,13 +11,11 @@ interface EnhancedConversionData {
   event: string;
   event_id: string;
   user_data: {
-    email_address?: string;
-    phone_number?: string;
-    address: {
-      first_name: string;
-      last_name: string;
-      country: string;
-    };
+    em?: string;
+    ph?: string;
+    fn?: string;
+    ln?: string;
+    country?: string;
   };
   external_id: string;
   fbc?: string;
@@ -61,19 +59,23 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
     const emailNormalized = data.email ? data.email.toLowerCase().trim() : undefined;
     const phoneE164 = formatPhoneE164(data.phone);
     
-    // Objeto de Enhanced Conversion - dados em texto plano para CAPI hashear
+    // Objeto de Enhanced Conversion com nomes de campos corretos para CAPI
+    const userData: any = {
+      ph: phoneE164,
+      fn: firstNameNormalized,
+      ln: lastNameNormalized,
+      country: 'BR',
+    };
+    
+    // Adiciona email apenas se existir (evita enviar null/undefined)
+    if (emailNormalized) {
+      userData.em = emailNormalized;
+    }
+    
     const conversionData: EnhancedConversionData = {
       event: 'lead_form_submit',
       event_id: eventId,
-      user_data: {
-        email_address: emailNormalized,
-        phone_number: phoneE164,
-        address: {
-          first_name: firstNameNormalized,
-          last_name: lastNameNormalized,
-          country: 'BR',
-        },
-      },
+      user_data: userData,
       external_id: `${phoneDigitsOnly}_${eventId}`,
       fbc: fbc || undefined,
       fbp: fbp || undefined,
