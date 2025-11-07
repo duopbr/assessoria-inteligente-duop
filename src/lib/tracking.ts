@@ -73,7 +73,7 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
     }
     
     const conversionData: EnhancedConversionData = {
-      event: 'lead_form_submit',
+      event: 'Lead',
       event_id: eventId,
       user_data: userData,
       external_id: `${phoneDigitsOnly}_${eventId}`,
