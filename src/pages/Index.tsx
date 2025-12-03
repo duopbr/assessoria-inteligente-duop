@@ -54,7 +54,8 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src="/images/duop-logo.webp"
+              src="/images/duop-logo-sm.webp"
+              srcSet="/images/duop-logo-2x.webp 2x"
               alt="Duop Logo"
               width="170"
               height="56"
