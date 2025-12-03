@@ -54,10 +54,14 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
+              src="/images/duop-logo.webp"
               alt="Duop Logo"
-              className="h-8"
+              width="170"
+              height="56"
+              className="h-8 w-auto"
               loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
           </div>
           <Button 
