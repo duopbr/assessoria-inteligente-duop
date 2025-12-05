@@ -52,6 +52,18 @@ const Index = () => {
     }
   }, []);
 
+  // Remove splash screen quando React monta
+  useEffect(() => {
+    const splash = document.getElementById("splash-screen");
+    if (splash) {
+      splash.classList.add("hide");
+      const timeout = setTimeout(() => {
+        splash.remove();
+      }, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
   const scrollToForm = () => {
     const form = document.querySelector('form');
     form?.scrollIntoView({ behavior: 'smooth', block: 'center' });
