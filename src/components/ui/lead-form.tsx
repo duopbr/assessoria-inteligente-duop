@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Button } from "./button";
 import { Input } from "./input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { validatePhoneNumber } from "@/lib/security";
-import { trackLeadSubmission } from "@/lib/tracking";
+// supabase, security e tracking carregados dinamicamente no handleSubmit
 
 interface LeadFormProps {
   variant?: "light" | "dark";
@@ -26,13 +24,9 @@ export function LeadForm({
   const { toast } = useToast();
 
   const formatPhone = (value: string) => {
-    // Remove tudo que não é número
     const numbers = value.replace(/\D/g, '');
-    
-    // Limita a 11 dígitos
     const limited = numbers.slice(0, 11);
     
-    // Aplica a máscara
     if (limited.length <= 2) {
       return limited;
     } else if (limited.length <= 7) {
@@ -52,6 +46,7 @@ export function LeadForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // 1. Validação barata: campos obrigatórios
     if (!name.trim() || !phone.trim()) {
       toast({
         title: "Campos obrigatórios",
@@ -61,7 +56,9 @@ export function LeadForm({
       return;
     }
 
-    if (!validatePhoneNumber(phone)) {
+    // 2. Validação barata: telefone tem pelo menos 10 dígitos
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length < 10) {
       toast({
         title: "Telefone inválido",
         description: "Por favor, inclua o DDD e um número válido (ex: 11987654321).",
@@ -70,18 +67,40 @@ export function LeadForm({
       return;
     }
 
-    const sanitizedName = name.trim();
-    const sanitizedEmail = email.trim() || null;
-    const sanitizedPhone = phone.replace(/\D/g, '');
-
+    // 3. Desabilita botão ANTES de baixar libs (previne clique duplo)
     setIsSubmitting(true);
 
     try {
+      // 4. Dynamic imports dentro do try (captura erros de rede/build)
+      const [
+        { supabase },
+        { validatePhoneNumber },
+        { trackLeadSubmission },
+      ] = await Promise.all([
+        import("@/integrations/supabase/client"),
+        import("@/lib/security"),
+        import("@/lib/tracking"),
+      ]);
+
+      // 5. Validação completa com a lib
+      if (!validatePhoneNumber(phone)) {
+        toast({
+          title: "Telefone inválido",
+          description: "Por favor, inclua o DDD e um número válido (ex: 11987654321).",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // 6. Resto do fluxo IDÊNTICO ao atual
+      const sanitizedName = name.trim();
+      const sanitizedEmail = email.trim() || null;
+      const sanitizedPhone = phoneDigits;
+
       const urlParams = new URLSearchParams(window.location.search);
       const utmSource = urlParams.get("utm_source") || "direct";
       const utmMedium = urlParams.get("utm_medium") || "none";
 
-      // Salva no Supabase
       const { error } = await supabase.from("assessores").insert([
         {
           nome: sanitizedName,
@@ -94,12 +113,11 @@ export function LeadForm({
 
       if (error) throw error;
 
-      // Enhanced Conversion tracking com Meta Pixel
       await trackLeadSubmission({
         fullName: sanitizedName,
         email: sanitizedEmail || undefined,
         phone: sanitizedPhone,
-        source: source,
+        source,
       });
 
       toast({
