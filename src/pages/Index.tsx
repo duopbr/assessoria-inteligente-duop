@@ -1,8 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
 import { HeroOptimized } from "@/components/landing/hero-optimized";
-import { Footer } from "@/components/landing/footer";
-import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
-import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
 import { Button } from "@/components/ui/button";
 
 // Code splitting - seções abaixo da dobra carregam sob demanda
@@ -13,6 +10,11 @@ const TestimonialsSection = lazy(() => import("@/components/landing/testimonials
 const FAQCompact = lazy(() => import("@/components/landing/faq-compact").then(m => ({ default: m.FAQCompact })));
 const HowToUseSection = lazy(() => import("@/components/landing/how-to-use-section").then(m => ({ default: m.HowToUseSection })));
 const CTAFinalUrgency = lazy(() => import("@/components/landing/cta-final-urgency").then(m => ({ default: m.CTAFinalUrgency })));
+
+// Componentes fora do caminho crítico - lazy load
+const Footer = lazy(() => import("@/components/landing/footer").then(m => ({ default: m.Footer })));
+const WhatsAppFloatButton = lazy(() => import("@/components/ui/whatsapp-float-button").then(m => ({ default: m.WhatsAppFloatButton })));
+const AccessibilityImprovements = lazy(() => import("@/components/ui/accessibility-improvements").then(m => ({ default: m.AccessibilityImprovements })));
 
 const Index = () => {
   // IntersectionObserver para animações - sem reflow forçado
@@ -57,8 +59,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <AccessibilityImprovements />
-      
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-duop-purple/10 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -128,8 +128,12 @@ const Index = () => {
         </Suspense>
       </main>
 
-      <Footer />
-      <WhatsAppFloatButton />
+      {/* Componentes fora do caminho crítico */}
+      <Suspense fallback={null}>
+        <Footer />
+        <WhatsAppFloatButton />
+        <AccessibilityImprovements />
+      </Suspense>
     </div>
   );
 };
