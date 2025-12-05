@@ -63,17 +63,25 @@ const Index = () => {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-duop-purple/10 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img
-              src="/images/duop-logo-sm.webp"
-              srcSet="/images/duop-logo-2x.webp 2x"
-              alt="Duop Logo"
-              width="170"
-              height="56"
-              className="h-8 w-auto"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
+            <picture>
+              {/* Mobile + navegadores modernos → WebP */}
+              <source
+                srcSet="/images/logo.webp"
+                type="image/webp"
+                media="(max-width: 768px)"
+              />
+              {/* Fallback (desktop / browsers sem WebP) → PNG */}
+              <img
+                src="/images/logo.png"
+                alt="Duop Logo"
+                width={170}
+                height={56}
+                className="h-8 w-auto"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
           <Button 
             onClick={scrollToForm}
