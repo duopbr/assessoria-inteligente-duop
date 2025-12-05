@@ -1,34 +1,44 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { HeroOptimized } from "@/components/landing/hero-optimized";
-import { VideoSection } from "@/components/landing/video-section";
-import { SolutionSection } from "@/components/landing/solution-section";
-import { FeaturesBenefit } from "@/components/landing/features-benefit";
-import { TestimonialsSection } from "@/components/landing/testimonials-section";
-import { FAQCompact } from "@/components/landing/faq-compact";
-import { HowToUseSection } from "@/components/landing/how-to-use-section";
-import { CTAFinalUrgency } from "@/components/landing/cta-final-urgency";
 import { Footer } from "@/components/landing/footer";
 import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
 import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
 import { Button } from "@/components/ui/button";
 
+// Code splitting - seções abaixo da dobra carregam sob demanda
+const VideoSection = lazy(() => import("@/components/landing/video-section").then(m => ({ default: m.VideoSection })));
+const SolutionSection = lazy(() => import("@/components/landing/solution-section").then(m => ({ default: m.SolutionSection })));
+const FeaturesBenefit = lazy(() => import("@/components/landing/features-benefit").then(m => ({ default: m.FeaturesBenefit })));
+const TestimonialsSection = lazy(() => import("@/components/landing/testimonials-section").then(m => ({ default: m.TestimonialsSection })));
+const FAQCompact = lazy(() => import("@/components/landing/faq-compact").then(m => ({ default: m.FAQCompact })));
+const HowToUseSection = lazy(() => import("@/components/landing/how-to-use-section").then(m => ({ default: m.HowToUseSection })));
+const CTAFinalUrgency = lazy(() => import("@/components/landing/cta-final-urgency").then(m => ({ default: m.CTAFinalUrgency })));
+
 const Index = () => {
+  // IntersectionObserver para animações - sem reflow forçado
   useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll('.appear-animation');
-      elements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.8;
-        if (isVisible) {
-          element.classList.add('in-view');
-        }
-      });
-    };
+    const elements = document.querySelectorAll(".appear-animation");
+    if (!elements.length) return;
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -20% 0px",
+        threshold: 0.1,
+      }
+    );
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -79,33 +89,35 @@ const Index = () => {
           <HeroOptimized />
         </div>
 
-        <div className="appear-animation">
-          <VideoSection />
-        </div>
+        <Suspense fallback={<div className="h-40" aria-hidden="true" />}>
+          <div className="appear-animation">
+            <VideoSection />
+          </div>
 
-        <div className="appear-animation">
-          <SolutionSection />
-        </div>
+          <div className="appear-animation">
+            <SolutionSection />
+          </div>
 
-        <div className="appear-animation">
-          <FeaturesBenefit />
-        </div>
+          <div className="appear-animation">
+            <FeaturesBenefit />
+          </div>
 
-        <div className="appear-animation">
-          <TestimonialsSection />
-        </div>
+          <div className="appear-animation">
+            <TestimonialsSection />
+          </div>
 
-        <div className="appear-animation">
-          <FAQCompact />
-        </div>
+          <div className="appear-animation">
+            <FAQCompact />
+          </div>
 
-        <div className="appear-animation">
-          <HowToUseSection />
-        </div>
+          <div className="appear-animation">
+            <HowToUseSection />
+          </div>
 
-        <div className="appear-animation">
-          <CTAFinalUrgency />
-        </div>
+          <div className="appear-animation">
+            <CTAFinalUrgency />
+          </div>
+        </Suspense>
       </main>
 
       <Footer />
