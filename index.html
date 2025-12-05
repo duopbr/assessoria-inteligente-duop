@@ -53,21 +53,38 @@
     <link rel="shortcut icon" href="/lovable-uploads/c6949d6b-bf95-4219-8830-3e3e3232a1c9.png" type="image/png">
     <link rel="apple-touch-icon" href="/lovable-uploads/c6949d6b-bf95-4219-8830-3e3e3232a1c9.png">
 
-    <!-- Hotjar & LinkedIn - Smart Load with requestIdleCallback -->
+    <!-- Hotjar Tracking Code (carregado 5s após window.load) -->
     <script>
       (function() {
-        function loadAnalytics() {
-          // Hotjar
+        function loadHotjar() {
           (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:6373124,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=true;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            h.hj = h.hj || function(){ (h.hj.q = h.hj.q || []).push(arguments); };
+            h._hjSettings = { hjid: 6373124, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
-          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-          
-          // LinkedIn
+          })(window, document, 'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        }
+
+        function scheduleHotjar() {
+          setTimeout(loadHotjar, 5000);
+        }
+
+        if (document.readyState === 'complete') {
+          scheduleHotjar();
+        } else {
+          window.addEventListener('load', scheduleHotjar);
+        }
+      })();
+    </script>
+    <!-- End Hotjar -->
+
+    <!-- LinkedIn Insight Tag - Smart Load with requestIdleCallback -->
+    <script>
+      (function() {
+        function loadLinkedIn() {
           _linkedin_partner_id = "7059002";
           window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
           window._linkedin_data_partner_ids.push(_linkedin_partner_id);
@@ -80,13 +97,13 @@
           })(window.lintrk);
         }
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadAnalytics, { timeout: 2000 });
+          requestIdleCallback(loadLinkedIn, { timeout: 2000 });
         } else {
-          setTimeout(loadAnalytics, 2000);
+          setTimeout(loadLinkedIn, 2000);
         }
       })();
     </script>
-    <!-- End Hotjar & LinkedIn -->
+    <!-- End LinkedIn -->
     
     <!-- Schema.org JSON-LD para SEO -->
     <script type="application/ld+json">
