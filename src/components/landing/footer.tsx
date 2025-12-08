@@ -8,10 +8,10 @@ export function Footer() {
         <div className="flex flex-col items-center">
           <div className="flex items-center mb-4">
             <img
-              src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
+              src="/logo.webp"
               alt="Duop Logo"
-              className="h-12 mr-3"
-              width="204"
+              className="h-12 w-auto"
+              width="168"
               height="48"
               loading="lazy"
             />
