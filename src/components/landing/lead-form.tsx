@@ -2,9 +2,6 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { validatePhoneNumber } from "@/lib/security";
-import { trackLeadSubmission } from "@/lib/tracking";
 
 interface LeadFormProps {
   variant?: "light" | "dark";
@@ -48,6 +45,7 @@ export function LeadForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Cheap validations first - fail fast before any async work
     if (!name.trim() || !phone.trim()) {
       toast({
         title: "Campos obrigatórios",
@@ -57,7 +55,8 @@ export function LeadForm({
       return;
     }
 
-    if (!validatePhoneNumber(phone)) {
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10 || phoneDigits.length > 11) {
       toast({
         title: "Telefone inválido",
         description: "Por favor, inclua o DDD e um número válido (ex: 11987654321).",
@@ -66,13 +65,31 @@ export function LeadForm({
       return;
     }
 
-    const sanitizedName = name.trim();
-    const sanitizedEmail = email.trim() || null;
-    const sanitizedPhone = phone.replace(/\D/g, '');
-
+    // Disable button immediately after validations pass
     setIsSubmitting(true);
 
     try {
+      // Lazy load heavy dependencies only after validations pass
+      const [{ supabase }, { validatePhoneNumber }, { trackLeadSubmission }] = await Promise.all([
+        import("@/integrations/supabase/client"),
+        import("@/lib/security"),
+        import("@/lib/tracking")
+      ]);
+
+      // Full validation with imported function
+      if (!validatePhoneNumber(phone)) {
+        toast({
+          title: "Telefone inválido",
+          description: "Por favor, inclua o DDD e um número válido (ex: 11987654321).",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const sanitizedName = name.trim();
+      const sanitizedEmail = email.trim() || null;
+      const sanitizedPhone = phoneDigits;
+
       const urlParams = new URLSearchParams(window.location.search);
       const utmSource = urlParams.get("utm_source") || "direct";
       const utmMedium = urlParams.get("utm_medium") || "none";
