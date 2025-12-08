@@ -1,8 +1,0 @@
-/*
-  X-Frame-Options: SAMEORIGIN
-  X-Content-Type-Options: nosniff
-  X-XSS-Protection: 1; mode=block
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://www.google.com https://server.assessorinteligente.duop.com.br https://static.hotjar.com https://script.hotjar.com https://snap.licdn.com https://connect.facebook.net https://www.facebook.com https://px.ads.linkedin.com https://cdn.gpteng.co; frame-src 'self' https://www.youtube.com https://server.assessorinteligente.duop.com.br; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://server.assessorinteligente.duop.com.br https://*.hotjar.com wss://*.hotjar.com https://*.facebook.net https://www.facebook.com https://px.ads.linkedin.com;

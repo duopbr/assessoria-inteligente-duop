@@ -1,7 +1,6 @@
 import { Section, SectionTitle } from "../ui/section";
 import { Button } from "../ui/button";
 import { Play } from "lucide-react";
-import { YouTubeFacade } from "../ui/youtube-facade";
 
 export function VideoSection() {
   const scrollToForm = () => {
@@ -15,10 +14,12 @@ export function VideoSection() {
       
       <div className="max-w-4xl mx-auto mt-8">
         <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-duop-purple/20">
-          <YouTubeFacade 
-            videoId="JrfYvv90IVE"
+          <iframe
+            src="https://www.youtube.com/embed/JrfYvv90IVE?start=80"
             title="Duop - Demonstração"
-            startTime={80}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
           />
         </div>
 

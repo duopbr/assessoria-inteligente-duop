@@ -5,9 +5,9 @@ import { CheckCircle2 } from "lucide-react";
 export function HeroOptimized() {
   return (
     <Section className="bg-white pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 lg:pb-24">
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-        {/* Coluna Esquerda - Mensagem Principal + Bullet Points */}
-        <div className="space-y-8 order-1">
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Coluna Esquerda - Mensagem Principal */}
+        <div className="order-2 lg:order-1 space-y-8">
           <div className="inline-block bg-duop-purple/10 border border-duop-purple/20 rounded-full px-4 py-2 mb-4">
             <span className="text-duop-purple font-semibold text-sm">
               ✅ +3.000 assessores já testaram | XP • BTG • Warren
@@ -25,8 +25,7 @@ export function HeroOptimized() {
             Automatize tarefas operacionais e ganhe tempo para relacionamento e estratégia.
           </p>
 
-          {/* Bullet Points - Aparecem depois do formulário no mobile */}
-          <div className="space-y-5 pt-6 order-3 lg:order-1">
+          <div className="space-y-5 pt-6">
             <div className="flex items-center gap-3">
               <CheckCircle2 className="text-green-500 flex-shrink-0" size={28} />
               <p className="text-lg font-semibold text-duop-blue">
@@ -48,8 +47,8 @@ export function HeroOptimized() {
           </div>
         </div>
 
-        {/* Coluna Direita - Formulário - Aparece antes dos bullet points no mobile */}
-        <div className="order-2">
+        {/* Coluna Direita - Formulário */}
+        <div className="order-1 lg:order-2">
           <div className="bg-gradient-to-br from-duop-purple/5 to-duop-blue/5 rounded-2xl p-6 sm:p-8 lg:p-10 border-2 border-duop-purple/20 shadow-xl max-w-md sm:max-w-lg lg:max-w-xl mx-auto">
             <div className="text-center mb-4 sm:mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-duop-blue mb-2">
