@@ -1,19 +1,17 @@
-import { useEffect, useRef, lazy, Suspense } from "react";
+import { useEffect, useRef } from "react";
 import { HeroOptimized } from "@/components/landing/hero-optimized";
+import { VideoSection } from "@/components/landing/video-section";
+import { SolutionSection } from "@/components/landing/solution-section";
+import { FeaturesBenefit } from "@/components/landing/features-benefit";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
+import { FAQCompact } from "@/components/landing/faq-compact";
+import { HowToUseSection } from "@/components/landing/how-to-use-section";
+import { CTAFinalUrgency } from "@/components/landing/cta-final-urgency";
+import { Footer } from "@/components/landing/footer";
+import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
+import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
 import { Button } from "@/components/ui/button";
 import { scrollToForm } from "@/lib/utils/scroll";
-
-// Lazy load below-the-fold sections with simplified imports (using default exports)
-const VideoSection = lazy(() => import("@/components/landing/video-section"));
-const SolutionSection = lazy(() => import("@/components/landing/solution-section"));
-const FeaturesBenefit = lazy(() => import("@/components/landing/features-benefit"));
-const TestimonialsSection = lazy(() => import("@/components/landing/testimonials-section"));
-const FAQCompact = lazy(() => import("@/components/landing/faq-compact"));
-const HowToUseSection = lazy(() => import("@/components/landing/how-to-use-section"));
-const CTAFinalUrgency = lazy(() => import("@/components/landing/cta-final-urgency"));
-const Footer = lazy(() => import("@/components/landing/footer"));
-const WhatsAppFloatButton = lazy(() => import("@/components/ui/whatsapp-float-button"));
-const AccessibilityImprovements = lazy(() => import("@/components/ui/accessibility-improvements"));
 
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -57,15 +55,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Suspense fallback={null}>
-        <AccessibilityImprovements />
-      </Suspense>
+      <AccessibilityImprovements />
       
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-duop-purple/10 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-          <img
+            <img
               src="/logo.webp"
               alt="Duop Logo"
               className="h-8 w-auto"
@@ -89,55 +85,37 @@ const Index = () => {
           <HeroOptimized />
         </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <VideoSection />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <VideoSection />
+        </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <SolutionSection />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <SolutionSection />
+        </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <FeaturesBenefit />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <FeaturesBenefit />
+        </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <TestimonialsSection />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <TestimonialsSection />
+        </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <FAQCompact />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <FAQCompact />
+        </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <HowToUseSection />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <HowToUseSection />
+        </div>
 
-        <Suspense fallback={<div className="h-96" />}>
-          <div className="appear-animation">
-            <CTAFinalUrgency />
-          </div>
-        </Suspense>
+        <div className="appear-animation">
+          <CTAFinalUrgency />
+        </div>
       </main>
 
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-      <Suspense fallback={null}>
-        <WhatsAppFloatButton />
-      </Suspense>
+      <Footer />
+      <WhatsAppFloatButton />
     </div>
   );
 };
