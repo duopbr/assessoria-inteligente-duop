@@ -7,22 +7,23 @@ export interface LeadData {
   source: string;
 }
 
+interface UserData {
+  em?: string;
+  ph: string;
+  fn: string;
+  ln: string;
+  country: string;
+}
+
 interface EnhancedConversionData {
   event: string;
   event_id: string;
-  user_data: {
-    em?: string;
-    ph?: string;
-    fn?: string;
-    ln?: string;
-    country?: string;
-  };
+  user_data: UserData;
   external_id: string;
   fbc?: string;
   fbp?: string;
   form_location: string;
 }
-
 
 /**
  * Separa nome completo em primeiro nome e sobrenome
@@ -60,7 +61,7 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
     const phoneE164 = formatPhoneE164(data.phone);
     
     // Objeto de Enhanced Conversion com nomes de campos corretos para CAPI
-    const userData: any = {
+    const userData: UserData = {
       ph: phoneE164,
       fn: firstNameNormalized,
       ln: lastNameNormalized,
@@ -103,6 +104,6 @@ export const trackLeadSubmission = async (data: LeadData): Promise<void> => {
 // Tipagem para window.dataLayer
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }

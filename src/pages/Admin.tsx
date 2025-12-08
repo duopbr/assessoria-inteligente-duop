@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/use-auth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,17 +10,30 @@ import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { LogOut, Users, Calculator, CreditCard, Phone, AlertTriangle, Shield } from 'lucide-react';
 import { toast } from 'sonner';
+import type { Tables } from '@/integrations/supabase/types';
+
+// Tipos baseados no schema do Supabase
+type CalculadoraRow = Tables<'Calculadoras'>;
+type AssessorRow = Tables<'assessores'>;
+type CheckoutRow = Tables<'checkout_submissions'>;
+type PixRow = Tables<'pix_phone_submissions'>;
 
 export default function Admin() {
   const { user, loading, signOut } = useAuth();
-  const [calculadorasData, setCalculadorasData] = useState([]);
-  const [assessoresData, setAssessoresData] = useState([]);
-  const [checkoutData, setCheckoutData] = useState([]);
-  const [pixData, setPixData] = useState([]);
+  const [calculadorasData, setCalculadorasData] = useState<CalculadoraRow[]>([]);
+  const [assessoresData, setAssessoresData] = useState<AssessorRow[]>([]);
+  const [checkoutData, setCheckoutData] = useState<CheckoutRow[]>([]);
+  const [pixData, setPixData] = useState<PixRow[]>([]);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [error, setError] = useState('');
 
-  // Redirect if not authenticated
+  useEffect(() => {
+    if (user) {
+      loadAllData();
+    }
+  }, [user]);
+
+  // Renderização condicional APÓS todos os hooks
   if (!user && !loading) {
     return <Navigate to="/auth" replace />;
   }
@@ -33,17 +46,11 @@ export default function Admin() {
     );
   }
 
-  useEffect(() => {
-    loadAllData();
-  }, []);
-
   const loadAllData = async () => {
     setIsLoadingData(true);
     setError('');
 
     try {
-      // Note: These queries will fail until admin permissions are properly set up
-      // This is expected behavior - the data is now secured
       const [calculadoras, assessores, checkout, pix] = await Promise.allSettled([
         supabase.from('Calculadoras').select('*').order('created_at', { ascending: false }),
         supabase.from('assessores').select('*').order('created_at', { ascending: false }),
@@ -51,7 +58,6 @@ export default function Admin() {
         supabase.from('pix_phone_submissions').select('*').order('submitted_at', { ascending: false })
       ]);
 
-      // Handle results - show what data we can access
       if (calculadoras.status === 'fulfilled' && !calculadoras.value.error) {
         setCalculadorasData(calculadoras.value.data || []);
       }
@@ -64,7 +70,7 @@ export default function Admin() {
       if (pix.status === 'fulfilled' && !pix.value.error) {
         setPixData(pix.value.data || []);
       }
-    } catch (err) {
+    } catch {
       setError('Erro ao carregar dados. Verifique as permissões de administrador.');
     }
 
@@ -76,7 +82,8 @@ export default function Admin() {
     toast.success('Logout realizado com sucesso');
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleString('pt-BR');
   };
 
@@ -198,7 +205,7 @@ export default function Admin() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {calculadorasData.slice(0, 10).map((item: any) => (
+                        {calculadorasData.slice(0, 10).map((item) => (
                           <TableRow key={item.id}>
                             <TableCell>{item.Name || 'N/A'}</TableCell>
                             <TableCell>{item.email || 'N/A'}</TableCell>
@@ -242,7 +249,7 @@ export default function Admin() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {assessoresData.slice(0, 10).map((item: any) => (
+                        {assessoresData.slice(0, 10).map((item) => (
                           <TableRow key={item.id}>
                             <TableCell>{item.nome}</TableCell>
                             <TableCell>{item.celular}</TableCell>
@@ -290,7 +297,7 @@ export default function Admin() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {checkoutData.slice(0, 10).map((item: any) => (
+                        {checkoutData.slice(0, 10).map((item) => (
                           <TableRow key={item.id}>
                             <TableCell>{item.name}</TableCell>
                             <TableCell>{item.email}</TableCell>
@@ -335,7 +342,7 @@ export default function Admin() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {pixData.slice(0, 10).map((item: any) => (
+                        {pixData.slice(0, 10).map((item) => (
                           <TableRow key={item.id}>
                             <TableCell>{item.phone_number || 'N/A'}</TableCell>
                             <TableCell>{item.Email || 'N/A'}</TableCell>

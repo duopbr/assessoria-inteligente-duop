@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "./button";
-import { Input } from "./input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { validatePhoneNumber } from "@/lib/security";
@@ -26,13 +26,9 @@ export function LeadForm({
   const { toast } = useToast();
 
   const formatPhone = (value: string) => {
-    // Remove tudo que não é número
     const numbers = value.replace(/\D/g, '');
-    
-    // Limita a 11 dígitos
     const limited = numbers.slice(0, 11);
     
-    // Aplica a máscara
     if (limited.length <= 2) {
       return limited;
     } else if (limited.length <= 7) {
@@ -81,7 +77,6 @@ export function LeadForm({
       const utmSource = urlParams.get("utm_source") || "direct";
       const utmMedium = urlParams.get("utm_medium") || "none";
 
-      // Salva no Supabase
       const { error } = await supabase.from("assessores").insert([
         {
           nome: sanitizedName,
@@ -94,7 +89,6 @@ export function LeadForm({
 
       if (error) throw error;
 
-      // Enhanced Conversion tracking com Meta Pixel
       await trackLeadSubmission({
         fullName: sanitizedName,
         email: sanitizedEmail || undefined,

@@ -11,6 +11,7 @@ import { Footer } from "@/components/landing/footer";
 import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
 import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
 import { Button } from "@/components/ui/button";
+import { scrollToForm } from "@/lib/utils/scroll";
 
 const Index = () => {
   useEffect(() => {
@@ -39,11 +40,6 @@ const Index = () => {
       metaDescription.setAttribute('content', 'Automatize relatórios, análises e atendimento. A Duop libera 5 dias de trabalho por mês para assessores de investimento focarem no que importa.');
     }
   }, []);
-
-  const scrollToForm = () => {
-    const form = document.querySelector('form');
-    form?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
