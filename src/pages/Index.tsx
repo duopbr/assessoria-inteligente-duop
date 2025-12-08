@@ -3,17 +3,17 @@ import { HeroOptimized } from "@/components/landing/hero-optimized";
 import { Button } from "@/components/ui/button";
 import { scrollToForm } from "@/lib/utils/scroll";
 
-// Lazy load below-the-fold sections
-const VideoSection = lazy(() => import("@/components/landing/video-section").then(m => ({ default: m.VideoSection })));
-const SolutionSection = lazy(() => import("@/components/landing/solution-section").then(m => ({ default: m.SolutionSection })));
-const FeaturesBenefit = lazy(() => import("@/components/landing/features-benefit").then(m => ({ default: m.FeaturesBenefit })));
-const TestimonialsSection = lazy(() => import("@/components/landing/testimonials-section").then(m => ({ default: m.TestimonialsSection })));
-const FAQCompact = lazy(() => import("@/components/landing/faq-compact").then(m => ({ default: m.FAQCompact })));
-const HowToUseSection = lazy(() => import("@/components/landing/how-to-use-section").then(m => ({ default: m.HowToUseSection })));
-const CTAFinalUrgency = lazy(() => import("@/components/landing/cta-final-urgency").then(m => ({ default: m.CTAFinalUrgency })));
-const Footer = lazy(() => import("@/components/landing/footer").then(m => ({ default: m.Footer })));
-const WhatsAppFloatButton = lazy(() => import("@/components/ui/whatsapp-float-button").then(m => ({ default: m.WhatsAppFloatButton })));
-const AccessibilityImprovements = lazy(() => import("@/components/ui/accessibility-improvements").then(m => ({ default: m.AccessibilityImprovements })));
+// Lazy load below-the-fold sections with simplified imports (using default exports)
+const VideoSection = lazy(() => import("@/components/landing/video-section"));
+const SolutionSection = lazy(() => import("@/components/landing/solution-section"));
+const FeaturesBenefit = lazy(() => import("@/components/landing/features-benefit"));
+const TestimonialsSection = lazy(() => import("@/components/landing/testimonials-section"));
+const FAQCompact = lazy(() => import("@/components/landing/faq-compact"));
+const HowToUseSection = lazy(() => import("@/components/landing/how-to-use-section"));
+const CTAFinalUrgency = lazy(() => import("@/components/landing/cta-final-urgency"));
+const Footer = lazy(() => import("@/components/landing/footer"));
+const WhatsAppFloatButton = lazy(() => import("@/components/ui/whatsapp-float-button"));
+const AccessibilityImprovements = lazy(() => import("@/components/ui/accessibility-improvements"));
 
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);

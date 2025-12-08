@@ -48,3 +48,5 @@ export function SolutionSection() {
     </Section>
   );
 }
+
+export default SolutionSection;

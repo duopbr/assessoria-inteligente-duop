@@ -79,3 +79,5 @@ export function TestimonialsSection() {
     </Section>
   );
 }
+
+export default TestimonialsSection;

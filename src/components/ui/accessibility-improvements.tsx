@@ -34,3 +34,5 @@ export function AccessibilityImprovements() {
 
   return null; // This is a utility component that doesn't render anything
 }
+
+export default AccessibilityImprovements;

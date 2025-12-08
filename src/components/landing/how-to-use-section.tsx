@@ -127,3 +127,5 @@ export function HowToUseSection() {
     </Section>
   );
 }
+
+export default HowToUseSection;

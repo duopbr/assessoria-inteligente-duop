@@ -20,3 +20,5 @@ export const WhatsAppFloatButton = () => {
     </Button>
   );
 };
+
+export default WhatsAppFloatButton;
