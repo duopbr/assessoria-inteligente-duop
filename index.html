@@ -10,23 +10,23 @@
     <meta name="keywords" content="assessor financeiro, IA, inteligência artificial, WhatsApp, relatórios automáticos, análises financeiras, investimentos, carteira de clientes, mercado financeiro" />
     <link rel="canonical" href="https://assessorinteligente.duop.com.br/" />
     
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://server.assessorinteligente.duop.com.br" crossorigin />
+    <link rel="dns-prefetch" href="https://server.assessorinteligente.duop.com.br" />
     
     <!-- Preload LCP image -->
-    <link rel="preload" href="/images/logo.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/images/duop-logo-sm.webp" as="image" type="image/webp" fetchpriority="high" />
 
-    <!-- Google Tag Manager - Load after page fully ready + 2s -->
+    <!-- Google Tag Manager - Smart Load with requestIdleCallback -->
     <script>
       (function() {
         function loadGTM() {
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://server.assessorinteligente.duop.com.br/97d55zuelwyqc.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','2u2=aWQ9R1RNLVBWUUxORFpR&page=3');
         }
-        function scheduleGTM() {
-          setTimeout(loadGTM, 2000);
-        }
-        if (document.readyState === 'complete') {
-          scheduleGTM();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGTM, { timeout: 1500 });
         } else {
-          window.addEventListener('load', scheduleGTM);
+          setTimeout(loadGTM, 1500);
         }
       })();
     </script>
@@ -46,8 +46,6 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.gpteng.co" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.gpteng.co">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
@@ -83,7 +81,7 @@
     </script>
     <!-- End Hotjar -->
 
-    <!-- LinkedIn Insight Tag - Load after page fully ready + 3s -->
+    <!-- LinkedIn Insight Tag - Smart Load with requestIdleCallback -->
     <script>
       (function() {
         function loadLinkedIn() {
@@ -98,13 +96,10 @@
             s.parentNode.insertBefore(b, s);
           })(window.lintrk);
         }
-        function scheduleLinkedIn() {
-          setTimeout(loadLinkedIn, 3000);
-        }
-        if (document.readyState === 'complete') {
-          scheduleLinkedIn();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadLinkedIn, { timeout: 2000 });
         } else {
-          window.addEventListener('load', scheduleLinkedIn);
+          setTimeout(loadLinkedIn, 2000);
         }
       })();
     </script>
@@ -135,39 +130,6 @@
       }
     }
     </script>
-
-    <!-- Splash Screen Styles -->
-    <style>
-      #splash-screen {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #ffffff;
-        z-index: 9999;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        transition: opacity 0.25s ease-out;
-      }
-
-      #splash-screen.hide {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #splash-screen .splash-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      #splash-screen p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #4b5563;
-      }
-    </style>
   </head>
 
   <body>
@@ -180,21 +142,6 @@
       <img height="1" width="1" style="display:none;" alt="LinkedIn tracking pixel" src="https://px.ads.linkedin.com/collect/?pid=7059002&fmt=gif" />
     </noscript>
     <!-- End LinkedIn Insight Tag - NoScript part -->
-
-    <!-- Splash Screen -->
-    <div id="splash-screen">
-      <div class="splash-inner">
-        <img
-          src="/images/logo.webp"
-          alt="Duop"
-          width="170"
-          height="56"
-          loading="eager"
-          decoding="async"
-        />
-        <p>Carregando sua demo…</p>
-      </div>
-    </div>
     
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
