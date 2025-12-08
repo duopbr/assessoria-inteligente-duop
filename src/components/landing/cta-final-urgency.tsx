@@ -1,5 +1,5 @@
 import { Section } from "../ui/section";
-import { LeadForm } from "../ui/lead-form";
+import { LeadForm } from "./lead-form";
 
 export function CTAFinalUrgency() {
   return (

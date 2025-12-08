@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { useMobileDetect } from "@/hooks/use-mobile-detect"
+import { useMobileDetect } from "@/hooks/use-mobile"
 
 export interface MobileOptimizedInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}

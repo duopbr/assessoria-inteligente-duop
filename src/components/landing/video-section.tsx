@@ -1,13 +1,9 @@
 import { Section, SectionTitle } from "../ui/section";
 import { Button } from "../ui/button";
 import { Play } from "lucide-react";
+import { scrollToForm } from "@/lib/utils/scroll";
 
 export function VideoSection() {
-  const scrollToForm = () => {
-    const form = document.querySelector('form');
-    form?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
-
   return (
     <Section className="bg-gradient-to-b from-white to-duop-purple/5">
       <SectionTitle>Veja em 30 Segundos Como Funciona</SectionTitle>

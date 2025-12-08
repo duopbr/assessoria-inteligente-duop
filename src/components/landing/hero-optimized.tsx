@@ -1,5 +1,5 @@
 import { Section } from "../ui/section";
-import { LeadForm } from "../ui/lead-form";
+import { LeadForm } from "./lead-form";
 import { CheckCircle2 } from "lucide-react";
 
 export function HeroOptimized() {
