@@ -96,3 +96,5 @@ export function FeaturesBenefit() {
     </Section>
   );
 }
+
+export default FeaturesBenefit;

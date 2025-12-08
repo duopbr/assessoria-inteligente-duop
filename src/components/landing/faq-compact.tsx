@@ -56,3 +56,5 @@ export function FAQCompact() {
     </Section>
   );
 }
+
+export default FAQCompact;
