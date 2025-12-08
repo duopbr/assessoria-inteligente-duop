@@ -19,4 +19,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-ui': ['lucide-react', 'class-variance-authority', 'clsx', 'tailwind-merge'],
+          'vendor-supabase': ['@supabase/supabase-js'],
+          'vendor-form': ['react-hook-form', 'zod', '@hookform/resolvers'],
+          'vendor-query': ['@tanstack/react-query'],
+        },
+      },
+    },
+  },
 }));

@@ -11,6 +11,8 @@ export function Footer() {
               src="/lovable-uploads/b10b2b1a-83ce-47f4-8f30-3b76dcd797c3.png"
               alt="Duop Logo"
               className="h-12 mr-3"
+              width="204"
+              height="48"
               loading="lazy"
             />
           </div>
