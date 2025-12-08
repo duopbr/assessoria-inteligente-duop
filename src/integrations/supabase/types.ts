@@ -125,51 +125,6 @@ export type Database = {
         }
         Relationships: []
       }
-      B2C_Leads_LP: {
-        Row: {
-          created_at: string | null
-          email: string
-          has_investment: boolean
-          id: string
-          name: string
-          phone: string
-          source: string | null
-          surname: string
-          updated_at: string | null
-          utm_campaign: string | null
-          utm_medium: string | null
-          utm_source: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          email: string
-          has_investment: boolean
-          id?: string
-          name: string
-          phone: string
-          source?: string | null
-          surname: string
-          updated_at?: string | null
-          utm_campaign?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          email?: string
-          has_investment?: boolean
-          id?: string
-          name?: string
-          phone?: string
-          source?: string | null
-          surname?: string
-          updated_at?: string | null
-          utm_campaign?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-        }
-        Relationships: []
-      }
       Calculadoras: {
         Row: {
           calculadora: string | null
@@ -254,21 +209,6 @@ export type Database = {
           phone?: string | null
           plan_price?: string
           plan_title?: string
-        }
-        Relationships: []
-      }
-      LP_Vendas: {
-        Row: {
-          created_at: string
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          id?: number
         }
         Relationships: []
       }
