@@ -11,24 +11,19 @@
     <link rel="canonical" href="https://assessorinteligente.duop.com.br/" />
     
     <!-- Preconnect to critical origins -->
-    <link rel="preconnect" href="https://server.assessorinteligente.duop.com.br" crossorigin />
+    <link rel="preconnect" href="https://server.assessorinteligente.duop.com.br" />
     <link rel="dns-prefetch" href="https://server.assessorinteligente.duop.com.br" />
     
     <!-- Preload LCP image -->
-    <link rel="preload" href="/images/duop-logo-sm.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/images/duop-logo.webp" as="image" type="image/webp" fetchpriority="high" />
 
-    <!-- Google Tag Manager - Smart Load with requestIdleCallback -->
+    <!-- Google Tag Manager - Delayed Load -->
     <script>
-      (function() {
-        function loadGTM() {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://server.assessorinteligente.duop.com.br/97d55zuelwyqc.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','2u2=aWQ9R1RNLVBWUUxORFpR&page=3');
-        }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadGTM, { timeout: 1500 });
-        } else {
-          setTimeout(loadGTM, 1500);
-        }
-      })();
+        }, 3000);
+      });
     </script>
     <!-- End Google Tag Manager -->
 
@@ -53,38 +48,21 @@
     <link rel="shortcut icon" href="/lovable-uploads/c6949d6b-bf95-4219-8830-3e3e3232a1c9.png" type="image/png">
     <link rel="apple-touch-icon" href="/lovable-uploads/c6949d6b-bf95-4219-8830-3e3e3232a1c9.png">
 
-    <!-- Hotjar Tracking Code (carregado 5s após window.load) -->
+    <!-- Hotjar & LinkedIn - Delayed Load (3s after page load to reduce TBT) -->
     <script>
-      (function() {
-        function loadHotjar() {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Hotjar
           (function(h,o,t,j,a,r){
-            h.hj = h.hj || function(){ (h.hj.q = h.hj.q || []).push(arguments); };
-            h._hjSettings = { hjid: 6373124, hjsv: 6 };
-            a = o.getElementsByTagName('head')[0];
-            r = o.createElement('script');
-            r.async = 1;
-            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:6373124,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=true;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
-          })(window, document, 'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        }
-
-        function scheduleHotjar() {
-          setTimeout(loadHotjar, 5000);
-        }
-
-        if (document.readyState === 'complete') {
-          scheduleHotjar();
-        } else {
-          window.addEventListener('load', scheduleHotjar);
-        }
-      })();
-    </script>
-    <!-- End Hotjar -->
-
-    <!-- LinkedIn Insight Tag - Smart Load with requestIdleCallback -->
-    <script>
-      (function() {
-        function loadLinkedIn() {
+          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+          
+          // LinkedIn
           _linkedin_partner_id = "7059002";
           window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
           window._linkedin_data_partner_ids.push(_linkedin_partner_id);
@@ -95,15 +73,10 @@
             b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
             s.parentNode.insertBefore(b, s);
           })(window.lintrk);
-        }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadLinkedIn, { timeout: 2000 });
-        } else {
-          setTimeout(loadLinkedIn, 2000);
-        }
-      })();
+        }, 3000);
+      });
     </script>
-    <!-- End LinkedIn -->
+    <!-- End Hotjar & LinkedIn -->
     
     <!-- Schema.org JSON-LD para SEO -->
     <script type="application/ld+json">
