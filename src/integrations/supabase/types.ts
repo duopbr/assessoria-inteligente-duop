@@ -18,11 +18,11 @@ export type Database = {
         Row: {
           Assessoria: string | null
           celular: string
-          Contatado: string | null
           created_at: string | null
           email: string | null
           id: number
           nome: string
+          "Quantos Contatos": string | null
           reunião_marcada: string | null
           utm_medium: string | null
           utm_source: string | null
@@ -31,11 +31,11 @@ export type Database = {
         Insert: {
           Assessoria?: string | null
           celular: string
-          Contatado?: string | null
           created_at?: string | null
           email?: string | null
           id?: number
           nome: string
+          "Quantos Contatos"?: string | null
           reunião_marcada?: string | null
           utm_medium?: string | null
           utm_source?: string | null
@@ -44,11 +44,11 @@ export type Database = {
         Update: {
           Assessoria?: string | null
           celular?: string
-          Contatado?: string | null
           created_at?: string | null
           email?: string | null
           id?: number
           nome?: string
+          "Quantos Contatos"?: string | null
           reunião_marcada?: string | null
           utm_medium?: string | null
           utm_source?: string | null
@@ -184,6 +184,7 @@ export type Database = {
           Nota: string | null
           "Numero de Conversas": string | null
           patrimonio: string | null
+          perfil: string | null
           phone: string | null
           "Se sentiu enganado": string | null
           valor_mes: string | null
@@ -201,6 +202,7 @@ export type Database = {
           Nota?: string | null
           "Numero de Conversas"?: string | null
           patrimonio?: string | null
+          perfil?: string | null
           phone?: string | null
           "Se sentiu enganado"?: string | null
           valor_mes?: string | null
@@ -218,6 +220,7 @@ export type Database = {
           Nota?: string | null
           "Numero de Conversas"?: string | null
           patrimonio?: string | null
+          perfil?: string | null
           phone?: string | null
           "Se sentiu enganado"?: string | null
           valor_mes?: string | null
