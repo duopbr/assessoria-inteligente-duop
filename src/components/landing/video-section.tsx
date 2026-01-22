@@ -26,7 +26,7 @@ export function VideoSection() {
             >
               {/* YouTube thumbnail */}
               <img
-                src="https://img.youtube.com/vi/JrfYvv90IVE/maxresdefault.jpg"
+                src="https://img.youtube.com/vi/QSkl2vUAUow/maxresdefault.jpg"
                 alt="Thumbnail do vídeo de demonstração Duop"
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -43,7 +43,7 @@ export function VideoSection() {
           ) : (
             // Actual YouTube iframe - only loads after click
             <iframe
-              src="https://www.youtube.com/embed/JrfYvv90IVE?start=80&autoplay=1"
+              src="https://www.youtube.com/embed/QSkl2vUAUow?autoplay=1"
               title="Duop - Demonstração"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
