@@ -303,7 +303,7 @@ const ThankYouPurchase = () => {
           <div className="aspect-video w-full max-w-4xl mx-auto">
             <iframe
               className="w-full h-full rounded-lg shadow-lg"
-              src="https://www.youtube.com/embed/JrfYvv90IVE"
+              src="https://www.youtube.com/embed/QSkl2vUAUow"
               title="Como usar a Duop"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
