@@ -1,0 +1,1 @@
+SELECT setval('public.assessores_id_seq', COALESCE((SELECT MAX(id) FROM public.assessores), 0) + 1, false);
