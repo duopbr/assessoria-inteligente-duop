@@ -19,6 +19,8 @@ export function LeadForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [tipoProfissional, setTipoProfissional] = useState("");
+  const [nomeEmpresa, setNomeEmpresa] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -101,6 +103,8 @@ export function LeadForm({
           celular: sanitizedPhone,
           utm_source: utmSource,
           utm_medium: utmMedium,
+          tipo_profissional: tipoProfissional || null,
+          Assessoria: nomeEmpresa.trim() || null,
         },
       ]);
 
@@ -121,6 +125,8 @@ export function LeadForm({
       setName("");
       setEmail("");
       setPhone("");
+      setTipoProfissional("");
+      setNomeEmpresa("");
 
       setTimeout(() => {
         window.location.href = "/obrigado";
@@ -175,6 +181,49 @@ export function LeadForm({
           maxLength={15}
           required
         />
+
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => setTipoProfissional("assessor")}
+            className={`flex-1 h-11 sm:h-12 rounded-md border text-sm font-medium transition-colors ${
+              tipoProfissional === "assessor"
+                ? isDark
+                  ? "bg-white text-duop-purple border-white"
+                  : "bg-duop-purple text-white border-duop-purple"
+                : isDark
+                  ? "bg-white/10 border-white/20 text-white/80 hover:bg-white/20"
+                  : "bg-background border-input text-foreground hover:bg-muted"
+            }`}
+          >
+            Assessor
+          </button>
+          <button
+            type="button"
+            onClick={() => setTipoProfissional("consultor")}
+            className={`flex-1 h-11 sm:h-12 rounded-md border text-sm font-medium transition-colors ${
+              tipoProfissional === "consultor"
+                ? isDark
+                  ? "bg-white text-duop-purple border-white"
+                  : "bg-duop-purple text-white border-duop-purple"
+                : isDark
+                  ? "bg-white/10 border-white/20 text-white/80 hover:bg-white/20"
+                  : "bg-background border-input text-foreground hover:bg-muted"
+            }`}
+          >
+            Consultor
+          </button>
+        </div>
+
+        {tipoProfissional && (
+          <Input
+            type="text"
+            placeholder={`Nome da ${tipoProfissional === "assessor" ? "assessoria" : "consultoria"}`}
+            value={nomeEmpresa}
+            onChange={(e) => setNomeEmpresa(e.target.value)}
+            className={`h-11 sm:h-12 ${isDark ? "bg-white/10 border-white/20 text-white placeholder:text-white/60" : ""}`}
+          />
+        )}
       </div>
 
       <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? "text-white/70" : "text-duop-gray-dark"}`}>

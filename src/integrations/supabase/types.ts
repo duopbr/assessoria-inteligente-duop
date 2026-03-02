@@ -24,6 +24,7 @@ export type Database = {
           nome: string
           "Quantos Contatos": string | null
           reunião_marcada: string | null
+          tipo_profissional: string | null
           utm_medium: string | null
           utm_source: string | null
           Venda: string | null
@@ -37,6 +38,7 @@ export type Database = {
           nome: string
           "Quantos Contatos"?: string | null
           reunião_marcada?: string | null
+          tipo_profissional?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           Venda?: string | null
@@ -50,6 +52,7 @@ export type Database = {
           nome?: string
           "Quantos Contatos"?: string | null
           reunião_marcada?: string | null
+          tipo_profissional?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           Venda?: string | null

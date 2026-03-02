@@ -1,0 +1,1 @@
+ALTER TABLE public.assessores ADD COLUMN tipo_profissional text;
