@@ -16,15 +16,13 @@ export function VideoSection() {
       <SectionTitle>Veja em 30 Segundos Como Funciona</SectionTitle>
       
       <div className="max-w-4xl mx-auto mt-8">
-        <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-duop-purple/20">
+        <div className="relative aspect-video rounded-xl overflow-hidden shadow-card border border-border">
           {!isVideoLoaded ? (
-            // Thumbnail with play button - loads instantly
             <button
               onClick={handlePlayClick}
               className="w-full h-full relative group cursor-pointer bg-duop-blue/10"
               aria-label="Reproduzir vídeo de demonstração"
             >
-              {/* YouTube thumbnail */}
               <img
                 src="https://img.youtube.com/vi/QSkl2vUAUow/maxresdefault.jpg"
                 alt="Thumbnail do vídeo de demonstração Duop"
@@ -33,15 +31,13 @@ export function VideoSection() {
                 width="1280"
                 height="720"
               />
-              {/* Play button overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-duop-purple rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-duop-purple rounded-full flex items-center justify-center shadow-card group-hover:scale-110 transition-transform">
                   <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" fill="white" />
                 </div>
               </div>
             </button>
           ) : (
-            // Actual YouTube iframe - only loads after click
             <iframe
               src="https://www.youtube.com/embed/QSkl2vUAUow?autoplay=1"
               title="Duop - Demonstração"
@@ -55,13 +51,13 @@ export function VideoSection() {
         <div className="text-center mt-8">
           <Button 
             onClick={scrollToForm}
-            className="bg-duop-purple text-white hover:bg-duop-purple/90 px-8 py-6 text-lg font-bold"
+            className="bg-duop-purple text-white hover:bg-duop-purple/90 px-8 py-6 text-lg font-bold gap-2"
           >
-            <Play className="mr-2" size={20} />
+            <Play size={20} />
             Quero isso na minha rotina
           </Button>
           <p className="text-sm text-duop-gray-dark mt-3">
-            👆 Agende sua demo personalizada e veja como funciona no seu dia a dia
+            Agende sua demo personalizada e veja como funciona no seu dia a dia
           </p>
         </div>
       </div>

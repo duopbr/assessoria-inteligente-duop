@@ -26,7 +26,7 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-duop-purple/5 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full text-center">
+      <div className="bg-white rounded-xl shadow-card p-6 sm:p-8 max-w-2xl w-full text-center border border-border">
         {/* Logo */}
         <div className="mb-8">
           <img
@@ -38,21 +38,21 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
         </div>
 
         {/* Título */}
-        <h2 className="text-2xl font-bold mb-2 text-duop-gray-dark">
+        <h2 className="text-xl font-bold mb-2 text-duop-gray-dark">
           Pagamento PIX - Plano {period}
         </h2>
-        <p className="text-xl font-semibold text-duop-purple mb-8">
+        <p className="text-lg font-semibold text-duop-purple mb-8">
           R$ {amount}
         </p>
 
         <div className="mb-8">
           {/* PIX Copia e Cola */}
           <div className="space-y-4 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-duop-gray-dark text-center">
+            <h3 className="text-base font-semibold text-duop-gray-dark text-center">
               PIX Copia e Cola
             </h3>
-            <div className="bg-gray-50 p-4 rounded-lg border">
-              <p className="text-xs text-gray-600 break-all font-mono leading-relaxed">
+            <div className="bg-muted p-4 rounded-lg border border-border">
+              <p className="text-sm text-duop-gray-dark break-all font-mono leading-relaxed">
                 {pixCode}
               </p>
             </div>
@@ -77,8 +77,8 @@ export function PixPayment({ amount, period, pixCode, qrCodeUrl }: PixPaymentPro
         </div>
 
         {/* Instruções */}
-        <div className="bg-white border-2 border-duop-purple/20 p-6 rounded-lg">
-          <p className="text-duop-gray-dark text-center text-lg">
+        <div className="bg-white border border-duop-purple/15 p-5 rounded-lg">
+          <p className="text-duop-gray-dark text-center text-base">
             Faça o pagamento e envie o comprovante na tela do WhatsApp
           </p>
         </div>

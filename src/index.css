@@ -142,7 +142,7 @@
   }
 
   .feature-card {
-    @apply bg-white p-6 rounded-xl border border-gray-100 hover:shadow-sm transition-shadow duration-300;
+    @apply bg-white p-5 rounded-xl border border-gray-100 shadow-card hover:shadow-card-hover transition-shadow duration-300;
   }
   
   .problem-item {
