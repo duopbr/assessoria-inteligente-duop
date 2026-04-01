@@ -8,9 +8,10 @@ export function HeroOptimized() {
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Coluna Esquerda - Mensagem Principal */}
         <div className="order-1 lg:order-1 space-y-8">
-          <div className="inline-block bg-duop-purple/10 border border-duop-purple/20 rounded-full px-4 py-2 mb-4">
+          <div className="inline-flex items-center gap-2 bg-duop-purple/10 border border-duop-purple/20 rounded-full px-4 py-2 mb-4">
+            <CheckCircle2 size={14} className="text-duop-purple" />
             <span className="text-duop-purple font-semibold text-sm">
-              ✅ +3.000 assessores já testaram | XP • BTG • Warren
+              +3.000 assessores já testaram | XP • BTG • Warren
             </span>
           </div>
 
@@ -21,26 +22,26 @@ export function HeroOptimized() {
             A Rotina do Assessor, Reinventada pela IA.
           </h2>
 
-          <p className="text-xl text-duop-gray-dark leading-relaxed">
+          <p className="text-lg text-duop-gray-dark leading-relaxed">
             Automatize tarefas operacionais e ganhe tempo para relacionamento e estratégia.
           </p>
 
-          <div className="space-y-5 pt-6">
+          <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3">
-              <CheckCircle2 className="text-green-500 flex-shrink-0" size={28} />
-              <p className="text-lg font-semibold text-duop-blue">
+              <CheckCircle2 className="text-duop-purple flex-shrink-0" size={24} />
+              <p className="text-base font-semibold text-duop-blue">
                 Resumos de carteira em 10 segundos
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <CheckCircle2 className="text-blue-500 flex-shrink-0" size={28} />
-              <p className="text-lg font-semibold text-duop-blue">
+              <CheckCircle2 className="text-duop-purple flex-shrink-0" size={24} />
+              <p className="text-base font-semibold text-duop-blue">
                 Respostas automáticas no WhatsApp 24/7
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <CheckCircle2 className="text-purple-500 flex-shrink-0" size={28} />
-              <p className="text-lg font-semibold text-duop-blue">
+              <CheckCircle2 className="text-duop-purple flex-shrink-0" size={24} />
+              <p className="text-base font-semibold text-duop-blue">
                 Alertas inteligentes antes dos clientes
               </p>
             </div>
@@ -49,7 +50,7 @@ export function HeroOptimized() {
 
         {/* Coluna Direita - Formulário */}
         <div className="order-2 lg:order-2">
-          <div className="bg-gradient-to-br from-duop-purple/5 to-duop-blue/5 rounded-2xl p-6 sm:p-8 lg:p-10 border-2 border-duop-purple/20 shadow-xl max-w-md sm:max-w-lg lg:max-w-xl mx-auto">
+          <div className="bg-gradient-to-br from-duop-purple/5 to-duop-blue/5 rounded-2xl p-5 sm:p-6 lg:p-8 border border-duop-purple/15 shadow-card max-w-md sm:max-w-lg lg:max-w-xl mx-auto">
             <div className="text-center mb-4 sm:mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-duop-blue mb-2">
                 Agende Sua Demo de 15 Minutos
@@ -59,7 +60,7 @@ export function HeroOptimized() {
               </p>
             </div>
 
-            <LeadForm source="hero_optimized" ctaText="📱 Quero ver na prática agora" />
+            <LeadForm source="hero_optimized" ctaText="Quero ver na prática agora" />
           </div>
         </div>
       </div>

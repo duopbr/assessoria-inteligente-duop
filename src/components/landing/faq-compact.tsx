@@ -30,17 +30,17 @@ export function FAQCompact() {
       <SectionTitle>Perguntas Frequentes</SectionTitle>
       
       <div className="max-w-3xl mx-auto mt-12">
-        <Accordion type="single" collapsible className="space-y-4">
+        <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((faq, index) => (
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="bg-white rounded-lg shadow-md border border-duop-purple/10 px-6"
+              className="bg-white rounded-lg shadow-card border border-border px-6"
             >
-              <AccordionTrigger className="text-left text-lg font-semibold text-duop-blue hover:text-duop-purple">
+              <AccordionTrigger className="text-left text-base font-semibold text-duop-blue hover:text-duop-purple">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-duop-gray-dark pt-2 pb-4">
+              <AccordionContent className="text-sm text-duop-gray-dark pt-2 pb-4">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
@@ -49,7 +49,7 @@ export function FAQCompact() {
       </div>
 
       <div className="text-center mt-12">
-        <p className="text-lg text-duop-gray-dark">
+        <p className="text-base text-duop-gray-dark">
           Ainda tem dúvidas? <a href="https://wa.me/5521973973673" className="text-duop-purple font-bold hover:underline">Fale conosco no WhatsApp</a>
         </p>
       </div>
