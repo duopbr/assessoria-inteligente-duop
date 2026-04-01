@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { toast } from "@/hooks/use-toast";
 import { 
@@ -17,11 +17,7 @@ import {
   DollarSign, 
   Star,
   Copy,
-  ArrowLeft,
-  Rocket,
-  Zap,
-  Play,
-  BookOpen
+  ArrowLeft
 } from "lucide-react";
 
 const ThankYouPurchase = () => {
@@ -32,7 +28,7 @@ const ThankYouPurchase = () => {
     navigator.clipboard.writeText(text);
     setCopiedPrompt(text);
     toast({
-      title: "Copiado!",
+      title: "✅ Copiado!",
       description: "Prompt copiado para área de transferência",
     });
     setTimeout(() => setCopiedPrompt(null), 2000);
@@ -40,17 +36,17 @@ const ThankYouPurchase = () => {
 
   const features = [
     {
-      icon: <Sun className="w-6 h-6" />,
+      icon: <Sun className="w-8 h-8" />,
       title: "Morning Call",
       badge: "Automático",
-      badgeColor: "bg-green-50 text-green-700",
+      badgeColor: "bg-green-100 text-green-800",
       description: "Receba análises do mercado todo dia útil entre 9h-10h automaticamente"
     },
     {
-      icon: <PieChart className="w-6 h-6" />,
+      icon: <PieChart className="w-8 h-8" />,
       title: "Análise de Carteira",
       badge: "3 passos",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-blue-100 text-blue-800",
       description: (
         <ol className="list-decimal list-inside space-y-1 text-sm">
           <li>Envie foto da carteira ou documento de posição</li>
@@ -60,17 +56,17 @@ const ThankYouPurchase = () => {
       )
     },
     {
-      icon: <Calendar className="w-6 h-6" />,
+      icon: <Calendar className="w-8 h-8" />,
       title: "Relatório Mensal",
       badge: "Mensal",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-purple-100 text-purple-800",
       description: "Envie seu relatório de performance do último dia útil do mês"
     },
     {
-      icon: <Building2 className="w-6 h-6" />,
+      icon: <Building2 className="w-8 h-8" />,
       title: "Análise de Ofertas",
       badge: "IPO",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-orange-100 text-orange-800",
       description: (
         <div className="space-y-1 text-sm">
           <p className="font-medium">Prompts:</p>
@@ -80,10 +76,10 @@ const ThankYouPurchase = () => {
       )
     },
     {
-      icon: <TrendingUp className="w-6 h-6" />,
+      icon: <TrendingUp className="w-8 h-8" />,
       title: "Análise de Ações",
       badge: "Ações",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-cyan-100 text-cyan-800",
       description: (
         <div className="space-y-1 text-sm">
           <p className="font-medium">Prompts:</p>
@@ -93,10 +89,10 @@ const ThankYouPurchase = () => {
       )
     },
     {
-      icon: <Home className="w-6 h-6" />,
+      icon: <Home className="w-8 h-8" />,
       title: "Análise de FIIs",
       badge: "FIIs",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-emerald-100 text-emerald-800",
       description: (
         <div className="space-y-1 text-sm">
           <p className="font-medium">Prompts:</p>
@@ -106,10 +102,10 @@ const ThankYouPurchase = () => {
       )
     },
     {
-      icon: <DollarSign className="w-6 h-6" />,
+      icon: <DollarSign className="w-8 h-8" />,
       title: "Dados Financeiros",
       badge: "Cotações",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-yellow-100 text-yellow-800",
       description: (
         <div className="space-y-1 text-sm">
           <p className="font-medium">Prompt:</p>
@@ -118,10 +114,10 @@ const ThankYouPurchase = () => {
       )
     },
     {
-      icon: <Star className="w-6 h-6" />,
+      icon: <Star className="w-8 h-8" />,
       title: "Carteira Recomendada",
       badge: "Premium",
-      badgeColor: "bg-duop-purple/10 text-duop-purple",
+      badgeColor: "bg-pink-100 text-pink-800",
       description: (
         <div className="space-y-2">
           <p className="text-sm">Solicite sua carteira personalizada ao suporte técnico</p>
@@ -185,12 +181,12 @@ const ThankYouPurchase = () => {
         {/* Header */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
-            <CheckCircle className="w-14 h-14 text-green-500" />
+            <CheckCircle className="w-16 h-16 text-green-500" />
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold">
-            <span className="gradient-text">Pagamento Confirmado!</span>
+          <h1 className="text-3xl md:text-4xl font-bold">
+            <span className="gradient-text">🎉 Pagamento Confirmado!</span>
           </h1>
-          <p className="text-base text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             Bem-vindo à Duop! Vamos começar agora mesmo.
           </p>
         </div>
@@ -205,7 +201,7 @@ const ThankYouPurchase = () => {
           >
             <Button 
               size="lg"
-              className="w-full bg-green-500 hover:bg-green-600 text-white gap-2"
+              className="w-full bg-[#25D366] hover:bg-[#20BD5A] text-white gap-2"
             >
               <MessageCircle className="w-5 h-5" />
               Falar com a IA Agora
@@ -230,34 +226,31 @@ const ThankYouPurchase = () => {
         </div>
 
         {/* Quick Start Section */}
-        <Card className="max-w-3xl mx-auto bg-gradient-to-br from-duop-purple/5 to-duop-purple/10 border-duop-purple/15 shadow-card">
+        <Card className="max-w-3xl mx-auto bg-gradient-to-br from-duop-purple/5 to-duop-purple/10 border-duop-purple/20">
           <CardHeader>
-            <CardTitle className="text-center text-xl flex items-center justify-center gap-2">
-              <Rocket size={20} className="text-duop-purple" />
-              Comece em 3 Passos
-            </CardTitle>
+            <CardTitle className="text-center text-2xl">🚀 Comece em 3 Passos</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center space-y-2">
-                <div className="w-10 h-10 rounded-full bg-duop-purple/15 flex items-center justify-center mx-auto">
-                  <span className="text-lg font-bold text-duop-purple">1</span>
+                <div className="w-12 h-12 rounded-full bg-duop-purple/20 flex items-center justify-center mx-auto">
+                  <span className="text-2xl font-bold text-duop-purple">1</span>
                 </div>
-                <h3 className="font-semibold text-sm">Abra o WhatsApp</h3>
+                <h3 className="font-semibold">Abra o WhatsApp</h3>
                 <p className="text-sm text-muted-foreground">Clique no botão verde acima</p>
               </div>
               <div className="text-center space-y-2">
-                <div className="w-10 h-10 rounded-full bg-duop-purple/15 flex items-center justify-center mx-auto">
-                  <span className="text-lg font-bold text-duop-purple">2</span>
+                <div className="w-12 h-12 rounded-full bg-duop-purple/20 flex items-center justify-center mx-auto">
+                  <span className="text-2xl font-bold text-duop-purple">2</span>
                 </div>
-                <h3 className="font-semibold text-sm">Envie um Prompt</h3>
+                <h3 className="font-semibold">Envie um Prompt</h3>
                 <p className="text-sm text-muted-foreground">Use um dos prompts abaixo</p>
               </div>
               <div className="text-center space-y-2">
-                <div className="w-10 h-10 rounded-full bg-duop-purple/15 flex items-center justify-center mx-auto">
-                  <span className="text-lg font-bold text-duop-purple">3</span>
+                <div className="w-12 h-12 rounded-full bg-duop-purple/20 flex items-center justify-center mx-auto">
+                  <span className="text-2xl font-bold text-duop-purple">3</span>
                 </div>
-                <h3 className="font-semibold text-sm">Receba a Análise</h3>
+                <h3 className="font-semibold">Receba a Análise</h3>
                 <p className="text-sm text-muted-foreground">Em segundos via WhatsApp</p>
               </div>
             </div>
@@ -267,10 +260,7 @@ const ThankYouPurchase = () => {
         {/* Top 4 Quick Prompts */}
         <div className="space-y-4 max-w-3xl mx-auto">
           <div className="text-center">
-            <h2 className="text-xl font-bold mb-2 flex items-center justify-center gap-2">
-              <Zap size={18} className="text-duop-purple" />
-              Comece com estes prompts
-            </h2>
+            <h2 className="text-2xl font-bold mb-2">⚡ Comece com estes prompts</h2>
             <p className="text-sm text-muted-foreground">Clique para copiar e colar no WhatsApp</p>
           </div>
           
@@ -279,7 +269,7 @@ const ThankYouPurchase = () => {
               <Button
                 key={index}
                 variant="outline"
-                className="h-auto py-3 px-4 text-left justify-between hover:bg-duop-purple/5 hover:border-duop-purple/30 transition-all"
+                className="h-auto py-4 px-4 text-left justify-between hover:bg-duop-purple/5 hover:border-duop-purple/50 transition-all"
                 onClick={() => copyToClipboard(prompt)}
               >
                 <span className="text-sm font-medium flex-1">{prompt}</span>
@@ -306,16 +296,13 @@ const ThankYouPurchase = () => {
         {/* Video Tutorial */}
         <div className="space-y-4">
           <div className="text-center">
-            <h2 className="text-xl font-bold mb-2 flex items-center justify-center gap-2">
-              <Play size={18} className="text-duop-purple" />
-              Veja como funciona (2min)
-            </h2>
+            <h2 className="text-2xl font-bold mb-2">🎥 Veja como funciona (2min)</h2>
             <p className="text-sm text-muted-foreground">Tutorial rápido de uso da plataforma</p>
           </div>
           
           <div className="aspect-video w-full max-w-4xl mx-auto">
             <iframe
-              className="w-full h-full rounded-lg shadow-card border border-border"
+              className="w-full h-full rounded-lg shadow-lg"
               src="https://www.youtube.com/embed/QSkl2vUAUow"
               title="Como usar a Duop"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -327,10 +314,7 @@ const ThankYouPurchase = () => {
         {/* Features Accordion */}
         <div className="space-y-4 max-w-3xl mx-auto" id="all-prompts">
           <div className="text-center">
-            <h2 className="text-xl font-bold mb-2 flex items-center justify-center gap-2">
-              <BookOpen size={18} className="text-duop-purple" />
-              Todas as Funcionalidades
-            </h2>
+            <h2 className="text-2xl font-bold mb-2">📚 Todas as Funcionalidades</h2>
             <p className="text-sm text-muted-foreground">Explore tudo que você pode fazer</p>
           </div>
           
@@ -343,7 +327,7 @@ const ThankYouPurchase = () => {
                       {feature.icon}
                     </div>
                     <div className="flex-1">
-                      <div className="font-semibold text-sm">{feature.title}</div>
+                      <div className="font-semibold">{feature.title}</div>
                     </div>
                     <span className={`text-xs px-2 py-1 rounded-full font-medium ${feature.badgeColor} flex-shrink-0`}>
                       {feature.badge}
@@ -367,17 +351,14 @@ const ThankYouPurchase = () => {
         {/* All Prompts by Category */}
         <div className="space-y-4 max-w-3xl mx-auto">
           <div className="text-center">
-            <h2 className="text-xl font-bold mb-2 flex items-center justify-center gap-2">
-              <MessageCircle size={18} className="text-duop-purple" />
-              Todos os Prompts por Categoria
-            </h2>
+            <h2 className="text-2xl font-bold mb-2">💬 Todos os Prompts por Categoria</h2>
             <p className="text-sm text-muted-foreground">Clique para copiar qualquer prompt</p>
           </div>
           
           <Accordion type="single" collapsible className="w-full">
             {promptCategories.map((category, index) => (
               <AccordionItem key={index} value={`prompt-${index}`}>
-                <AccordionTrigger className="text-sm font-semibold">
+                <AccordionTrigger className="text-base font-semibold">
                   {category.category}
                 </AccordionTrigger>
                 <AccordionContent>
@@ -404,29 +385,26 @@ const ThankYouPurchase = () => {
         </div>
 
         {/* Info Box */}
-        <Card className="max-w-3xl mx-auto bg-duop-purple/5 border-duop-purple/15 shadow-card">
+        <Card className="max-w-3xl mx-auto bg-duop-purple/5 border-duop-purple/20">
           <CardHeader>
-            <CardTitle className="text-center text-lg flex items-center justify-center gap-2">
-              <CheckCircle size={18} className="text-green-500" />
-              Tudo incluído na sua assinatura
-            </CardTitle>
+            <CardTitle className="text-center text-xl">✅ Tudo incluído na sua assinatura</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <p className="text-sm">Acesso imediato a todas funcionalidades</p>
               </div>
               <div className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <p className="text-sm">Suporte via WhatsApp incluído</p>
               </div>
               <div className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <p className="text-sm">Morning Call automático ativado</p>
               </div>
               <div className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <p className="text-sm">Sem fidelidade - cancele quando quiser</p>
               </div>
             </div>

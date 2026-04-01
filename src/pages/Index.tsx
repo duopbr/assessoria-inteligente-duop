@@ -12,17 +12,18 @@ import { WhatsAppFloatButton } from "@/components/ui/whatsapp-float-button";
 import { AccessibilityImprovements } from "@/components/ui/accessibility-improvements";
 import { Button } from "@/components/ui/button";
 import { scrollToForm } from "@/lib/utils/scroll";
-import { Smartphone } from "lucide-react";
 
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    // Use IntersectionObserver instead of scroll event for better performance
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
+            // Unobserve after animation triggers to save resources
             observerRef.current?.unobserve(entry.target);
           }
         });
@@ -57,7 +58,7 @@ const Index = () => {
       <AccessibilityImprovements />
       
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border shadow-card">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-duop-purple/10 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
@@ -72,10 +73,9 @@ const Index = () => {
           </div>
           <Button 
             onClick={scrollToForm}
-            className="bg-duop-purple text-white hover:bg-duop-purple/90 gap-2"
+            className="bg-duop-purple text-white hover:bg-duop-purple/90"
           >
-            <Smartphone size={16} />
-            Testar Agora
+            📱 Testar Agora
           </Button>
         </div>
       </header>

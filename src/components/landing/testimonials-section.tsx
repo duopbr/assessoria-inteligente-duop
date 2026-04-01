@@ -26,17 +26,17 @@ export function TestimonialsSection() {
 
   const credibilityItems = [
     {
-      icon: <Briefcase size={28} />,
+      icon: <Briefcase size={32} />,
       title: "Experiência Real",
       description: "Ex-gestores e estrategistas de grandes assessorias"
     },
     {
-      icon: <Users size={28} />,
+      icon: <Users size={32} />,
       title: "Co-criação",
       description: "Validado com +3.000 assessores parceiros"
     },
     {
-      icon: <Award size={28} />,
+      icon: <Award size={32} />,
       title: "Time Técnico",
       description: "Mestres, Doutores e PhDs em IA aplicada"
     }
@@ -46,30 +46,30 @@ export function TestimonialsSection() {
     <Section className="bg-gradient-to-b from-duop-purple/5 to-white">
       <SectionTitle>Assessores Reais, Resultados Reais</SectionTitle>
       
-      <div className="grid md:grid-cols-3 gap-6 mt-12">
+      <div className="grid md:grid-cols-3 gap-8 mt-12">
         {testimonials.map((testimonial, index) => (
           <TestimonialCard key={index} {...testimonial} />
         ))}
       </div>
 
-      <div className="mt-20 pt-12 border-t border-border">
-        <h3 className="text-2xl font-bold text-center text-duop-blue mb-12">
+      <div className="mt-20 pt-12 border-t-2 border-duop-purple/20">
+        <h3 className="text-3xl font-bold text-center text-duop-blue mb-12">
           Quem Construiu a Duop
         </h3>
         
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {credibilityItems.map((item, index) => (
             <div 
               key={index}
-              className="text-center p-5 bg-white rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 border border-border"
+              className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-duop-purple/10"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-duop-purple to-duop-blue rounded-full text-white mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-duop-purple to-duop-blue rounded-full text-white mb-4">
                 {item.icon}
               </div>
-              <h4 className="text-lg font-bold text-duop-blue mb-2">
+              <h4 className="text-xl font-bold text-duop-blue mb-2">
                 {item.title}
               </h4>
-              <p className="text-sm text-duop-gray-dark">
+              <p className="text-duop-gray-dark">
                 {item.description}
               </p>
             </div>

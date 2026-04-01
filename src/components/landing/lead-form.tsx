@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Smartphone, Check, Ban, Gift, Clock } from "lucide-react";
 
 interface LeadFormProps {
   variant?: "light" | "dark";
@@ -14,7 +13,7 @@ interface LeadFormProps {
 export function LeadForm({ 
   variant = "light", 
   showUrgencyBadge = false, 
-  ctaText = "Agendar Demonstração",
+  ctaText = "📱 Agendar Demonstração",
   source = "hero"
 }: LeadFormProps) {
   const [name, setName] = useState("");
@@ -48,6 +47,7 @@ export function LeadForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Cheap validations first - fail fast before any async work
     if (!name.trim() || !phone.trim()) {
       toast({
         title: "Campos obrigatórios",
@@ -67,15 +67,18 @@ export function LeadForm({
       return;
     }
 
+    // Disable button immediately after validations pass
     setIsSubmitting(true);
 
     try {
+      // Lazy load heavy dependencies only after validations pass
       const [{ supabase }, { validatePhoneNumber }, { trackLeadSubmission }] = await Promise.all([
         import("@/integrations/supabase/client"),
         import("@/lib/security"),
         import("@/lib/tracking")
       ]);
 
+      // Full validation with imported function
       if (!validatePhoneNumber(phone)) {
         toast({
           title: "Telefone inválido",
@@ -115,7 +118,7 @@ export function LeadForm({
       });
 
       toast({
-        title: "Agendamento confirmado!",
+        title: "✅ Agendamento confirmado!",
         description: "Em breve entraremos em contato via WhatsApp.",
       });
 
@@ -146,9 +149,8 @@ export function LeadForm({
     <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
       {showUrgencyBadge && (
         <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-2 text-center animate-pulse">
-          <span className="inline-flex items-center gap-1.5 text-red-600 font-semibold text-sm">
-            <Clock size={14} />
-            Últimas 23 vagas disponíveis esta semana
+          <span className="text-red-600 font-semibold text-sm">
+            ⏰ Últimas 23 vagas disponíveis esta semana
           </span>
         </div>
       )}
@@ -224,9 +226,8 @@ export function LeadForm({
         )}
       </div>
 
-      <p className={`text-sm leading-relaxed flex items-start gap-1.5 ${isDark ? "text-white/70" : "text-duop-gray-dark"}`}>
-        <Smartphone size={14} className="flex-shrink-0 mt-0.5" />
-        Enviaremos o link da demo direto no seu WhatsApp. Por isso precisamos do seu número com DDD.
+      <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? "text-white/70" : "text-duop-gray-dark"}`}>
+        📱 Enviaremos o link da demo direto no seu WhatsApp. Por isso precisamos do seu número com DDD.
       </p>
 
       <Button
@@ -241,22 +242,13 @@ export function LeadForm({
         {isSubmitting ? "Enviando..." : ctaText}
       </Button>
 
-      <div className={`flex flex-col items-center justify-center gap-2 sm:gap-3 text-sm ${isDark ? "text-white/80" : "text-duop-gray-dark"}`}>
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-          <span className="inline-flex items-center gap-1.5">
-            <Check size={14} className="text-duop-purple" />
-            15 minutos de demo ao vivo
-          </span>
-          <span className="hidden sm:inline text-duop-gray-light">•</span>
-          <span className="inline-flex items-center gap-1.5">
-            <Ban size={14} className="text-duop-gray" />
-            Zero compromisso
-          </span>
+      <div className={`flex flex-col items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm ${isDark ? "text-white/80" : "text-duop-gray-dark"}`}>
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+          <span>✅ 15 minutos de demo ao vivo</span>
+          <span className="hidden sm:inline">•</span>
+          <span>🚫 Zero compromisso</span>
         </div>
-        <span className="inline-flex items-center gap-1.5">
-          <Gift size={14} className="text-duop-purple" />
-          Acesso imediato
-        </span>
+        <span>🎁 Acesso imediato</span>
       </div>
     </form>
   );
